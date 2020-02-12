@@ -15,7 +15,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Fiscalia_Project_v1" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Xfy08iztgene4iE2A0g8f9umSP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -26,10 +26,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="C:/Program Files/DigitalPersona/Bin/Java/dpotjni.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration name="MainForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -64,6 +65,11 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/Fiscalia_Project_v1" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
     <state x="490" y="146" key="#com.intellij.ide.util.MemberChooser" timestamp="1581542985863">
       <screen x="0" y="0" width="1368" height="872" />
@@ -89,10 +95,10 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1326" height="161" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1581545868283" />
-    <state x="165" y="11" key="SettingsEditor" timestamp="1581459497719">
+    <state x="165" y="11" key="SettingsEditor" timestamp="1581546280413">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="165" y="11" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1581459497719" />
+    <state x="165" y="11" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1581546280413" />
     <state x="380" y="260" key="com.intellij.ide.util.TipDialog" timestamp="1581542445559">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
