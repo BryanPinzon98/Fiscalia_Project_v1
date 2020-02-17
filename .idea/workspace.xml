@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f283c4c6-6250-49b7-b974-7e6c9aec2cca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest/src/gov/fged/enrollment/Enrollment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest/src/gov/fged/main/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest/src/gov/fged/main/MainClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
