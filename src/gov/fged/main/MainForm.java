@@ -23,6 +23,8 @@ public class MainForm extends JFrame {
     private DPFPTemplate template;
 
     public static void main(String[] args) {
+
+        //Stay in another thread until all process into Main Method be executed.
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -39,6 +41,7 @@ public class MainForm extends JFrame {
         this.setTitle("Fingerprint Enrollment and Verification Sample");
         setResizable(false);
 
+        //Fingerprint enrollment UI Button
         final JButton enroll = new JButton("Fingerprint Enrollment");
         enroll.addActionListener(new ActionListener() {
             @Override
@@ -47,6 +50,7 @@ public class MainForm extends JFrame {
             }
         });
 
+        //Fingerprint verification UI Button
         final JButton verify = new JButton("Fingerprint Verification");
         verify.addActionListener(new ActionListener() {
             @Override
@@ -55,6 +59,7 @@ public class MainForm extends JFrame {
             }
         });
 
+        //Save Fingerprint UI Button
         final JButton save = new JButton("Save Fingerprint Template");
         save.addActionListener(new ActionListener() {
             @Override
@@ -63,6 +68,7 @@ public class MainForm extends JFrame {
             }
         });
 
+        //Read Fingerprint UI Button
         final JButton load = new JButton("Read Fingerprint Template");
         load.addActionListener(new ActionListener() {
             @Override
@@ -71,6 +77,7 @@ public class MainForm extends JFrame {
             }
         });
 
+        //Close UI Button
         final JButton quit = new JButton("Close");
         quit.addActionListener(new ActionListener() {
             @Override
@@ -79,7 +86,7 @@ public class MainForm extends JFrame {
             }
         });
 
-        //IMPORTANT TO REVIEW
+        //Set "Verify Fingerprint" and "Save Fingerprint" UI Buttons as INACTIVE
         this.addPropertyChangeListener(TEMPLATE_PROPERTY, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent propChangeEvent) {
@@ -95,6 +102,7 @@ public class MainForm extends JFrame {
             }
         });
 
+        //Set up UI interface
         JPanel center = new JPanel();
         center.setLayout(new GridLayout(4, 1, 0, 5));
         center.setBorder(BorderFactory.createEmptyBorder(20, 20, 5, 20));
@@ -111,7 +119,7 @@ public class MainForm extends JFrame {
         add(center, BorderLayout.CENTER);
         add(bottom, BorderLayout.PAGE_END);
 
-        //It allows the size windows as be the smallest as be possible
+
         pack();
 
         setSize((int) (getSize().width * 1.6), getSize().height);
