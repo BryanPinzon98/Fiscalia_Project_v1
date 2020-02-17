@@ -4,8 +4,7 @@ import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.DPFPGlobal;
 import com.digitalpersona.onetouch.DPFPSample;
 import com.digitalpersona.onetouch.capture.DPFPCapture;
-import com.digitalpersona.onetouch.capture.event.DPFPDataAdapter;
-import com.digitalpersona.onetouch.capture.event.DPFPDataEvent;
+import com.digitalpersona.onetouch.capture.event.*;
 import com.digitalpersona.onetouch.processing.DPFPEnrollment;
 import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
@@ -156,6 +155,66 @@ public class MainClass extends JFrame {
             }
         });
 
+        capturer.addReaderStatusListener(new DPFPReaderStatusAdapter() {
+            @Override
+            public void readerConnected(DPFPReaderStatusEvent dpfpReaderStatusEvent) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("The fingerprint reader was connected.");
+                    }
+                });
+            }
+
+            @Override
+            public void readerDisconnected(DPFPReaderStatusEvent dpfpReaderStatusEvent) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("The fingerprint reader was disconnected.");
+                    }
+                });
+            }
+        });
+
+        capturer.addSensorListener(new DPFPSensorAdapter() {
+            @Override
+            public void fingerTouched(DPFPSensorEvent dpfpSensorEvent) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("The fingerprint reader was touched.");
+                    }
+                });
+            }
+
+            @Override
+            public void fingerGone(DPFPSensorEvent dpfpSensorEvent) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("The finger was removed from the fingerprint reader.");
+                    }
+                });
+            }
+        });
+
+        capturer.addImageQualityListener(new DPFPImageQualityAdapter() {
+            @Override
+            public void onImageQuality(DPFPImageQualityEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (e.getFeedback().equals(DPFPCaptureFeedback.CAPTURE_FEEDBACK_GOOD)) {
+                            System.out.println("The quality of the fingerprint sample is good.");
+                        } else {
+                            System.out.println("The quality of the fingerprint sample is poor.");
+                        }
+                    }
+                });
+            }
+        });
+
     }
 
     protected void start() {
@@ -189,7 +248,7 @@ public class MainClass extends JFrame {
                 switch (enroller.getTemplateStatus()) {
                     case TEMPLATE_STATUS_READY:
                         stop();
-                        ((MainClass) getOwner()).setTemplate(enroller.getTemplate());
+                        setTemplate(enroller.getTemplate());
                         break;
                     case TEMPLATE_STATUS_FAILED:
                         stop();
