@@ -95,7 +95,7 @@ public class MainClass extends JFrame {
                     }
                     if (file.exists()) {
                         int choice = JOptionPane.showConfirmDialog(this,
-                                String.format("File \"%1%s\" already exists. \nDo you want to replace it?", file.toString()),
+                                String.format("File \"%1$s\" already exists. \nDo you want to replace it?", file.toString()),
                                 "Fingerprint saving", JOptionPane.YES_NO_CANCEL_OPTION);
                         if (choice == JOptionPane.NO_OPTION) {
                             continue;
