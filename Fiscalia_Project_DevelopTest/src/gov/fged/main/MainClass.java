@@ -9,6 +9,7 @@ import com.digitalpersona.onetouch.processing.DPFPEnrollment;
 import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 import gov.fged.enrollment.Enrollment;
+//import gov.fged.read.Read;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,11 +59,12 @@ public class MainClass extends JFrame {
             }
         });
 
-        final JButton saveButton = new JButton("Save");
-        saveButton.addActionListener(new ActionListener() {
+
+        final JButton readButton = new JButton("Read");
+        readButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                onSave();
+                onRead();
             }
         });
 
@@ -70,67 +72,21 @@ public class MainClass extends JFrame {
         centerButtons.setLayout(new GridLayout(4, 1, 0, 5));
         centerButtons.setBorder(BorderFactory.createEmptyBorder(20, 20, 5, 20));
         centerButtons.add(enrollmentButton);
-        centerButtons.add(saveButton);
-
+        centerButtons.add(readButton);
 
         setLayout(new BorderLayout());
         add(centerButtons, BorderLayout.CENTER);
 
-        //setTemplate(null);
         setVisible(true);
     }
 
-    public void onEnroll() {
+    private void onRead() {
+        //Read onRead = new Read();
+    }
+
+    private void onEnroll() {
         Enrollment enrollmentProcess = new Enrollment();
         enrollmentProcess.setVisible(true);
-    }
-
-    private void onSave() {
-        JFileChooser chooser = new JFileChooser();
-        chooser.addChoosableFileFilter(new TemplateFileFilter());
-
-        while (true) {
-
-            if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                try {
-                    File file = chooser.getSelectedFile();
-                    if (!file.toString().toLowerCase().endsWith(".fpt")) {
-                        file = new File(file.toString() + ".fpt");
-                    }
-                    if (file.exists()) {
-                        int choice = JOptionPane.showConfirmDialog(this,
-                                String.format("File \"%1$s\" already exists. \nDo you want to replace it?", file.toString()),
-                                "Fingerprint saving", JOptionPane.YES_NO_CANCEL_OPTION);
-                        if (choice == JOptionPane.NO_OPTION) {
-                            continue;
-                        } else if (choice == JOptionPane.CANCEL_OPTION) {
-                            break;
-                        }
-                    }
-
-                    FileOutputStream stream = new FileOutputStream(file);
-                    stream.write(getTemplate().serialize());
-                    stream.close();
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, e.getLocalizedMessage(), "Fingerprint saving", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            break;
-        }
-    }
-
-    public static class TemplateFileFilter extends javax.swing.filechooser.FileFilter {
-
-        @Override
-        public boolean accept(File file) {
-            return file.getName().endsWith(".fpt");
-        }
-
-        @Override
-        public String getDescription() {
-            return "FingerTemplate File (*.fpt)";
-        }
     }
 
     public void setTemplate(DPFPTemplate template) {

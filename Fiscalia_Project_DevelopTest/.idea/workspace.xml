@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="938aaac7-afb9-4669-a387-37325a7b2290" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/enrollment/Enrollment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/LaunchFingerprintReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/TemplateFileFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gov/fged/storage/Storage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gov/fged/verify/Verify.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gov/fged/enrollment/Enrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/enrollment/Enrollment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gov/fged/main/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/main/MainClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,11 +75,11 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="553" y="133" key="#com.intellij.ide.util.MemberChooser" timestamp="1581972416728">
+    <state x="553" y="133" key="#com.intellij.ide.util.MemberChooser" timestamp="1582043928787">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1581630267962" />
-    <state x="553" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1368.872@0.0.1368.872" timestamp="1581972416728" />
+    <state x="553" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1368.872@0.0.1368.872" timestamp="1582043928787" />
     <state x="432" y="292" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1581976616684">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -83,26 +88,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1581623502792" />
-    <state width="1326" height="227" key="GridCell.Tab.0.bottom" timestamp="1581979104674">
+    <state width="1326" height="227" key="GridCell.Tab.0.bottom" timestamp="1582047515263">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
-    <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1581979104674" />
-    <state width="1326" height="227" key="GridCell.Tab.0.center" timestamp="1581979104674">
+    <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1582047515263" />
+    <state width="1326" height="227" key="GridCell.Tab.0.center" timestamp="1582047515262">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
-    <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1581979104674" />
-    <state width="1326" height="227" key="GridCell.Tab.0.left" timestamp="1581979104673">
+    <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1582047515262" />
+    <state width="1326" height="227" key="GridCell.Tab.0.left" timestamp="1582047515262">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
-    <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1581979104673" />
-    <state width="1326" height="227" key="GridCell.Tab.0.right" timestamp="1581979104674">
+    <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1582047515262" />
+    <state width="1326" height="227" key="GridCell.Tab.0.right" timestamp="1582047515262">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
-    <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1581979104674" />
+    <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1582047515262" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1581628870774">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -123,11 +128,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1581625582682" />
-    <state x="379" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581954135102">
+    <state x="379" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1582040319627">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="378" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1581695852921" />
-    <state x="379" y="224" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1581954135102" />
+    <state x="379" y="224" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1582040319627" />
     <state x="347" y="184" width="672" height="678" key="search.everywhere.popup" timestamp="1581976565583">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
