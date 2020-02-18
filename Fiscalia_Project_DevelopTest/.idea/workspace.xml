@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="938aaac7-afb9-4669-a387-37325a7b2290" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/LaunchFingerprintReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/TemplateFileFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/storage/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/verify/Verify.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gov/fged/read/Read.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/enrollment/Enrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/enrollment/Enrollment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gov/fged/main/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/main/MainClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

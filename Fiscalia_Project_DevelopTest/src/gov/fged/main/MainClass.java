@@ -9,7 +9,7 @@ import com.digitalpersona.onetouch.processing.DPFPEnrollment;
 import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 import gov.fged.enrollment.Enrollment;
-//import gov.fged.read.Read;
+import gov.fged.read.Read;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,7 +81,7 @@ public class MainClass extends JFrame {
     }
 
     private void onRead() {
-        //Read onRead = new Read();
+        Read onRead = new Read();
     }
 
     private void onEnroll() {
