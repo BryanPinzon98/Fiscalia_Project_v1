@@ -3,9 +3,8 @@ package gov.fged.resources;
 import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.capture.DPFPCapture;
 import com.digitalpersona.onetouch.capture.event.*;
+import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
-import gov.fged.main.MainClass;
-import gov.fged.storage.Storage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +14,21 @@ import java.awt.event.ComponentEvent;
 public abstract class LaunchFingerprintReader extends JFrame {
 
     private DPFPCapture capturer = DPFPGlobal.getCaptureFactory().createCapture();
+    private JLabel fingerprintImage = new JLabel();
 
     public LaunchFingerprintReader() {
+
+        setPreferredSize(new Dimension(720, 480));
+        setResizable(true);
+
+        fingerprintImage.setPreferredSize(new Dimension(300, 480));
+        fingerprintImage.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+
+        setLayout(new BorderLayout());
+        add(fingerprintImage, BorderLayout.LINE_START);
+
+        pack();
+        setLocationRelativeTo(null);
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -32,7 +44,9 @@ public abstract class LaunchFingerprintReader extends JFrame {
         });
     }
 
-    public abstract void process(DPFPSample sample);
+    public void process(DPFPSample sample){
+        drawImage(convertSampleToBitmap(sample));
+    }
 
     protected void init() {
         capturer.addDataListener(new DPFPDataAdapter() {
@@ -115,6 +129,23 @@ public abstract class LaunchFingerprintReader extends JFrame {
 
     protected void stop() {
         capturer.stopCapture();
+    }
+
+    protected DPFPFeatureSet extractFeatures(DPFPSample sample, DPFPDataPurpose purpose) {
+        DPFPFeatureExtraction extractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
+        try {
+            return extractor.createFeatureSet(sample, purpose);
+        } catch (DPFPImageQualityException e) {
+            return null;
+        }
+    }
+
+    protected Image convertSampleToBitmap(DPFPSample sample) {
+        return DPFPGlobal.getSampleConversionFactory().createImage(sample);
+    }
+
+    public void drawImage(Image image) {
+        fingerprintImage.setIcon(new ImageIcon(image.getScaledInstance(fingerprintImage.getWidth(), fingerprintImage.getHeight(), Image.SCALE_DEFAULT)));
     }
 
 }

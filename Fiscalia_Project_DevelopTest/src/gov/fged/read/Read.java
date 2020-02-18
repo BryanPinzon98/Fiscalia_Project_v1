@@ -31,6 +31,8 @@ public class Read extends JFrame{
                 MainClass mainClass = MainClass.getInstance();
                 mainClass.setTemplate(t);
 
+                System.out.println("Read successful.");
+
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getLocalizedMessage(), "Fingerprint loading", JOptionPane.ERROR_MESSAGE);
             }

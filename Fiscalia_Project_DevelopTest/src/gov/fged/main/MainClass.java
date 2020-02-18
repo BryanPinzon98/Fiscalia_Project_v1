@@ -1,21 +1,16 @@
 package gov.fged.main;
 
 import com.digitalpersona.onetouch.*;
-import com.digitalpersona.onetouch.DPFPGlobal;
-import com.digitalpersona.onetouch.DPFPSample;
-import com.digitalpersona.onetouch.capture.DPFPCapture;
-import com.digitalpersona.onetouch.capture.event.*;
-import com.digitalpersona.onetouch.processing.DPFPEnrollment;
-import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
-import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 import gov.fged.enrollment.Enrollment;
 import gov.fged.read.Read;
+import gov.fged.verify.Verify;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 
 public class MainClass extends JFrame {
 
@@ -68,11 +63,33 @@ public class MainClass extends JFrame {
             }
         });
 
+        final JButton verifyButton = new JButton("Verify");
+        verifyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                onVerify();
+            }
+        });
+
+        this.addPropertyChangeListener(TEMPLATE_PROPERTY, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent propChangeEvent) {
+
+                if (propChangeEvent.getNewValue() == propChangeEvent.getOldValue()) {
+                    return;
+                }
+                if (template != null) {
+                    JOptionPane.showMessageDialog(MainClass.this, "The Fingerprint template is ready for fingerprint verification", "Fingerprint Enrollment", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
         JPanel centerButtons = new JPanel();
         centerButtons.setLayout(new GridLayout(4, 1, 0, 5));
         centerButtons.setBorder(BorderFactory.createEmptyBorder(20, 20, 5, 20));
         centerButtons.add(enrollmentButton);
         centerButtons.add(readButton);
+        centerButtons.add(verifyButton);
 
         setLayout(new BorderLayout());
         add(centerButtons, BorderLayout.CENTER);
@@ -80,8 +97,13 @@ public class MainClass extends JFrame {
         setVisible(true);
     }
 
+    private void onVerify() {
+        Verify verify = new Verify();
+        verify.setVisible(true);
+    }
+
     private void onRead() {
-        Read onRead = new Read();
+        Read read = new Read();
     }
 
     private void onEnroll() {
