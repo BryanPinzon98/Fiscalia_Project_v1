@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="938aaac7-afb9-4669-a387-37325a7b2290" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +79,12 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="432" y="292" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1368.872@0.0.1368.872" timestamp="1581976616684" />
-    <state x="464" y="143" key="FileChooserDialogImpl" timestamp="1582147007579">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state x="521" y="135" key="FileChooserDialogImpl" timestamp="1582214659067">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1581623502792" />
     <state x="464" y="143" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1582147007579" />
+    <state x="521" y="135" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582214659067" />
     <state width="1326" height="227" key="GridCell.Tab.0.bottom" timestamp="1582152475807">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -130,11 +129,12 @@
     </state>
     <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1581625582682" />
     <state x="184" y="8" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1582128872851" />
-    <state x="379" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1582145754774">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state x="426" y="212" key="com.intellij.ide.util.TipDialog" timestamp="1582213877119">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="378" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1581695852921" />
     <state x="379" y="224" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1582145754774" />
+    <state x="426" y="212" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582213877119" />
     <state x="347" y="184" width="672" height="678" key="search.everywhere.popup" timestamp="1581976565583">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -145,7 +145,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/gov/fged/main/MainClass.java</url>
-          <line>237</line>
+          <line>124</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
