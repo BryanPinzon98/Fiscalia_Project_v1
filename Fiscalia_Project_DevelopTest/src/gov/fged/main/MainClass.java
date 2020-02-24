@@ -4,6 +4,7 @@ import com.digitalpersona.onetouch.*;
 import gov.fged.enrollment.Enrollment;
 import gov.fged.read.Read;
 import gov.fged.verify.Verify;
+import javafx.fxml.FXMLLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +34,7 @@ public class MainClass extends JFrame {
             @Override
             public void run() {
                 MainClass runMainClass = getInstance();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomePage.fxml"));
             }
         });
     }

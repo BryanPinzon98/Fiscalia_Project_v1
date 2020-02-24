@@ -1,7 +1,7 @@
 package gov.fged.storage;
 
 import gov.fged.main.MainClass;
-import gov.fged.resources.TemplateFileFilter;
+import gov.fged.resources.code.TemplateFileFilter;
 
 import javax.swing.*;
 import java.io.File;

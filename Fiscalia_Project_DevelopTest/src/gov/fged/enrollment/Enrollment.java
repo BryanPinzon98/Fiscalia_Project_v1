@@ -3,7 +3,7 @@ package gov.fged.enrollment;
 import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.processing.DPFPEnrollment;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
-import gov.fged.resources.LaunchFingerprintReader;
+import gov.fged.resources.code.LaunchFingerprintReader;
 import gov.fged.storage.Storage;
 import gov.fged.main.MainClass;
 

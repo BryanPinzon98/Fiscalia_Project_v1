@@ -7,7 +7,7 @@ import com.digitalpersona.onetouch.DPFPSample;
 import com.digitalpersona.onetouch.verification.DPFPVerification;
 import com.digitalpersona.onetouch.verification.DPFPVerificationResult;
 import gov.fged.main.MainClass;
-import gov.fged.resources.LaunchFingerprintReader;
+import gov.fged.resources.code.LaunchFingerprintReader;
 
 import javax.swing.*;
 

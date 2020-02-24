@@ -3,7 +3,7 @@ package gov.fged.read;
 import com.digitalpersona.onetouch.DPFPGlobal;
 import com.digitalpersona.onetouch.DPFPTemplate;
 import gov.fged.main.MainClass;
-import gov.fged.resources.TemplateFileFilter;
+import gov.fged.resources.code.TemplateFileFilter;
 
 import javax.swing.*;
 import java.io.FileInputStream;
