@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="938aaac7-afb9-4669-a387-37325a7b2290" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/de_jensd_fontawesomefx_commons_9_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/StyleSheetHomePage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/media/Dgo_Logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/media/Escudo_México.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/media/Fiscalia_White_Logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/media/Fiscalía_Web_Logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/media/add_user_male_64px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/media/find_user_male_64px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gov/fged/resources/media/home_64px.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/UI/HomePage/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/enrollment/Enrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/enrollment/Enrollment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/main/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/main/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/read/Read.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/read/Read.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/resources/LaunchFingerprintReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/resources/code/LaunchFingerprintReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/resources/TemplateFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/resources/code/TemplateFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/storage/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/storage/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gov/fged/verify/Verify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/verify/Verify.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gov/fged/resources/code/LaunchFingerprintReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/resources/code/LaunchFingerprintReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gov/fged/resources/code/TemplateFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gov/fged/resources/code/TemplateFileFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

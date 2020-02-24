@@ -1,4 +1,4 @@
-package gov.fged.resources;
+package gov.fged.resources.code;
 
 import java.io.File;
 
