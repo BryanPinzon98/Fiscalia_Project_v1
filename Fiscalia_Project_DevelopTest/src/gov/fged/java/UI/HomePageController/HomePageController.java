@@ -13,7 +13,7 @@ public class HomePageController extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
         primaryStage.setTitle("Registro Fiscalia");
-        primaryStage.setScene(new Scene(root, 1920, 1080));
+        primaryStage.setScene(new Scene(root, 1366, 768));
         primaryStage.setResizable(false);
         primaryStage.show();
 
