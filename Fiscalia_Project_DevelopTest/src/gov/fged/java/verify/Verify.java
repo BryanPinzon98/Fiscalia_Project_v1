@@ -1,4 +1,4 @@
-package gov.fged.verify;
+package gov.fged.java.verify;
 
 import com.digitalpersona.onetouch.DPFPDataPurpose;
 import com.digitalpersona.onetouch.DPFPFeatureSet;
@@ -7,7 +7,7 @@ import com.digitalpersona.onetouch.DPFPSample;
 import com.digitalpersona.onetouch.verification.DPFPVerification;
 import com.digitalpersona.onetouch.verification.DPFPVerificationResult;
 import gov.fged.java.main.MainClass;
-import gov.fged.java.resources.code.LaunchFingerprintReader;
+import gov.fged.java.resources.LaunchFingerprintReader;
 
 import javax.swing.*;
 

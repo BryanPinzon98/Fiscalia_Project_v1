@@ -1,11 +1,11 @@
-package gov.fged.enrollment;
+package gov.fged.java.enrollment;
 
 import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.processing.DPFPEnrollment;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
-import gov.fged.resources.code.LaunchFingerprintReader;
-import gov.fged.storage.Storage;
-import gov.fged.main.MainClass;
+import gov.fged.java.resources.LaunchFingerprintReader;
+import gov.fged.java.storage.Storage;
+import gov.fged.java.main.MainClass;
 
 
 public class Enrollment extends LaunchFingerprintReader {

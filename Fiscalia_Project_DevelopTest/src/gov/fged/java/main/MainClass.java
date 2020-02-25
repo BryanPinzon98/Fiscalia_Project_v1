@@ -1,9 +1,9 @@
-package gov.fged.main;
+package gov.fged.java.main;
 
 import com.digitalpersona.onetouch.*;
-import gov.fged.enrollment.Enrollment;
-import gov.fged.read.Read;
-import gov.fged.verify.Verify;
+import gov.fged.java.enrollment.Enrollment;
+import gov.fged.java.read.Read;
+import gov.fged.java.verify.Verify;
 import javafx.fxml.FXMLLoader;
 
 import javax.swing.*;
@@ -34,7 +34,7 @@ public class MainClass extends JFrame {
             @Override
             public void run() {
                 MainClass runMainClass = getInstance();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomePage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeLayout.fxml"));
             }
         });
     }

@@ -1,9 +1,9 @@
-package gov.fged.read;
+package gov.fged.java.read;
 
 import com.digitalpersona.onetouch.DPFPGlobal;
 import com.digitalpersona.onetouch.DPFPTemplate;
-import gov.fged.main.MainClass;
-import gov.fged.resources.code.TemplateFileFilter;
+import gov.fged.java.main.MainClass;
+import gov.fged.java.resources.TemplateFileFilter;
 
 import javax.swing.*;
 import java.io.FileInputStream;
