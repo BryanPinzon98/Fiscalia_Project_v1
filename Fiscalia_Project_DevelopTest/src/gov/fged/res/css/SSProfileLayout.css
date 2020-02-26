@@ -1,0 +1,18 @@
+.head-background{
+    -fx-background-color:linear-gradient(to left, #4994B4, #066D98);
+}
+
+.button
+{
+-fx-background-color : #E1E2E1;
+}
+
+.button:hover
+{
+-fx-background-color : #A1C1F4;
+}
+
+.button:pressed
+{
+-fx-background-color : #73A3EF;
+}

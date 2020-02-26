@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -52,6 +53,7 @@ public class HomeLayoutController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle(layoutTitle);
             stage.setResizable(false);
+            stage.getIcons().add(new Image("gov/fged/res/media/images/Fiscalia_Web_Logo.jpg"));
             stage.show();
 
         } catch (IOException e) {
