@@ -23,15 +23,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="40490ac7-9889-4f81-9a68-e341c405cb22">
-        <schema name="acceso_fiscalia" object-types="column, constraint, view, dataset trigger, procedure, table, function, index" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="40490ac7-9889-4f81-9a68-e341c405cb22">
-      <console name="Connection" type="STANDARD" schema="acceso_fiscalia" session="Main">select * from registros;</console>
+      <console name="Connection" type="STANDARD" schema="acceso_fiscalia" session="Main"><![CDATA[select * from registros;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

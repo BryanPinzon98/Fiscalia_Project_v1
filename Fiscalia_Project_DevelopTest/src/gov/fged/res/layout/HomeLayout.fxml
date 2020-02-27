@@ -39,7 +39,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="btnNewUser" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="246.0" prefWidth="270.0" stylesheets="@../css/SSHomeLayout.css" text="New User" textAlignment="CENTER">
+                  <Button fx:id="btnNewUser" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="246.0" prefWidth="270.0" stylesheets="@../css/SSHomeLayout.css" text="Nuevo Usuario" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -54,7 +54,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnSearchUser" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="246.0" prefWidth="270.0" stylesheets="@../css/SSHomeLayout.css" text="Search User">
+                  <Button fx:id="btnSearchUser" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="246.0" prefWidth="270.0" stylesheets="@../css/SSHomeLayout.css" text="Buscar Usuario Existente">
                      <graphic>
                         <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                            <image>
