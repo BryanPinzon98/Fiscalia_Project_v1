@@ -38,7 +38,7 @@ public class HomeLayoutController implements Initializable {
 
             case "btnSearchUser":
                 System.out.println("Search User Button Pressed");
-                loadLayoutClass.loadLayout("gov/fged/res/layout/UserSearchInput.fxml", "Buscar");
+                loadLayoutClass.loadLayout("gov/fged/res/layout/UserSearchInputLayout.fxml", "Buscar");
                 break;
         }
     }

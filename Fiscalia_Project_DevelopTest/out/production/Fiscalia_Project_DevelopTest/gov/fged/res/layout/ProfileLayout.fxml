@@ -48,11 +48,11 @@
             </Button>
          </children>
         </HBox>
-          <Pane layoutX="112.0" layoutY="83.0" prefHeight="190.0" prefWidth="197.0" style="-fx-background-color: #FFF;">
+          <Pane layoutX="112.0" layoutY="83.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: #FFF;">
               <children>
-                  <ImageView fitHeight="190.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@../media/icons/customer_96px.png" />
+                          <Image url="@../media/images/profile_placeholder.jpg" />
                       </image>
                   </ImageView>
               </children>
