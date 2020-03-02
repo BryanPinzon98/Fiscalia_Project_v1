@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { UserViewComponent } from '../../pages/user-view/user-view.component';
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog:MatDialog){}
 
   ngOnInit() {
   }
 
+  openDialog(): void {
+    console.log('holiiii');
+    const dialogRef = this.dialog.open(UserViewComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

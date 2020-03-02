@@ -5,6 +5,6 @@ exports.default = {
         host: 'localhost',
         user: 'juan',
         password: 'juan',
-        database: 'prueba'
+        database: 'acceso_fiscalia'
     }
 };
