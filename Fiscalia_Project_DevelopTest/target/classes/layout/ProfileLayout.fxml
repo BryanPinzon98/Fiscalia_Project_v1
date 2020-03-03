@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController.SignUpLayout.SignUpLayoutController">
+   <children>
+        <HBox prefHeight="190.0" prefWidth="1400.0" styleClass="head-background" stylesheets="@../css/SSProfileLayout.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox>
+               <HBox.margin>
+                  <Insets left="350.0" top="100.0" />
+               </HBox.margin>
+               <children>
+                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Juan Diego Bernal Pedroza">
+                          <font>
+                              <Font name="System Bold" size="28.0" />
+                          </font>
+                      </Text>
+                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desarrollador">
+                          <font>
+                              <Font name="System Italic" size="18.0" />
+                          </font>
+                      </Text>
+               </children>
+            </VBox>
+            <Button graphicTextGap="7.0" mnemonicParsing="false" stylesheets="@../css/SSProfileLayout.css" text="Edit Profile">
+               <HBox.margin>
+                  <Insets left="60.0" top="110.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/icons8_edit_32px_1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+        </HBox>
+          <Pane layoutX="112.0" layoutY="83.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: #FFF;">
+              <children>
+                  <ImageView fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@../images/profile_placeholder.jpg" />
+                      </image>
+                  </ImageView>
+              </children>
+              <effect>
+                  <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
+              </effect>
+          </Pane>
+      <AnchorPane layoutX="379.0" layoutY="241.0" prefHeight="464.0" prefWidth="926.0" style="-fx-background-color: #FFF;">
+         <children>
+            <ImageView fitHeight="109.0" fitWidth="106.0" layoutX="59.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/icons8_fingerprint_96px.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="59.0" layoutY="141.0" prefHeight="3.0" prefWidth="766.0" />
+            <Text fill="#a7a7a7" layoutX="92.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GÉNERO:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#a7a7a7" layoutX="89.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESTADO CIVIL:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#a7a7a7" layoutX="89.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DIRECCIÓN:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#a7a7a7" layoutX="190.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RFC:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#a7a7a7" layoutX="190.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FECHA DE REGISTRO:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#5f5f5f" layoutX="159.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASCULINO">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#5f5f5f" layoutX="166.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BLVD. LA CIMA 335">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#5f5f5f" layoutX="166.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SOLTERO">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#5f5f5f" layoutX="245.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="45DF2SD2ASD2A">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#5f5f5f" layoutX="248.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="27 de Enero del 2020">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <AnchorPane layoutY="401.0" prefHeight="62.0" prefWidth="926.0" style="-fx-background-color: #E5E1E5;" />
+         </children>
+         <effect>
+            <DropShadow height="5.0" radius="2.0" width="5.0" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
