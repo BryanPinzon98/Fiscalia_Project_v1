@@ -10,6 +10,7 @@ class UsuariosRoutes {
     }
 
     config(): void {
+        this.router.get('/porfecha', usuariosController.getCountNewPeople);
         this.router.get('/', usuariosController.list);
         this.router.get('/:id', usuariosController.getOne);
         this.router.put('/:id', usuariosController.update);

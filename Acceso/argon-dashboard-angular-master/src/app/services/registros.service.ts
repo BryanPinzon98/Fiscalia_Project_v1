@@ -34,11 +34,7 @@ updateRecord(id: string, record: Record): Observable<any> {
   return this.http.put(`${this.API_URI}/registros/${id}`, record);
 }
 
-getCount(time: Time){
-
-  // SE QUEDO AQUI SOLUCIONELO !!!
-  
-  const criteria = [ {ini: 3}, {fin: 23} ];
-  return this.http.get(`${this.API_URI}/registros/?criteria=`+ encodeURIComponent( JSON.stringify(criteria)));
+getCount(ini: string, fin: string){
+  return this.http.get(`${this.API_URI}/registros/porfecha?desde=`+ini+`&hasta=`+fin);
 }
 }

@@ -58,7 +58,7 @@ class RegistrosController {
     }
     getCountPeople(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cuenta = yield database_1.default.query('SELECT COUNT(*) FROM registros WHERE fecha_registro BETWEEN ? AND ?', [req.body.ini, req.body.fin]);
+            const cuenta = yield database_1.default.query('SELECT COUNT(*) AS promedio FROM registros WHERE fecha_registro BETWEEN ? AND ?', [req.query.desde, req.query.hasta]);
             res.json(cuenta);
         });
     }

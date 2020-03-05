@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 import { MatDialogModule } from '@angular/material';
 import { UsersService } from './services/users.service';
 import { from } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { from } from 'rxjs';
   entryComponents: [
   ],
   providers: [
-    UsersService
+    UsersService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

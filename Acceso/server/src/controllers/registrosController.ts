@@ -1,4 +1,4 @@
-import {Request, Response} from 'express';
+import {Request, Response, json} from 'express';
 import pool from '../database';
 
 class RegistrosController{
@@ -27,7 +27,7 @@ class RegistrosController{
     }
 
     public  async update (req: Request, res: Response): Promise<void>{
-        const {id} = req.params;
+        const {id} = req.params;      
         const regisroViejo = req.body;
         await pool.query('UPDATE registros set ? WHERE id_registro = ?', [req.body, id]);
         res.json({message: 'Regisro ' +req.body.id_registro+ ' se ha actualizado a '+[id]+' con exito!'});
@@ -40,8 +40,8 @@ class RegistrosController{
     }
 
     public async getCountPeople (req: Request, res: Response): Promise<any>{
-        const cuenta = await pool.query('SELECT COUNT(*) FROM registros WHERE fecha_registro BETWEEN ? AND ?', [req.body.ini, req.body.fin]);
-        res.json(cuenta);
+        const cuenta = await pool.query('SELECT COUNT(*) AS promedio FROM registros WHERE fecha_registro BETWEEN ? AND ?', [req.query.desde,req.query.hasta]);
+        res.json(cuenta); 
     }
 }
 export const registrosController = new RegistrosController(); 

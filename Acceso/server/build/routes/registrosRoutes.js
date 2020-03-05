@@ -8,12 +8,12 @@ class RegistrosRoutes {
         this.config();
     }
     config() {
+        this.router.get('/porfecha', registrosController_1.registrosController.getCountPeople);
         this.router.get('/', registrosController_1.registrosController.list);
         this.router.get('/:id', registrosController_1.registrosController.getOne);
         this.router.put('/:id', registrosController_1.registrosController.update);
         this.router.post('/', registrosController_1.registrosController.create);
         this.router.delete('/:id', registrosController_1.registrosController.delete);
-        this.router.get('/', registrosController_1.registrosController.getCountPeople);
     }
 }
 const registrosRoutes = new RegistrosRoutes();

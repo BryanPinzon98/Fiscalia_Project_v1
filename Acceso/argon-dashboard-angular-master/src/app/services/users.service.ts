@@ -32,4 +32,8 @@ updateUser(id: string, user: User): Observable<any> {
   return this.http.put(`${this.API_URI}/usuarios/${id}`, user);
 }
 
+getCountNewPeople(ini: string, fin: string){
+  return this.http.get(`${this.API_URI}/usuarios/porfecha?desde=`+ini+`&hasta=`+fin);
+}
+
 }
