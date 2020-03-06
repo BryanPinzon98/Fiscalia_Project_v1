@@ -57,7 +57,6 @@ public class SignUpLayoutController implements Initializable {
             case "txtFieldFormSubmit":
 
                 System.out.println("Submit button pressed");
-
                 /*
                 User newUser = new User(
                         txtFieldFormNames.getText(),
@@ -78,9 +77,6 @@ public class SignUpLayoutController implements Initializable {
         }
     }
 
-
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+    public void initialize(URL location, ResourceBundle resources) {}
 }

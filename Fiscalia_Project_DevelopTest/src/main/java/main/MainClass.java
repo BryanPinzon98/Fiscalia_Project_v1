@@ -1,10 +1,10 @@
-package gov.fged.java.main;
+package main;
 
 import com.digitalpersona.onetouch.*;
-import gov.fged.java.enrollment.Enrollment;
-import gov.fged.java.read.Read;
-import gov.fged.java.verify.Verify;
+import enrollment.Enrollment;
 import javafx.fxml.FXMLLoader;
+import read.Read;
+import verify.Verify;
 
 import javax.swing.*;
 import java.awt.*;

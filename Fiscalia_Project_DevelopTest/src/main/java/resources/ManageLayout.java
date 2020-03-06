@@ -1,4 +1,4 @@
-package gov.fged.java.resources;
+package resources;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class ManageLayout {
 
@@ -23,11 +22,13 @@ public class ManageLayout {
         return loadLayout;
     }
 
-    public void loadLayout(String fxmlPath, String layoutTitle) {
+    public FXMLLoader loadLayout(String fxmlPath, String layoutTitle) {
+        FXMLLoader fxmlLoader = null;
+
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlPath)));
+            fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlPath));
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene((Parent) fxmlLoader.load()));
             stage.setTitle(layoutTitle);
             stage.setResizable(false);
             stage.getIcons().add(new Image("images/Fiscalia_Web_Logo.jpg"));
@@ -36,6 +37,7 @@ public class ManageLayout {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return fxmlLoader;
     }
 
     public void closeLayout(Stage stage) {

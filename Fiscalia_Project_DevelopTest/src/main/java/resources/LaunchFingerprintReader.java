@@ -1,4 +1,4 @@
-package gov.fged.java.resources;
+package resources;
 
 import com.digitalpersona.onetouch.*;
 import com.digitalpersona.onetouch.capture.DPFPCapture;

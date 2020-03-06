@@ -13,11 +13,6 @@ public class HomeLayoutController implements Initializable {
 
     private ManageLayout loadLayoutClass = ManageLayout.getInstance();
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
     @FXML
     private Button btnNewUser;
 
@@ -43,4 +38,6 @@ public class HomeLayoutController implements Initializable {
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {}
 }

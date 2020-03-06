@@ -18,8 +18,8 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <TextField layoutX="196.0" layoutY="73.0" prefHeight="26.0" prefWidth="232.0" />
-      <TextField layoutX="196.0" layoutY="113.0" prefHeight="26.0" prefWidth="232.0" />
+      <TextField fx:id="txtSearchUserNames" layoutX="196.0" layoutY="73.0" prefHeight="26.0" prefWidth="232.0" />
+      <TextField fx:id="txtSearchLastNames" layoutX="196.0" layoutY="113.0" prefHeight="26.0" prefWidth="232.0" />
       <Text layoutX="167.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese los datos de la persona">
          <font>
             <Font name="System Bold" size="17.0" />
