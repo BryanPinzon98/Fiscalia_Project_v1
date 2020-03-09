@@ -28,12 +28,12 @@ public class HomeLayoutController implements Initializable {
 
             case "btnNewUser":
                 System.out.println("New User Button Pressed");
-                loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro");
+                loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro", true);
                 break;
 
             case "btnSearchUser":
                 System.out.println("Search User Button Pressed");
-                loadLayoutClass.loadLayout("layout/UserSearchInputLayout.fxml", "Buscar");
+                loadLayoutClass.loadLayout("layout/UserSearchInputLayout.fxml", "Buscar", true);
                 break;
         }
     }
