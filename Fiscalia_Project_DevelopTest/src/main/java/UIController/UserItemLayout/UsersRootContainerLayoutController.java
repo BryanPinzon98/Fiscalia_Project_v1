@@ -1,15 +1,15 @@
-package UIController.UsersRootContainerLayout;
+package UIController.UserItemLayout;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class UsersRootContainerLayoutController extends Application {
 
-    private Pane itemPane = null;
+    private Parent itemPane = null;
 
     @FXML
     private VBox usersRootContainer;
@@ -31,7 +31,7 @@ public class UsersRootContainerLayoutController extends Application {
         usersRootContainer.getChildren().add(anchorRootPane);
     }
 
-    public void setItemPane(Pane itemPane){
+    public void setItemParent(Parent itemPane){
         this.itemPane = itemPane;
     }
 

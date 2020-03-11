@@ -1,9 +1,9 @@
 package resources;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class ManageLayout {
 
     private static ManageLayout loadLayout = null;
     private Stage stage = null;
-    private Pane pane = null;
+    private Parent pane = null;
 
     private ManageLayout() {
     }
@@ -55,7 +55,7 @@ public class ManageLayout {
         return stage;
     }
 
-    public Pane getPane() {
+    public Parent getParent() {
         return pane;
     }
 }
