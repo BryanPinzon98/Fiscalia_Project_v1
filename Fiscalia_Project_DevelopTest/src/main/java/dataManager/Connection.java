@@ -8,7 +8,6 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import objects.User;
-import resources.ManageLayout;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,6 @@ public class Connection {
     private static Connection connection = null;
     private final String DDBB_URI = "http://10.11.34.194:3000/api/usuarios";
     private ArrayList<User> foundUsers = null;
-    private ManageLayout manageLayoutClass = ManageLayout.getInstance();
 
 
     public static Connection getInstance() {

@@ -3,12 +3,16 @@ package UIController.UserItemLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserItemLayoutController implements Initializable {
+
+    @FXML
+    private AnchorPane userItemAnchorPane;
 
     @FXML
     private ImageView profilePhotoUserItem;
@@ -57,5 +61,9 @@ public class UserItemLayoutController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    @FXML
+    public void userItemAnchorPaneHandler() {
+        System.out.println(namesUserItem.getText());
+    }
 
 }
