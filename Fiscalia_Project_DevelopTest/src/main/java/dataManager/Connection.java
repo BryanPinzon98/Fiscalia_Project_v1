@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class Connection {
 
     private static Connection connection = null;
-    private final String DDBB_URI = "http://10.11.34.194:3000/api/usuarios";
     private ArrayList<User> foundUsers = null;
 
 
@@ -34,6 +33,9 @@ public class Connection {
         //Find ID user by Names or Last Names.
 
         try {
+
+            String DDBB_URI = "http://10.11.34.194:3000/api/usuarios/invitados";
+
             Client client = Client.create();
             WebResource webResource = client.resource(DDBB_URI);
 

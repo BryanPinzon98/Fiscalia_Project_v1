@@ -13,65 +13,70 @@
         <Pane prefHeight="169.0" prefWidth="1366.0" style="-fx-background-color: #066D98;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <AnchorPane layoutX="208.0" layoutY="85.0" prefHeight="630.0" prefWidth="937.0" style="-fx-background-color: #FFF;" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="187.5999999999999" AnchorPane.topAnchor="85.0">
             <children>
-                <Text layoutX="284.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro Nuevo Usuario" AnchorPane.leftAnchor="284.0" AnchorPane.rightAnchor="295.23056640625" AnchorPane.topAnchor="61.2314453125">
+                <Text fx:id="signUpTitle" layoutX="325.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro Nuevo Usuario" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="254.2305664062501" AnchorPane.topAnchor="63.2314453125">
                     <font>
                         <Font name="System Bold" size="35.0" />
                     </font>
                 </Text>
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="168.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombres:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="648.68125" AnchorPane.topAnchor="151.0">
+                <Text fill="#5f5f5f" layoutX="256.0" layoutY="168.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombres:" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="645.6812500000001" AnchorPane.topAnchor="151.0">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormNames" layoutX="355.0" layoutY="148.0" prefHeight="26.0" prefWidth="310.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.20000000000005" AnchorPane.topAnchor="148.0" />
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="220.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="648.6265625" AnchorPane.topAnchor="203.0">
+                <TextField fx:id="txtFieldFormNames" layoutX="358.0" layoutY="148.0" prefHeight="26.0" prefWidth="310.0" AnchorPane.leftAnchor="358.0" AnchorPane.rightAnchor="269.20000000000005" AnchorPane.topAnchor="148.0" />
+                <Text fill="#5f5f5f" layoutX="257.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="644.6265625000001" AnchorPane.topAnchor="189.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormLastNames" layoutX="355.0" layoutY="200.0" prefHeight="26.0" prefWidth="310.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.20000000000005" AnchorPane.topAnchor="200.0" />
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="272.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="RFC:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="686.6421875" AnchorPane.topAnchor="255.0">
+                <TextField fx:id="txtFieldFormLastNames" layoutX="359.0" layoutY="187.0" prefHeight="26.0" prefWidth="310.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="268.20000000000005" AnchorPane.topAnchor="187.0" />
+                <Text fill="#5f5f5f" layoutX="257.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RFC:" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="682.6421875000001" AnchorPane.topAnchor="231.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormRFC" layoutX="355.0" layoutY="252.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.19999999999993" AnchorPane.topAnchor="252.0" />
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="324.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Género:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="662.228125" AnchorPane.topAnchor="307.0">
+                <TextField fx:id="txtFieldFormRFC" layoutX="359.0" layoutY="229.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="268.19999999999993" AnchorPane.topAnchor="229.0" />
+                <Text fill="#5f5f5f" layoutX="257.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Género:" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="658.2281250000001" AnchorPane.topAnchor="272.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormGenre" layoutX="355.0" layoutY="306.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.19999999999993" AnchorPane.topAnchor="306.0" />
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="376.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado Civil:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="633.1109375" AnchorPane.topAnchor="359.0">
+                <TextField fx:id="txtFieldFormGenre" layoutX="359.0" layoutY="272.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="268.19999999999993" AnchorPane.topAnchor="272.0" />
+                <Text fill="#5f5f5f" layoutX="257.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado Civil:" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="629.1109375000001" AnchorPane.topAnchor="315.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormMaritalStatus" layoutX="355.0" layoutY="358.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.19999999999993" AnchorPane.topAnchor="358.0" />
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="428.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="647.821875" AnchorPane.topAnchor="411.0">
+                <TextField fx:id="txtFieldFormMaritalStatus" layoutX="359.0" layoutY="315.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="268.19999999999993" AnchorPane.topAnchor="315.0" />
+                <Text fill="#5f5f5f" layoutX="257.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección:" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="643.8218750000001" AnchorPane.topAnchor="360.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormAddress" layoutX="355.0" layoutY="410.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.19999999999993" AnchorPane.topAnchor="410.0" />
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="480.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="665.7828125" AnchorPane.topAnchor="463.0">
+                <TextField fx:id="txtFieldFormAddress" layoutX="359.0" layoutY="360.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="268.19999999999993" AnchorPane.topAnchor="360.0" />
+                <Text fill="#5f5f5f" layoutX="257.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="661.7828125000001" AnchorPane.topAnchor="402.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormEmail" layoutX="355.0" layoutY="462.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.19999999999993" AnchorPane.topAnchor="462.0" />
-                <Text fill="#5f5f5f" layoutX="253.0" layoutY="532.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Usuario:" AnchorPane.topAnchor="515.0">
+                <TextField fx:id="txtFieldFormEmail" layoutX="359.0" layoutY="402.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="268.19999999999993" AnchorPane.topAnchor="402.0" />
+                <Text fill="#5f5f5f" layoutX="257.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Usuario:" AnchorPane.topAnchor="440.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormTypeUser" layoutX="355.0" layoutY="514.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="272.19999999999993" AnchorPane.topAnchor="514.0" />
-                <Button fx:id="txtFieldFormSubmit" layoutX="439.0" layoutY="569.0" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="26.0" prefWidth="67.0" stylesheets="@../css/SSSignUpLayout.css" text="Registrar" AnchorPane.bottomAnchor="34.99999999999998" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="464.0" AnchorPane.topAnchor="569.0">
+                <TextField fx:id="txtFieldFormTypeUser" layoutX="359.0" layoutY="440.0" prefHeight="26.0" prefWidth="335.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="268.19999999999993" AnchorPane.topAnchor="440.0" />
+                <Button fx:id="txtFieldFormSubmit" layoutX="415.0" layoutY="559.0" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="26.0" prefWidth="67.0" stylesheets="@../css/SSSignUpLayout.css" text="Registrar" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="488.0" AnchorPane.topAnchor="559.0">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-                <Button fx:id="txtFieldFormCancel" layoutX="520.0" layoutY="569.0" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="26.0" prefWidth="70.0" styleClass="cancelButton" stylesheets="@../css/SSSignUpLayout.css" text="Cancelar" AnchorPane.bottomAnchor="34.99999999999998" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="569.0" />
+                <Button fx:id="txtFieldFormCancel" layoutX="496.0" layoutY="559.0" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" prefHeight="26.0" prefWidth="70.0" styleClass="cancelButton" stylesheets="@../css/SSSignUpLayout.css" text="Cancelar" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="496.0" AnchorPane.rightAnchor="404.0" AnchorPane.topAnchor="559.0" />
+            <Button fx:id="btnEnrollFingerprint" layoutX="404.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#handleButtonClicks" styleClass="enrollFingerprint" stylesheets="@../css/SSSignUpLayout.css" text="Registrar Huella Dactilar" underline="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
             </children>
             <effect>
                 <DropShadow height="5.0" radius="2.0" width="5.0" />

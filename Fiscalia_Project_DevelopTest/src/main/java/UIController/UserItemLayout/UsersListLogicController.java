@@ -36,11 +36,13 @@ public class UsersListLogicController {
             UserItemLayoutController userItemClass = fxmlLoaderItem.getController();
 
             //profilePhotoUserItem.setImage(usuario.);
+            userItemClass.setUserItemID(usuario.getId_usuario());
             userItemClass.setNamesUserItem(usuario.getNombres_usuario());
             userItemClass.setLastNamesUserItem(usuario.getApellidos_usuario());
             userItemClass.setTypeUserItem(usuario.getNombre_tipos_usuario());
             userItemClass.setRFCUserItem(usuario.getRfc_usuario());
             userItemClass.setAddressUserItem(usuario.getDireccion_usuario());
+            userItemClass.setEmailUserItem(usuario.getCorreo_usuario());
 
             userRootContainerClass.setItemParent(manageLayoutClass.getParent());
             userRootContainerClass.paintUserItem();

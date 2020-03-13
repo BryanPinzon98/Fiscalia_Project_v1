@@ -13,30 +13,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController.SignUpLayout.SignUpLayoutController">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIController.ProfileLayout.ProfileLayoutController">
    <children>
         <HBox prefHeight="190.0" prefWidth="1400.0" styleClass="head-background" stylesheets="@../css/SSProfileLayout.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox>
                <HBox.margin>
-                  <Insets left="350.0" top="100.0" />
+                  <Insets bottom="12.0" left="350.0" top="70.0" />
                </HBox.margin>
                <children>
-                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Juan Diego Bernal Pedroza">
+                      <Text fx:id="profileUsername" strokeType="OUTSIDE" strokeWidth="0.0" text="Juan Diego">
                           <font>
                               <Font name="System Bold" size="28.0" />
                           </font>
                       </Text>
-                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desarrollador">
+                  <Text fx:id="profileUserLastname" strokeType="OUTSIDE" strokeWidth="0.0" text="Bernal Pedroza">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Text>
+                      <Text fx:id="profileTypeUser" strokeType="OUTSIDE" strokeWidth="0.0" text="Desarrollador">
                           <font>
                               <Font name="System Italic" size="18.0" />
                           </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                       </Text>
                </children>
+               <padding>
+                  <Insets bottom="12.0" />
+               </padding>
             </VBox>
-            <Button graphicTextGap="7.0" mnemonicParsing="false" stylesheets="@../css/SSProfileLayout.css" text="Edit Profile">
+            <Button fx:id="btnEditUserProfile" graphicTextGap="7.0" mnemonicParsing="false" onMouseClicked="#editUserProfile" stylesheets="@../css/SSProfileLayout.css" text="Edit Profile">
                <HBox.margin>
-                  <Insets left="60.0" top="110.0" />
+                  <Insets left="120.0" top="110.0" />
                </HBox.margin>
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -50,7 +61,7 @@
         </HBox>
           <Pane layoutX="112.0" layoutY="83.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: #FFF;">
               <children>
-                  <ImageView fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileUserPicture" fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
                       <image>
                           <Image url="@../images/profile_placeholder.jpg" />
                       </image>
@@ -68,7 +79,7 @@
                </image>
             </ImageView>
             <Separator layoutX="59.0" layoutY="141.0" prefHeight="3.0" prefWidth="766.0" />
-            <Text fill="#a7a7a7" layoutX="92.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GÉNERO:">
+            <Text fill="#a7a7a7" layoutX="190.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GÉNERO:">
                <font>
                   <Font size="17.0" />
                </font>
@@ -88,32 +99,32 @@
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#a7a7a7" layoutX="190.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FECHA DE REGISTRO:">
+            <Text fill="#a7a7a7" layoutX="89.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CORREO ELECTRÓNICO:">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#5f5f5f" layoutX="159.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASCULINO">
+            <Text fx:id="profileUserGenre" fill="#5f5f5f" layoutX="257.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASCULINO">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fill="#5f5f5f" layoutX="166.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BLVD. LA CIMA 335">
+            <Text fx:id="profileUserAdress" fill="#5f5f5f" layoutX="166.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BLVD. LA CIMA 335">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fill="#5f5f5f" layoutX="166.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SOLTERO">
+            <Text fx:id="profileUserMaritalStatus" fill="#5f5f5f" layoutX="166.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SOLTERO">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fill="#5f5f5f" layoutX="245.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="45DF2SD2ASD2A">
+            <Text fx:id="profileUserRFC" fill="#5f5f5f" layoutX="245.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="45DF2SD2ASD2A">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fill="#5f5f5f" layoutX="248.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="27 de Enero del 2020">
+            <Text fx:id="profileUserEmail" fill="#5f5f5f" layoutX="165.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email@test.com">
                <font>
                   <Font size="20.0" />
                </font>

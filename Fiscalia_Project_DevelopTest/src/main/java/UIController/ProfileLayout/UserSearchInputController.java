@@ -35,9 +35,6 @@ public class UserSearchInputController implements Initializable {
                 Connection connectionClass = Connection.getInstance();
                 connectionClass.getUsers(txtSearchUserNames.getText(), txtSearchLastNames.getText());
 
-
-                //manageLayoutClass.loadLayout("layout/ProfileLayout.fxml", "Perfil");
-                //manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
                 break;
 
             case "btnCancelSearchDataUser":
