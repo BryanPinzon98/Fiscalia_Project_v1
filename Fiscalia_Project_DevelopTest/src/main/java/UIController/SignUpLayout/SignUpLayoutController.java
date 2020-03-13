@@ -41,18 +41,13 @@ public class SignUpLayoutController implements Initializable {
     private ChoiceBox<String> choiceBoxGenre;
 
     @FXML
-    private TextField txtFieldFormMaritalStatus;
+    private ChoiceBox<String> choiceBoxMaritalStatus;
 
     @FXML
     private TextField txtFieldFormAddress;
 
     @FXML
     private TextField txtFieldFormEmail;
-/*
-    @FXML
-    private TextField txtFieldFormTypeUser;
-
- */
 
     @FXML
     private ChoiceBox<String> choiceBoxTypeUser;
@@ -91,7 +86,7 @@ public class SignUpLayoutController implements Initializable {
                             txtFieldFormEmail.getText(),
                             "",
                             choiceBoxGenre.getValue(),
-                            txtFieldFormMaritalStatus.getText(),
+                            choiceBoxMaritalStatus.getValue(),
                             choiceBoxTypeUser.getValue());
 
                     serializeUserObject(newUser);
@@ -151,7 +146,9 @@ public class SignUpLayoutController implements Initializable {
     }
 
     public void setUserMaritalStatus(String userMaritalStatus) {
-        this.txtFieldFormMaritalStatus.setText(userMaritalStatus);
+        //this.txtFieldFormMaritalStatus.setText(userMaritalStatus);
+        choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList(userMaritalStatus));
+        choiceBoxMaritalStatus.getSelectionModel().select(0);
     }
 
     public void setUserAddress(String userAddress) {
@@ -183,8 +180,8 @@ public class SignUpLayoutController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         choiceBoxGenre.setItems(FXCollections.observableArrayList("Masculino", "Femenino"));
         choiceBoxTypeUser.setItems(FXCollections.observableArrayList("Invitado", "Proveedor"));
+        choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList("Soltero/a", "Casado/a", "Unión Libre", "Divorciado/a", "Viudo/a"));
     }
 }

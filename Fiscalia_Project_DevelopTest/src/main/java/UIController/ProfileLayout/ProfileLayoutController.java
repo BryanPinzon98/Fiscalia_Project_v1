@@ -49,7 +49,7 @@ public class ProfileLayoutController implements Initializable {
     private Button btnEditUserProfile;
 
     @FXML
-    public void editUserProfile(){
+    public void editUserProfile() {
         FXMLLoader signUpFXMLLoader = manageLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Editar Profile", false);
         SignUpLayoutController signUpLayoutController = signUpFXMLLoader.getController();
         Stage signUpStage = manageLayoutClass.getStage();
