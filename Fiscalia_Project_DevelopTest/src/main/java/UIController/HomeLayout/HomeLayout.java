@@ -11,9 +11,10 @@ import java.util.Objects;
 
 public class HomeLayout extends Application {
 
+
+    //Muestra la ventana principal del programa.
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("layout/HomeLayout.fxml")));
         primaryStage.setTitle("Fiscalia General del Estado de Durango");
         primaryStage.setScene(new Scene(root));

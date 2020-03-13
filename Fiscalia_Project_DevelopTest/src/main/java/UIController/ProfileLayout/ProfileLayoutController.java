@@ -18,6 +18,8 @@ public class ProfileLayoutController implements Initializable {
 
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
 
+    @FXML
+    private ImageView profileUserPicture;
 
     @FXML
     private Text profileUsername;
@@ -27,9 +29,6 @@ public class ProfileLayoutController implements Initializable {
 
     @FXML
     private Text profileTypeUser;
-
-    @FXML
-    private ImageView profileUserPicture;
 
     @FXML
     private Text profileUserGenre;
@@ -67,6 +66,7 @@ public class ProfileLayoutController implements Initializable {
         signUpLayoutController.setUserMaritalStatus(profileUserMaritalStatus.getText());
         signUpLayoutController.setUserAddress(profileUserAdress.getText());
         signUpLayoutController.setUserEmail(profileUserEmail.getText());
+        signUpLayoutController.setTypeUser(profileTypeUser.getText());
         //------
 
         signUpStage.setTitle("Editar Perfil");

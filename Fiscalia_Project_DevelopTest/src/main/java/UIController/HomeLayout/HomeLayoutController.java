@@ -19,6 +19,7 @@ public class HomeLayoutController implements Initializable {
     @FXML
     private Button btnSearchUser;
 
+    //Administra los clics de los dos botones de la ventana principal del programa.
     @FXML
     private void handleButtonClicks(MouseEvent mouseEvent) {
 
@@ -39,5 +40,6 @@ public class HomeLayoutController implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 }

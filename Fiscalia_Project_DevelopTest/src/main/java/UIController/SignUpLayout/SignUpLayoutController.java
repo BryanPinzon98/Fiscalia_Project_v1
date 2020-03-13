@@ -3,9 +3,11 @@ package UIController.SignUpLayout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import enrollment.Enrollment;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -19,6 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignUpLayoutController implements Initializable {
+
 
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
 
@@ -35,7 +38,7 @@ public class SignUpLayoutController implements Initializable {
     private TextField txtFieldFormRFC;
 
     @FXML
-    private TextField txtFieldFormGenre;
+    private ChoiceBox<String> choiceBoxGenre;
 
     @FXML
     private TextField txtFieldFormMaritalStatus;
@@ -45,10 +48,17 @@ public class SignUpLayoutController implements Initializable {
 
     @FXML
     private TextField txtFieldFormEmail;
-
+/*
     @FXML
     private TextField txtFieldFormTypeUser;
 
+ */
+
+    @FXML
+    private ChoiceBox<String> choiceBoxTypeUser;
+
+    @FXML
+    private Button btnEnrollFingerprint;
 
     @FXML
     private Button txtFieldFormSubmit;
@@ -56,10 +66,7 @@ public class SignUpLayoutController implements Initializable {
     @FXML
     private Button txtFieldFormCancel;
 
-    @FXML
-    private Button btnEnrollFingerprint;
-
-
+    //Administra los clics de cada uno de los botones.
     @FXML
     private void handleButtonClicks(MouseEvent mouseEvent) {
 
@@ -83,11 +90,13 @@ public class SignUpLayoutController implements Initializable {
                             txtFieldFormAddress.getText(),
                             txtFieldFormEmail.getText(),
                             "",
-                            txtFieldFormGenre.getText(),
+                            choiceBoxGenre.getValue(),
                             txtFieldFormMaritalStatus.getText(),
-                            txtFieldFormTypeUser.getText());
+                            choiceBoxTypeUser.getValue());
 
                     serializeUserObject(newUser);
+                    manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
+
                     break;
 
                 case "txtFieldFormCancel":
@@ -104,6 +113,7 @@ public class SignUpLayoutController implements Initializable {
 
     }
 
+    //Serializa el objeto java en un JSON
     private void serializeUserObject(User userCreated) {
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -120,10 +130,7 @@ public class SignUpLayoutController implements Initializable {
         //Conectarse a la BBDD y enviar el JSON
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
-
+    //Getters y Setters
     public void setUserNames(String userName) {
         this.txtFieldFormNames.setText(userName);
     }
@@ -134,10 +141,13 @@ public class SignUpLayoutController implements Initializable {
 
     public void setUserRFC(String userRFC) {
         this.txtFieldFormRFC.setText(userRFC);
+        txtFieldFormRFC.setEditable(false);
     }
 
     public void setUserGenre(String userGenre) {
-        this.txtFieldFormGenre.setText(userGenre);
+        //this.txtFieldFormGenre.setText(userGenre);
+        choiceBoxGenre.setItems(FXCollections.observableArrayList(userGenre));
+        choiceBoxGenre.getSelectionModel().select(0);
     }
 
     public void setUserMaritalStatus(String userMaritalStatus) {
@@ -153,7 +163,9 @@ public class SignUpLayoutController implements Initializable {
     }
 
     public void setTypeUser(String typeUser) {
-        this.txtFieldFormTypeUser.setText(typeUser);
+        //this.txtFieldFormTypeUser.setText(typeUser);
+        choiceBoxTypeUser.setItems(FXCollections.observableArrayList(typeUser));
+        choiceBoxTypeUser.getSelectionModel().select(0);
     }
 
     public void setSignUpTitle(String signUpTitle) {
@@ -166,5 +178,13 @@ public class SignUpLayoutController implements Initializable {
 
     public void setVisibleEnrollFingerprint(Boolean choiceVisible) {
         btnEnrollFingerprint.setVisible(choiceVisible);
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        choiceBoxGenre.setItems(FXCollections.observableArrayList("Masculino", "Femenino"));
+        choiceBoxTypeUser.setItems(FXCollections.observableArrayList("Invitado", "Proveedor"));
     }
 }
