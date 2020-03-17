@@ -12,8 +12,12 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-getUsers(){
-  return this.http.get(`${this.API_URI}/usuarios`);
+getUsersInvitados(){
+  return this.http.get(`${this.API_URI}/usuarios/invitados`);
+}
+
+getUsersProveedores(){
+  return this.http.get(`${this.API_URI}/usuarios/proveedores`);
 }
 
 getUser(id: string){

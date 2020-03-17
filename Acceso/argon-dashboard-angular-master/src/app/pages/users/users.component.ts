@@ -9,14 +9,22 @@ import { UsersService } from '../../services/users.service';
 
 export class UsersComponent implements OnInit {
 
-  usuarios: any = [];
+  invitados: any = [];
+  proveedores: any = [];
 
   constructor(private usersServices: UsersService){}
 
   ngOnInit() {
-    this.usersServices.getUsers().subscribe(
+    this.usersServices.getUsersInvitados().subscribe(
       res => {
-        this.usuarios = res;
+        this.invitados = res;
+      },
+      err => console.error(err)
+    );
+
+    this.usersServices.getUsersProveedores().subscribe(
+      res => {
+        this.proveedores = res;
       },
       err => console.error(err)
     );

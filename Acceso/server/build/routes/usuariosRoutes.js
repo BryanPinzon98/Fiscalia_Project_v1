@@ -9,7 +9,8 @@ class UsuariosRoutes {
     }
     config() {
         this.router.get('/porfecha', usuariosController_1.usuariosController.getCountNewPeople);
-        this.router.get('/', usuariosController_1.usuariosController.list);
+        this.router.get('/invitados', usuariosController_1.usuariosController.listarInvitados);
+        this.router.get('/proveedores', usuariosController_1.usuariosController.listarProveedores);
         this.router.get('/:id', usuariosController_1.usuariosController.getOne);
         this.router.put('/:id', usuariosController_1.usuariosController.update);
         this.router.post('/', usuariosController_1.usuariosController.create);
