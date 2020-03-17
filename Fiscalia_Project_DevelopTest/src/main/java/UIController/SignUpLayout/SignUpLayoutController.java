@@ -2,6 +2,7 @@ package UIController.SignUpLayout;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataManager.Connection;
 import enrollment.Enrollment;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ public class SignUpLayoutController implements Initializable {
 
 
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
+    private Connection DDBBConnectionClass = Connection.getInstance();
 
     @FXML
     private Text signUpTitle;
@@ -180,8 +182,10 @@ public class SignUpLayoutController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        choiceBoxGenre.setItems(FXCollections.observableArrayList("Masculino", "Femenino"));
-        choiceBoxTypeUser.setItems(FXCollections.observableArrayList("Invitado", "Proveedor"));
-        choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList("Soltero/a", "Casado/a", "Unión Libre", "Divorciado/a", "Viudo/a"));
+
+
+        choiceBoxGenre.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getGenres()));
+        choiceBoxTypeUser.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getTypeUsers()));
+        choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getMaritalStatusOptions()));
     }
 }
