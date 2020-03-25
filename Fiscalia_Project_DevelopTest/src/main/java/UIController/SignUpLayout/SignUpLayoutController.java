@@ -14,6 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import objects.User;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
+import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
+import org.controlsfx.validation.decoration.ValidationDecoration;
 import resources.ManageLayout;
 
 import java.io.File;
@@ -21,11 +25,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignUpLayoutController implements Initializable {
-
+public class SignUpLayoutController implements Initializable{
 
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private Connection DDBBConnectionClass = Connection.getInstance();
+    private ValidationSupport validationSupport = new ValidationSupport();
 
     @FXML
     private Text signUpTitle;
@@ -79,6 +83,9 @@ public class SignUpLayoutController implements Initializable {
 
                     System.out.println("Submit button pressed");
 
+                    //validar los campos del registro.
+                    validateForm();
+
                     User newUser = new User(
                             0,
                             txtFieldFormRFC.getText(),
@@ -92,7 +99,7 @@ public class SignUpLayoutController implements Initializable {
                             choiceBoxTypeUser.getValue());
 
                     serializeUserObject(newUser);
-                    manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
+                    //manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
 
                     break;
 
@@ -126,6 +133,16 @@ public class SignUpLayoutController implements Initializable {
         System.out.println(userParseJSON);
         //Conectarse a la BBDD y enviar el JSON
     }
+
+    //Validate Form
+    public void validateForm() {
+
+        ValidationDecoration cssDecorator = new StyleClassValidationDecoration();
+
+        validationSupport.registerValidator(choiceBoxGenre, Validator.createEmptyValidator("ChoiceBox Selection is required"));
+        //validationSupport.setValidationDecorator(cssDecorator);
+    }
+
 
     //Getters y Setters
     public void setUserNames(String userName) {
@@ -184,8 +201,15 @@ public class SignUpLayoutController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
+        choiceBoxGenre.setItems(FXCollections.observableArrayList("Masculino", "Femenino"));
+        choiceBoxTypeUser.setItems(FXCollections.observableArrayList("Empleado", "Visitante"));
+        choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList("Casado", "Soltero"));
+
+        /*
         choiceBoxGenre.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getGenres()));
         choiceBoxTypeUser.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getTypeUsers()));
         choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getMaritalStatusOptions()));
+
+         */
     }
 }

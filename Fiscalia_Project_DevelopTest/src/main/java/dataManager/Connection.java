@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Connection {
 
     private static Connection connection = null;
-    private String DDBB_URI = "http://10.11.34.194:3000/api";
+    private String DDBB_URI = "http://192.168.0.100:3000/api";
 
     public static Connection getInstance() {
         if (connection == null) {

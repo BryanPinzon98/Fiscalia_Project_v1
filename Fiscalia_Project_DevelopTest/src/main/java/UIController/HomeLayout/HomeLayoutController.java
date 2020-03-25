@@ -1,5 +1,7 @@
 package UIController.HomeLayout;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import resources.ManageLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +32,12 @@ public class HomeLayoutController implements Initializable {
             case "btnNewUser":
                 System.out.println("New User Button Pressed");
                 loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro", true);
+                loadLayoutClass.getParent().sceneProperty().addListener(new InvalidationListener() {
+                    @Override
+                    public void invalidated(Observable observable) {
+                        loadLayoutClass.getParent().getScene().getStylesheets().add(getClass().getClassLoader().getResource("css/prueba.css").toExternalForm());
+                    }
+                });
                 break;
 
             case "btnSearchUser":

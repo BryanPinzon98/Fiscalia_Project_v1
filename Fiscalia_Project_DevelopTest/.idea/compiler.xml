@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Fiscalia_Project_DevelopTest" target="7" />
+      <module name="Fiscalia_Project_DevelopTest" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
