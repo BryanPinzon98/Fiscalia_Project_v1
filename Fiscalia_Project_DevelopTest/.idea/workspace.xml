@@ -2,21 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="938aaac7-afb9-4669-a387-37325a7b2290" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_mifmif_generex_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dk_brics_automaton_automaton_1_11_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/resources/ValidateSignUpForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Fiscalia_Project_DevelopTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/META-INF/Fiscalia_Project_DevelopTest.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/css/SSHomeLayout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/css/SSProfileLayout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/css/SSSignUpLayout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/css/SSUserSearchInputLayout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/layout/HomeLayout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/layout/ProfileLayout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/layout/SignUpLayout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/layout/UserSearchInputLayout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/icons/add_user_male_64px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/icons/customer_96px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/icons/find_user_male_64px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/icons/home_64px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/icons/icons8_edit_32px_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/icons/icons8_fingerprint_96px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/images/Dgo_Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/images/Escudo_México.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/images/Fiscalia_Web_Logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/images/Fiscalia_White_Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fiscalia_Project_DevelopTest/gov/fged/res/media/images/profile_placeholder.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UIController/SignUpLayout/SignUpLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/SignUpLayout/SignUpLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/ManageLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/ManageLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/SSSignUpLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/SSSignUpLayout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layout/SignUpLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/SignUpLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/css/SSSignUpLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/css/SSSignUpLayout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/layout/SignUpLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/layout/SignUpLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resources/ValidateSignUpForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/ValidateSignUpForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,30 +244,30 @@
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1581623502792" />
     <state x="464" y="143" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1582147007579" />
     <state x="72" y="182" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586213118296" />
-    <state width="1493" height="147" key="GridCell.Tab.0.bottom" timestamp="1586665372246">
+    <state width="1493" height="147" key="GridCell.Tab.0.bottom" timestamp="1586724124075">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
     <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1582152475807" />
-    <state width="1493" height="147" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586665372246" />
-    <state width="1493" height="147" key="GridCell.Tab.0.center" timestamp="1586665372246">
+    <state width="1493" height="147" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586724124075" />
+    <state width="1493" height="147" key="GridCell.Tab.0.center" timestamp="1586724124075">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
     <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1582152475806" />
-    <state width="1493" height="147" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586665372246" />
-    <state width="1493" height="147" key="GridCell.Tab.0.left" timestamp="1586665372246">
+    <state width="1493" height="147" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586724124075" />
+    <state width="1493" height="147" key="GridCell.Tab.0.left" timestamp="1586724124075">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
     <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1582152475805" />
-    <state width="1493" height="147" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586665372246" />
-    <state width="1493" height="147" key="GridCell.Tab.0.right" timestamp="1586665372246">
+    <state width="1493" height="147" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586724124075" />
+    <state width="1493" height="147" key="GridCell.Tab.0.right" timestamp="1586724124075">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581634013685" />
     <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1582152475807" />
-    <state width="1493" height="147" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586665372246" />
+    <state width="1493" height="147" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586724124075" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1583794011725">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -286,12 +294,12 @@
     <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1581625582682" />
     <state x="184" y="8" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1582128872851" />
     <state x="341" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585262016763" />
-    <state x="426" y="212" key="com.intellij.ide.util.TipDialog" timestamp="1586657522210">
+    <state x="426" y="212" key="com.intellij.ide.util.TipDialog" timestamp="1586720960483">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="378" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1581695852921" />
     <state x="379" y="224" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1582145754774" />
-    <state x="426" y="212" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1586657522210" />
+    <state x="426" y="212" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1586720960483" />
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582569432162">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

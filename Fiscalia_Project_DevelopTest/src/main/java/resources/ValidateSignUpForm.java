@@ -5,6 +5,7 @@ import javafx.css.PseudoClass;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidateSignUpForm {
@@ -22,10 +23,10 @@ public class ValidateSignUpForm {
         if (validateSignUpFormClass == null) {
             validateSignUpFormClass = new ValidateSignUpForm();
         }
-
         return validateSignUpFormClass;
     }
 
+    //Inicia las validaciones.
     public void validateForm() {
 
         signUpLayoutController = manageLayoutClass.getFxmlLoader().getController();
@@ -42,7 +43,8 @@ public class ValidateSignUpForm {
                         validateEmptyForm(txtField);
                     } else {
                         //Validar el TextField de Email.
-                        validateEmail(txtField);
+
+                        // validateEmail(txtField);
                     }
 
                     //Validar RFC
@@ -54,10 +56,8 @@ public class ValidateSignUpForm {
         }
     }
 
-    public void validateEmail(TextField textField){
 
-    }
-
+    //Activan la estética de warning.
     public void showFrontValidationFeed(TextField textField) {
         manageLabelAlert(textField.getId(), "show");
         textField.pseudoClassStateChanged(errorClass, true);
@@ -68,14 +68,9 @@ public class ValidateSignUpForm {
         textField.pseudoClassStateChanged(errorClass, false);
     }
 
-    public void validateRFC(TextField textField) {
-        if ((!Pattern.matches("[a-zA-Z0-9]{12}", textField.getText()) && !textField.getText().isEmpty()) || textField.getText().isEmpty()) {
-            showFrontValidationFeed(textField);
-        } else {
-            hideFrontValidationFeed(textField);
-        }
-    }
 
+
+    //Validaciones
     public void validateEmptyForm(TextField textField) {
         if (textField.getText().isEmpty()) {
             showFrontValidationFeed(textField);
@@ -84,10 +79,32 @@ public class ValidateSignUpForm {
         }
     }
 
+    public void validateRFC(TextField textField) {
 
-    /*
-    Revisar si es necesario utilziar la validación por ID sino colocar sólo un label en general para todos.
-     */
+        String validationCase = "";
+        String regex = "[a-zA-Z0-9]{12}";
+
+        Pattern RFCPattern = Pattern.compile(regex);
+        Matcher RFCMatcher = RFCPattern.matcher(textField.getText());
+        boolean isCompleteRFC = RFCMatcher.matches();
+
+        if ((!isCompleteRFC && !textField.getText().isEmpty()) || textField.getText().isEmpty()) {
+
+            if (textField.getText().isEmpty()) {
+                validationCase = "emptyTextField";
+            } else if (!isCompleteRFC) {
+                validationCase = "RFCLength";
+            }
+
+            manageRFCLabelAlert("show", validationCase, textField);
+        } else {
+            manageRFCLabelAlert("hide", "NONE", textField);
+        }
+    }
+
+    
+
+    //Administran y activan la estética de warning
     public void manageLabelAlert(String txtFieldID, String warningStatus) {
 
         switch (txtFieldID) {
@@ -103,21 +120,6 @@ public class ValidateSignUpForm {
                     signUpLayoutController.manageLastNameLabelWarning("El campo APELLIDO no puede estar vacío.", "show");
                 } else {
                     signUpLayoutController.manageLastNameLabelWarning("", "hide");
-                }
-                break;
-            case "txtFieldFormRFC":
-                if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageRFCLabelWarning();
-                    /*
-                    else if (validationType.equals("RFCLength")) {
-                        signUpLayoutController.setRFCLengthMessage("El campo RFC no tiene 12 caracteres.");
-                        System.err.println("Está validando los 12 caracteres");
-                        System.err.println(signUpLayoutController.getRFCLabel());
-                    }
-
-                     */
-                } else {
-                    signUpLayoutController.hideRFCWarningMessage();
                 }
                 break;
             case "txtFieldFormAddress":
@@ -137,6 +139,22 @@ public class ValidateSignUpForm {
         }
     }
 
+    public void manageRFCLabelAlert(String warningStatus, String validationCase, TextField textField) {
+
+        switch (warningStatus) {
+            case "show":
+                signUpLayoutController.manageRFCLabelWarning(validationCase);
+                textField.pseudoClassStateChanged(errorClass, true);
+                break;
+            case "hide":
+                signUpLayoutController.hideRFCWarningMessage();
+                textField.pseudoClassStateChanged(errorClass, false);
+                break;
+        }
+    }
+
+
+    //Getters and Setters.
     public void setTxtFieldArray(ArrayList<TextField> txtFieldArray) {
         this.textFieldArrayList = txtFieldArray;
     }

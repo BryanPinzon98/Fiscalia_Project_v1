@@ -237,14 +237,23 @@ public class SignUpLayoutController implements Initializable {
         }
     }
 
-    public void manageRFCLabelWarning() {
-        //Guardar los mensajes acá para validarlos y luego mostrarlos depende del warningStatus
+    public void manageRFCLabelWarning(String validationCase) {
 
+        switch (validationCase) {
+            case "emptyTextField":
+                RFCLabel.setText("El campo RFC no puede estar vacío.");
+                break;
+            case "RFCLength":
+                RFCLabel.setText("El campo no cumple con 12 caracteres.");
+                break;
+        }
+/*
         if (txtFieldFormRFC.getText().isEmpty()) {
             RFCLabel.setText("El campo RFC no puede estar vacío.");
         } else {
             RFCLabel.setText("El campo no cumple con 12 caracteres.");
         }
+ */
         RFCLabel.setVisible(true);
     }
 
@@ -262,7 +271,7 @@ public class SignUpLayoutController implements Initializable {
         RFCLabel.setVisible(false);
     }
 
-    public String getRFCLabel(){
+    public String getRFCLabel() {
         return RFCLabel.getText();
     }
 
