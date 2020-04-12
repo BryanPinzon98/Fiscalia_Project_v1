@@ -1,3 +1,8 @@
+.text-field:error {
+    -fx-text-box-border: red;
+    -fx-focus-color: red;
+}
+
 .button
 {
 -fx-background-color : #3eb4e5;

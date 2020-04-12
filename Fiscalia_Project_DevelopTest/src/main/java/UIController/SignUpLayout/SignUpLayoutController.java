@@ -5,31 +5,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dataManager.Connection;
 import enrollment.Enrollment;
 import javafx.collections.FXCollections;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import objects.User;
 import org.controlsfx.validation.ValidationSupport;
-import org.controlsfx.validation.Validator;
-import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
-import org.controlsfx.validation.decoration.ValidationDecoration;
 import resources.ManageLayout;
+import resources.ValidateSignUpForm;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SignUpLayoutController implements Initializable{
+public class SignUpLayoutController implements Initializable {
 
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private Connection DDBBConnectionClass = Connection.getInstance();
+    private ValidateSignUpForm validateSignUpFormClass = ValidateSignUpForm.getInstance();
     private ValidationSupport validationSupport = new ValidationSupport();
+    private final PseudoClass errorClass = PseudoClass.getPseudoClass("error");
 
     @FXML
     private Text signUpTitle;
@@ -67,6 +70,22 @@ public class SignUpLayoutController implements Initializable{
     @FXML
     private Button txtFieldFormCancel;
 
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label lastNameLabel;
+
+    @FXML
+    private Label RFCLabel;
+
+    @FXML
+    private Label addressLabel;
+
+    @FXML
+    private Label emailLabel;
+
+
     //Administra los clics de cada uno de los botones.
     @FXML
     private void handleButtonClicks(MouseEvent mouseEvent) {
@@ -82,9 +101,6 @@ public class SignUpLayoutController implements Initializable{
                 case "txtFieldFormSubmit":
 
                     System.out.println("Submit button pressed");
-
-                    //validar los campos del registro.
-                    validateForm();
 
                     User newUser = new User(
                             0,
@@ -137,12 +153,17 @@ public class SignUpLayoutController implements Initializable{
     //Validate Form
     public void validateForm() {
 
-        ValidationDecoration cssDecorator = new StyleClassValidationDecoration();
+        ArrayList<TextField> textFieldArray = new ArrayList<>();
+        textFieldArray.add(txtFieldFormNames);
+        textFieldArray.add(txtFieldFormLastNames);
+        textFieldArray.add(txtFieldFormRFC);
+        textFieldArray.add(txtFieldFormAddress);
+        textFieldArray.add(txtFieldFormEmail);
 
-        validationSupport.registerValidator(choiceBoxGenre, Validator.createEmptyValidator("ChoiceBox Selection is required"));
-        //validationSupport.setValidationDecorator(cssDecorator);
+        validateSignUpFormClass.setTxtFieldArray(textFieldArray);
+        validateSignUpFormClass.validateForm();
+
     }
-
 
     //Getters y Setters
     public void setUserNames(String userName) {
@@ -196,20 +217,87 @@ public class SignUpLayoutController implements Initializable{
         btnEnrollFingerprint.setVisible(choiceVisible);
     }
 
+    public void manageNameLabelWarning(String warningMessage, String warningStatus) {
+        if (warningStatus.equals("show")) {
+            nameLabel.setText(warningMessage);
+            nameLabel.setVisible(true);
+        } else {
+            nameLabel.setText(warningMessage);
+            nameLabel.setVisible(false);
+        }
+    }
+
+    public void manageLastNameLabelWarning(String warningMessage, String warningStatus) {
+        if (warningStatus.equals("show")) {
+            lastNameLabel.setText(warningMessage);
+            lastNameLabel.setVisible(true);
+        } else {
+            lastNameLabel.setText(warningMessage);
+            lastNameLabel.setVisible(false);
+        }
+    }
+
+    public void manageRFCLabelWarning() {
+        //Guardar los mensajes acá para validarlos y luego mostrarlos depende del warningStatus
+
+        if (txtFieldFormRFC.getText().isEmpty()) {
+            RFCLabel.setText("El campo RFC no puede estar vacío.");
+        } else {
+            RFCLabel.setText("El campo no cumple con 12 caracteres.");
+        }
+        RFCLabel.setVisible(true);
+    }
+
+    public void setEmptyRFCMessage(String warningMessage) {
+        RFCLabel.setText(warningMessage);
+        RFCLabel.setVisible(true);
+    }
+
+    public void setRFCLengthMessage(String warningMessage) {
+        RFCLabel.setText(warningMessage);
+        RFCLabel.setVisible(true);
+    }
+
+    public void hideRFCWarningMessage() {
+        RFCLabel.setVisible(false);
+    }
+
+    public String getRFCLabel(){
+        return RFCLabel.getText();
+    }
+
+    public void manageAddressLabelWarning(String warningMessage, String warningStatus) {
+        if (warningStatus.equals("show")) {
+            addressLabel.setText(warningMessage);
+            addressLabel.setVisible(true);
+        } else {
+            addressLabel.setText(warningMessage);
+            addressLabel.setVisible(false);
+        }
+    }
+
+    public void manageEmailLabelWarning(String warningMessage, String warningStatus) {
+        if (warningStatus.equals("show")) {
+            emailLabel.setText(warningMessage);
+            emailLabel.setVisible(true);
+        } else {
+            emailLabel.setText(warningMessage);
+            emailLabel.setVisible(false);
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+/*
         choiceBoxGenre.setItems(FXCollections.observableArrayList("Masculino", "Femenino"));
         choiceBoxTypeUser.setItems(FXCollections.observableArrayList("Empleado", "Visitante"));
         choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList("Casado", "Soltero"));
+ */
 
-        /*
         choiceBoxGenre.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getGenres()));
         choiceBoxTypeUser.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getTypeUsers()));
         choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList(DDBBConnectionClass.getMaritalStatusOptions()));
 
-         */
+        validateForm();
     }
 }

@@ -13,6 +13,7 @@ public class ManageLayout {
     private static ManageLayout loadLayout = null;
     private Stage stage = null;
     private Parent pane = null;
+    private FXMLLoader fxmlLoader = null;
 
     private ManageLayout() {
     }
@@ -25,7 +26,6 @@ public class ManageLayout {
     }
 
     public FXMLLoader loadLayout(String fxmlPath, String layoutTitle, boolean show) {
-        FXMLLoader fxmlLoader = null;
 
         try {
             fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlPath));
@@ -57,5 +57,9 @@ public class ManageLayout {
 
     public Parent getParent() {
         return pane;
+    }
+
+    public FXMLLoader getFxmlLoader() {
+        return fxmlLoader;
     }
 }
