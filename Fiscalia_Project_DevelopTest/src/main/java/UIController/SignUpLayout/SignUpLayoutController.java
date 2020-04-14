@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dataManager.Connection;
 import enrollment.Enrollment;
 import javafx.collections.FXCollections;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import objects.User;
-import org.controlsfx.validation.ValidationSupport;
 import resources.ManageLayout;
 import resources.ValidateSignUpForm;
 
@@ -31,8 +29,7 @@ public class SignUpLayoutController implements Initializable {
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private Connection DDBBConnectionClass = Connection.getInstance();
     private ValidateSignUpForm validateSignUpFormClass = ValidateSignUpForm.getInstance();
-    private ValidationSupport validationSupport = new ValidationSupport();
-    private final PseudoClass errorClass = PseudoClass.getPseudoClass("error");
+
 
     @FXML
     private Text signUpTitle;
@@ -217,6 +214,7 @@ public class SignUpLayoutController implements Initializable {
         btnEnrollFingerprint.setVisible(choiceVisible);
     }
 
+    //Validaciones
     public void manageNameLabelWarning(String warningMessage, String warningStatus) {
         if (warningStatus.equals("show")) {
             nameLabel.setText(warningMessage);
@@ -247,32 +245,11 @@ public class SignUpLayoutController implements Initializable {
                 RFCLabel.setText("El campo no cumple con 12 caracteres.");
                 break;
         }
-/*
-        if (txtFieldFormRFC.getText().isEmpty()) {
-            RFCLabel.setText("El campo RFC no puede estar vacío.");
-        } else {
-            RFCLabel.setText("El campo no cumple con 12 caracteres.");
-        }
- */
-        RFCLabel.setVisible(true);
-    }
-
-    public void setEmptyRFCMessage(String warningMessage) {
-        RFCLabel.setText(warningMessage);
-        RFCLabel.setVisible(true);
-    }
-
-    public void setRFCLengthMessage(String warningMessage) {
-        RFCLabel.setText(warningMessage);
         RFCLabel.setVisible(true);
     }
 
     public void hideRFCWarningMessage() {
         RFCLabel.setVisible(false);
-    }
-
-    public String getRFCLabel() {
-        return RFCLabel.getText();
     }
 
     public void manageAddressLabelWarning(String warningMessage, String warningStatus) {

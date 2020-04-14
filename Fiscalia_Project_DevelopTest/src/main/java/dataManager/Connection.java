@@ -86,7 +86,7 @@ public class Connection {
         String MARITALSTATUS_URI = DDBB_URI + "/estadosciviles";
         String jsonStringMaritalResponse = APIRequest(null, MARITALSTATUS_URI);
 
-        System.out.println(jsonStringMaritalResponse);
+        //System.out.println(jsonStringMaritalResponse);
 
         ArrayList<MaritalStatus> maritalObjects = null;
 
@@ -111,7 +111,7 @@ public class Connection {
         String GENRES_URI = DDBB_URI + "/generos";
         String jsonStringGenresResponse = APIRequest(null, GENRES_URI);
 
-        System.out.println(jsonStringGenresResponse);
+        //System.out.println(jsonStringGenresResponse);
 
         ArrayList<Genre> genresObjects = null;
 
@@ -136,7 +136,7 @@ public class Connection {
         String TYPEUSERS_URI = DDBB_URI + "/tiposusuarios";
         String jsonStringTypeUsersResponse = APIRequest(null, TYPEUSERS_URI);
 
-        System.out.println(jsonStringTypeUsersResponse);
+        //System.out.println(jsonStringTypeUsersResponse);
 
         ArrayList<TypeUser> typeUsersObject = null;
 

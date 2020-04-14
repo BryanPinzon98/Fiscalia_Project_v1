@@ -16,9 +16,11 @@ public class ValidateSignUpForm {
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private SignUpLayoutController signUpLayoutController = null;
 
+    // ----------- Constructor
     public ValidateSignUpForm() {
     }
 
+    // ---------- Singleton
     public static ValidateSignUpForm getInstance() {
         if (validateSignUpFormClass == null) {
             validateSignUpFormClass = new ValidateSignUpForm();
@@ -26,7 +28,8 @@ public class ValidateSignUpForm {
         return validateSignUpFormClass;
     }
 
-    //Inicia las validaciones.
+
+    // ----------- Inicia las validaciones.
     public void validateForm() {
 
         signUpLayoutController = manageLayoutClass.getFxmlLoader().getController();
@@ -35,19 +38,15 @@ public class ValidateSignUpForm {
 
             txtField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 
-                //Si el foco del mause se sale de cualquier TextField
                 if (!newValue) {
 
                     if (!txtField.getId().equals("txtFieldFormEmail")) {
-                        //Validar los TextField vacíos excepto el de email.
                         validateEmptyForm(txtField);
                     } else {
-                        //Validar el TextField de Email.
-
-                        // validateEmail(txtField);
+                        validateEmail(txtField);
                     }
 
-                    //Validar RFC
+
                     if (txtField.getId().equals("txtFieldFormRFC")) {
                         validateRFC(txtField);
                     }
@@ -56,28 +55,58 @@ public class ValidateSignUpForm {
         }
     }
 
+    //------ Código para la validación de campo vacío.
 
-    //Activan la estética de warning.
-    public void showFrontValidationFeed(TextField textField) {
-        manageLabelAlert(textField.getId(), "show");
-        textField.pseudoClassStateChanged(errorClass, true);
-    }
-
-    public void hideFrontValidationFeed(TextField textField) {
-        manageLabelAlert(textField.getId(), "hide");
-        textField.pseudoClassStateChanged(errorClass, false);
-    }
-
-
-
-    //Validaciones
     public void validateEmptyForm(TextField textField) {
         if (textField.getText().isEmpty()) {
-            showFrontValidationFeed(textField);
+            showEmptyAlert(textField);
         } else {
-            hideFrontValidationFeed(textField);
+            hideEmptyAlert(textField);
         }
     }
+
+    public void showEmptyAlert(TextField textField) {
+        manageEmptyLabelAlert(textField.getId(), "show");
+        textFieldBorderManager(textField, "show");
+    }
+
+    public void hideEmptyAlert(TextField textField) {
+        manageEmptyLabelAlert(textField.getId(), "hide");
+        textFieldBorderManager(textField, "hide");
+    }
+
+    public void manageEmptyLabelAlert(String txtFieldID, String warningStatus) {
+
+        switch (txtFieldID) {
+            case "txtFieldFormNames":
+                if (warningStatus.equals("show")) {
+                    signUpLayoutController.manageNameLabelWarning("El campo NOMBRE no puede estar vacío.", "show");
+                } else {
+                    signUpLayoutController.manageNameLabelWarning("", "hide");
+                }
+                break;
+            case "txtFieldFormLastNames":
+                if (warningStatus.equals("show")) {
+                    signUpLayoutController.manageLastNameLabelWarning("El campo APELLIDO no puede estar vacío.", "show");
+                } else {
+                    signUpLayoutController.manageLastNameLabelWarning("", "hide");
+                }
+                break;
+            case "txtFieldFormAddress":
+                if (warningStatus.equals("show")) {
+                    signUpLayoutController.manageAddressLabelWarning("El campo DIRECCIÓN no puede estar vacío.", "show");
+                } else {
+                    signUpLayoutController.manageAddressLabelWarning("", "hide");
+                }
+                break;
+            default:
+                System.out.println("No se ha encontrado coincidencias de Text Field.");
+                break;
+        }
+    }
+
+
+    // -------- Validación de RFC
 
     public void validateRFC(TextField textField) {
 
@@ -102,59 +131,62 @@ public class ValidateSignUpForm {
         }
     }
 
-    
-
-    //Administran y activan la estética de warning
-    public void manageLabelAlert(String txtFieldID, String warningStatus) {
-
-        switch (txtFieldID) {
-            case "txtFieldFormNames":
-                if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageNameLabelWarning("El campo NOMBRE no puede estar vacío.", "show");
-                } else {
-                    signUpLayoutController.manageNameLabelWarning("", "hide");
-                }
-                break;
-            case "txtFieldFormLastNames":
-                if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageLastNameLabelWarning("El campo APELLIDO no puede estar vacío.", "show");
-                } else {
-                    signUpLayoutController.manageLastNameLabelWarning("", "hide");
-                }
-                break;
-            case "txtFieldFormAddress":
-                if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageAddressLabelWarning("El campo DIRECCIÓN no puede estar vacío.", "show");
-                } else {
-                    signUpLayoutController.manageAddressLabelWarning("", "hide");
-                }
-                break;
-            case "txtFieldFormEmail":
-                if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageEmailLabelWarning("El campo EMAIL no puede estar vacío.", "show");
-                } else {
-                    signUpLayoutController.manageEmailLabelWarning("", "hide");
-                }
-                break;
-        }
-    }
-
     public void manageRFCLabelAlert(String warningStatus, String validationCase, TextField textField) {
 
         switch (warningStatus) {
             case "show":
                 signUpLayoutController.manageRFCLabelWarning(validationCase);
-                textField.pseudoClassStateChanged(errorClass, true);
+                textFieldBorderManager(textField, "show");
                 break;
             case "hide":
                 signUpLayoutController.hideRFCWarningMessage();
-                textField.pseudoClassStateChanged(errorClass, false);
+                textFieldBorderManager(textField, "hide");
                 break;
         }
     }
 
 
-    //Getters and Setters.
+    //------- Validación de Email
+
+    public void validateEmail(TextField textField) {
+
+        String regex = "^[A-Za-z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@(?!-)(?:[A-Za-z-]+\\.)+[a-zA-Z-]{2,3}$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(textField.getText());
+        System.out.println("Validación result: " + matcher.matches());
+
+        boolean validationResult = matcher.matches();
+
+        if (!validationResult && !textField.getText().isEmpty()) {
+            manageEmailLabelAlert("Dirección de correo no válida", "show");
+            textFieldBorderManager(textField, "show");
+        } else {
+            manageEmailLabelAlert("", "hide");
+            textFieldBorderManager(textField, "hide");
+        }
+    }
+
+    public void manageEmailLabelAlert(String warningMessage, String warningStatus) {
+        signUpLayoutController.manageEmailLabelWarning(warningMessage, warningStatus);
+    }
+
+
+    // ------- Text Field border manager
+    public void textFieldBorderManager(TextField textField, String status) {
+
+        switch (status) {
+            case "show":
+                textField.pseudoClassStateChanged(errorClass, true);
+                break;
+            case "hide":
+                textField.pseudoClassStateChanged(errorClass, false);
+                break;
+        }
+    }
+
+    // ------- Getters and Setters.
     public void setTxtFieldArray(ArrayList<TextField> txtFieldArray) {
         this.textFieldArrayList = txtFieldArray;
     }
