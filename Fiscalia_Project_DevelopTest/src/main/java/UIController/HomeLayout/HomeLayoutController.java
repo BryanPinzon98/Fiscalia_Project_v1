@@ -1,6 +1,8 @@
 package UIController.HomeLayout;
 
+import UIController.SignUpLayout.SignUpLayoutController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -29,7 +31,9 @@ public class HomeLayoutController implements Initializable {
 
             case "btnNewUser":
                 System.out.println("New User Button Pressed");
-                loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro", true);
+                FXMLLoader signUpController = loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro", true);
+                SignUpLayoutController signUpControllerClass = signUpController.getController();
+                signUpControllerClass.setSignUpParent(loadLayoutClass.getParent());
                 break;
 
             case "btnSearchUser":

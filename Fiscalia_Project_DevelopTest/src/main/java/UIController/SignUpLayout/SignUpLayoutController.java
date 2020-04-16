@@ -7,10 +7,8 @@ import enrollment.Enrollment;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -22,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class SignUpLayoutController implements Initializable {
@@ -29,6 +28,9 @@ public class SignUpLayoutController implements Initializable {
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private Connection DDBBConnectionClass = Connection.getInstance();
     private ValidateSignUpForm validateSignUpFormClass = ValidateSignUpForm.getInstance();
+    private Parent signUpParent = null;
+    private ArrayList<TextField> textFieldArray = new ArrayList<>();
+    private ArrayList<ChoiceBox> choiceBoxArray = new ArrayList<>();
 
 
     @FXML
@@ -82,6 +84,15 @@ public class SignUpLayoutController implements Initializable {
     @FXML
     private Label emailLabel;
 
+    @FXML
+    private Label genreLabel;
+
+    @FXML
+    private Label maritalStatusLabel;
+
+    @FXML
+    private Label typeUserLabel;
+
 
     //Administra los clics de cada uno de los botones.
     @FXML
@@ -99,21 +110,34 @@ public class SignUpLayoutController implements Initializable {
 
                     System.out.println("Submit button pressed");
 
-                    User newUser = new User(
-                            0,
-                            txtFieldFormRFC.getText(),
-                            txtFieldFormNames.getText(),
-                            txtFieldFormLastNames.getText(),
-                            txtFieldFormAddress.getText(),
-                            txtFieldFormEmail.getText(),
-                            "",
-                            choiceBoxGenre.getValue(),
-                            choiceBoxMaritalStatus.getValue(),
-                            choiceBoxTypeUser.getValue());
+                    lastValidation();
+                    boolean formIsCorrect = formIsCorrect(validateSignUpFormClass.getFieldsStatus());
 
-                    serializeUserObject(newUser);
-                    //manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
+                    if (!formIsCorrect) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("¡Alerta!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Realice las acciones pertinentes con los campos en rojo.");
+                        alert.showAndWait();
 
+                    } else {
+
+                        User newUser = new User(
+                                0,
+                                txtFieldFormRFC.getText(),
+                                txtFieldFormNames.getText(),
+                                txtFieldFormLastNames.getText(),
+                                txtFieldFormAddress.getText(),
+                                txtFieldFormEmail.getText(),
+                                "",
+                                choiceBoxGenre.getValue(),
+                                choiceBoxMaritalStatus.getValue(),
+                                choiceBoxTypeUser.getValue());
+
+                        serializeUserObject(newUser);
+                        //manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
+
+                    }
                     break;
 
                 case "txtFieldFormCancel":
@@ -127,6 +151,20 @@ public class SignUpLayoutController implements Initializable {
                     break;
             }
         }
+
+    }
+
+    public void lastValidation() {
+
+        for (TextField textField : textFieldArray) {
+            validateSignUpFormClass.validateEmptyForm(textField);
+        }
+
+        for (ChoiceBox choiceBox : choiceBoxArray) {
+            validateSignUpFormClass.validateEmptyChoiceBox(choiceBox);
+        }
+
+        validateSignUpFormClass.validateRFC(txtFieldFormRFC);
 
     }
 
@@ -150,7 +188,7 @@ public class SignUpLayoutController implements Initializable {
     //Validate Form
     public void validateForm() {
 
-        ArrayList<TextField> textFieldArray = new ArrayList<>();
+        //Fill TextField Array
         textFieldArray.add(txtFieldFormNames);
         textFieldArray.add(txtFieldFormLastNames);
         textFieldArray.add(txtFieldFormRFC);
@@ -158,8 +196,15 @@ public class SignUpLayoutController implements Initializable {
         textFieldArray.add(txtFieldFormEmail);
 
         validateSignUpFormClass.setTxtFieldArray(textFieldArray);
-        validateSignUpFormClass.validateForm();
 
+        //Fill ChoiceBox Array
+        choiceBoxArray.add(choiceBoxGenre);
+        choiceBoxArray.add(choiceBoxMaritalStatus);
+        choiceBoxArray.add(choiceBoxTypeUser);
+
+        validateSignUpFormClass.setChoiceBoxArrayList(choiceBoxArray);
+
+        validateSignUpFormClass.validateForm();
     }
 
     //Getters y Setters
@@ -197,7 +242,6 @@ public class SignUpLayoutController implements Initializable {
     }
 
     public void setTypeUser(String typeUser) {
-        //this.txtFieldFormTypeUser.setText(typeUser);
         choiceBoxTypeUser.setItems(FXCollections.observableArrayList(typeUser));
         choiceBoxTypeUser.getSelectionModel().select(0);
     }
@@ -215,25 +259,6 @@ public class SignUpLayoutController implements Initializable {
     }
 
     //Validaciones
-    public void manageNameLabelWarning(String warningMessage, String warningStatus) {
-        if (warningStatus.equals("show")) {
-            nameLabel.setText(warningMessage);
-            nameLabel.setVisible(true);
-        } else {
-            nameLabel.setText(warningMessage);
-            nameLabel.setVisible(false);
-        }
-    }
-
-    public void manageLastNameLabelWarning(String warningMessage, String warningStatus) {
-        if (warningStatus.equals("show")) {
-            lastNameLabel.setText(warningMessage);
-            lastNameLabel.setVisible(true);
-        } else {
-            lastNameLabel.setText(warningMessage);
-            lastNameLabel.setVisible(false);
-        }
-    }
 
     public void manageRFCLabelWarning(String validationCase) {
 
@@ -252,16 +277,6 @@ public class SignUpLayoutController implements Initializable {
         RFCLabel.setVisible(false);
     }
 
-    public void manageAddressLabelWarning(String warningMessage, String warningStatus) {
-        if (warningStatus.equals("show")) {
-            addressLabel.setText(warningMessage);
-            addressLabel.setVisible(true);
-        } else {
-            addressLabel.setText(warningMessage);
-            addressLabel.setVisible(false);
-        }
-    }
-
     public void manageEmailLabelWarning(String warningMessage, String warningStatus) {
         if (warningStatus.equals("show")) {
             emailLabel.setText(warningMessage);
@@ -270,6 +285,124 @@ public class SignUpLayoutController implements Initializable {
             emailLabel.setText(warningMessage);
             emailLabel.setVisible(false);
         }
+    }
+
+    public void manageGeneralLabelWarning(String fieldID, String warningMessage, String warningStatus) {
+
+        if (warningStatus.equals("show")) {
+
+            switch (fieldID) {
+                case "txtFieldFormNames":
+                    nameLabel.setText(warningMessage);
+                    nameLabel.setVisible(true);
+                    break;
+                case "txtFieldFormLastNames":
+                    lastNameLabel.setText(warningMessage);
+                    lastNameLabel.setVisible(true);
+                    break;
+                case "choiceBoxGenre":
+                    genreLabel.setText(warningMessage);
+                    genreLabel.setVisible(true);
+                    break;
+                case "choiceBoxMaritalStatus":
+                    maritalStatusLabel.setText(warningMessage);
+                    maritalStatusLabel.setVisible(true);
+                    break;
+                case "txtFieldFormAddress":
+                    addressLabel.setText(warningMessage);
+                    addressLabel.setVisible(true);
+                    break;
+                case "choiceBoxTypeUser":
+                    typeUserLabel.setText(warningMessage);
+                    typeUserLabel.setVisible(true);
+                    break;
+            }
+
+        } else {
+
+            switch (fieldID) {
+                case "txtFieldFormNames":
+                    nameLabel.setText(warningMessage);
+                    nameLabel.setVisible(false);
+                    break;
+                case "txtFieldFormLastNames":
+                    lastNameLabel.setText(warningMessage);
+                    lastNameLabel.setVisible(false);
+                    break;
+                case "choiceBoxGenre":
+                    genreLabel.setText(warningMessage);
+                    genreLabel.setVisible(false);
+                    break;
+                case "choiceBoxMaritalStatus":
+                    maritalStatusLabel.setText(warningMessage);
+                    maritalStatusLabel.setVisible(false);
+                    break;
+                case "txtFieldFormAddress":
+                    addressLabel.setText(warningMessage);
+                    addressLabel.setVisible(false);
+                    break;
+                case "choiceBoxTypeUser":
+                    typeUserLabel.setText(warningMessage);
+                    typeUserLabel.setVisible(false);
+                    break;
+            }
+        }
+    }
+
+    public boolean formIsCorrect(HashMap<String, Boolean> fieldsStatusHashMap) {
+
+        boolean formIsCorrect = false;
+
+        boolean isEmptyNameField = false;
+        boolean isEmptyLastNameField = false;
+        boolean isCorrectRFCField = false;
+        boolean isEmptyGenreField = false;
+        boolean isEmptyMaritalStatus = false;
+        boolean isEmptyAddress = false;
+        boolean isCorrectEmail = false;
+        boolean isEmptyTypeUser = false;
+
+        for (HashMap.Entry<String, Boolean> field : fieldsStatusHashMap.entrySet()) {
+
+            switch (field.getKey()) {
+                case "txtFieldFormNames":
+                    isEmptyNameField = field.getValue();
+                    break;
+                case "txtFieldFormLastNames":
+                    isEmptyLastNameField = field.getValue();
+                    break;
+                case "txtFieldFormRFC":
+                    isCorrectRFCField = field.getValue();
+                    break;
+                case "choiceBoxGenre":
+                    isEmptyGenreField = field.getValue();
+                    break;
+                case "choiceBoxMaritalStatus":
+                    isEmptyMaritalStatus = field.getValue();
+                    break;
+                case "txtFieldFormAddress":
+                    isEmptyAddress = field.getValue();
+                    break;
+                case "txtFieldFormEmail":
+                    isCorrectEmail = field.getValue();
+                    break;
+                case "choiceBoxTypeUser":
+                    isEmptyTypeUser = field.getValue();
+                    break;
+            }
+        }
+
+        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser) {
+            formIsCorrect = true;
+        } else {
+            formIsCorrect = false;
+        }
+
+        return formIsCorrect;
+    }
+
+    public void setSignUpParent(Parent parent) {
+        this.signUpParent = parent;
     }
 
     @Override
