@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class SignUpLayoutController implements Initializable {
@@ -37,6 +36,8 @@ public class SignUpLayoutController implements Initializable {
 
     private ArrayList<TextField> textFieldArray = new ArrayList<>();
     private ArrayList<ChoiceBox> choiceBoxArray = new ArrayList<>();
+    private ArrayList<Label> labelsArray = new ArrayList<>();
+
     private Parent signUpParent = null;
     private DPFPTemplate fingerprintTemplate = null;
     private Image templateFingerprintImage = null;
@@ -79,31 +80,31 @@ public class SignUpLayoutController implements Initializable {
     private Button txtFieldFormCancel;
 
     @FXML
-    private Label nameLabel;
+    private Label txtFieldFormNamesLabel;
 
     @FXML
-    private Label lastNameLabel;
+    private Label txtFieldFormLastNamesLabel;
 
     @FXML
-    private Label RFCLabel;
+    private Label txtFieldFormRFCLabel;
 
     @FXML
-    private Label addressLabel;
+    private Label txtFieldFormAddressLabel;
 
     @FXML
-    private Label emailLabel;
+    private Label txtFieldFormEmailLabel;
 
     @FXML
-    private Label genreLabel;
+    private Label choiceBoxGenreLabel;
 
     @FXML
-    private Label maritalStatusLabel;
+    private Label choiceBoxMaritalStatusLabel;
 
     @FXML
-    private Label typeUserLabel;
+    private Label choiceBoxTypeUserLabel;
 
     @FXML
-    private Label fingerprintLabel;
+    private Label btnEnrollFingerprintLabel;
 
 
     //Administra los clics de cada uno de los botones.
@@ -132,9 +133,8 @@ public class SignUpLayoutController implements Initializable {
                     System.out.println("Submit button pressed");
 
                     lastValidation();
-                    boolean formIsCorrect = formIsCorrect(validateSignUpFormClass.getFieldsStatus());
 
-                    if (!formIsCorrect) {
+                    if (!validateSignUpFormClass.formIsCorrect()) {
                         Alert incorrectFormAlert = new Alert(Alert.AlertType.ERROR);
                         incorrectFormAlert.setTitle("¡Alerta!");
                         incorrectFormAlert.setHeaderText(null);
@@ -170,7 +170,6 @@ public class SignUpLayoutController implements Initializable {
                     Enrollment enrollmentProcess = new Enrollment();
                     enrollmentProcess.setSignUpLayoutControllerClass(this.signUpReferenceClass);
                     enrollmentProcess.setVisible(true);
-
                     break;
             }
         }
@@ -187,9 +186,7 @@ public class SignUpLayoutController implements Initializable {
         }
 
         validateSignUpFormClass.validateRFC(txtFieldFormRFC);
-
-        validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplate);
-
+        validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplate, templateFingerprintImage);
     }
 
     //Serializa el objeto java en un JSON
@@ -228,10 +225,39 @@ public class SignUpLayoutController implements Initializable {
 
         validateSignUpFormClass.setChoiceBoxArrayList(choiceBoxArray);
 
+        //Fill Labels Array
+        labelsArray.add(txtFieldFormNamesLabel);
+        labelsArray.add(txtFieldFormLastNamesLabel);
+        labelsArray.add(txtFieldFormRFCLabel);
+        labelsArray.add(choiceBoxGenreLabel);
+        labelsArray.add(choiceBoxMaritalStatusLabel);
+        labelsArray.add(txtFieldFormAddressLabel);
+        labelsArray.add(txtFieldFormEmailLabel);
+        labelsArray.add(choiceBoxTypeUserLabel);
+        labelsArray.add(btnEnrollFingerprintLabel);
+
+        validateSignUpFormClass.setLabelsArrayList(labelsArray);
+
         validateSignUpFormClass.validateForm();
     }
 
-    //Getters y Setters
+    // ----- Cargar la vista de Editar Usuario (?)
+
+    public void setUserGenre(String userGenre) {
+        choiceBoxGenre.setItems(FXCollections.observableArrayList(userGenre));
+        choiceBoxGenre.getSelectionModel().select(0);
+    }
+
+    public void setUserMaritalStatus(String userMaritalStatus) {
+        choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList(userMaritalStatus));
+        choiceBoxMaritalStatus.getSelectionModel().select(0);
+    }
+
+    public void setTypeUser(String typeUser) {
+        choiceBoxTypeUser.setItems(FXCollections.observableArrayList(typeUser));
+        choiceBoxTypeUser.getSelectionModel().select(0);
+    }
+
     public void setUserNames(String userName) {
         this.txtFieldFormNames.setText(userName);
     }
@@ -245,29 +271,12 @@ public class SignUpLayoutController implements Initializable {
         txtFieldFormRFC.setEditable(false);
     }
 
-    public void setUserGenre(String userGenre) {
-        //this.txtFieldFormGenre.setText(userGenre);
-        choiceBoxGenre.setItems(FXCollections.observableArrayList(userGenre));
-        choiceBoxGenre.getSelectionModel().select(0);
-    }
-
-    public void setUserMaritalStatus(String userMaritalStatus) {
-        //this.txtFieldFormMaritalStatus.setText(userMaritalStatus);
-        choiceBoxMaritalStatus.setItems(FXCollections.observableArrayList(userMaritalStatus));
-        choiceBoxMaritalStatus.getSelectionModel().select(0);
-    }
-
     public void setUserAddress(String userAddress) {
         this.txtFieldFormAddress.setText(userAddress);
     }
 
     public void setUserEmail(String userEmail) {
         this.txtFieldFormEmail.setText(userEmail);
-    }
-
-    public void setTypeUser(String typeUser) {
-        choiceBoxTypeUser.setItems(FXCollections.observableArrayList(typeUser));
-        choiceBoxTypeUser.getSelectionModel().select(0);
     }
 
     public void setSignUpTitle(String signUpTitle) {
@@ -286,8 +295,14 @@ public class SignUpLayoutController implements Initializable {
         this.templateFingerprintImage = templateFingerprintImage;
     }
 
-    public Label getFingerprintLabel() {
-        return fingerprintLabel;
+    //Getters y Setters
+
+    public void setFingerprintTemplate(DPFPTemplate fingerprintTemplate) {
+        this.fingerprintTemplate = fingerprintTemplate;
+    }
+
+    public void setSignUpParent(Parent parent) {
+        this.signUpParent = parent;
     }
 
     public void setSignUpReferenceClass(SignUpLayoutController signUpReferenceClass) {
@@ -298,169 +313,10 @@ public class SignUpLayoutController implements Initializable {
         } else {
             //System.out.println("La referencia a Sign Up está nula");
         }
-
     }
 
-    public void setFingerprintTemplate(DPFPTemplate fingerprintTemplate) {
-        this.fingerprintTemplate = fingerprintTemplate;
-    }
-
-    //Validaciones
-
-    public void manageRFCLabelWarning(String validationCase) {
-
-        switch (validationCase) {
-            case "emptyTextField":
-                RFCLabel.setText("El campo RFC no puede estar vacío.");
-                break;
-            case "RFCLength":
-                RFCLabel.setText("El campo no cumple con 12 caracteres.");
-                break;
-        }
-        RFCLabel.setVisible(true);
-    }
-
-    public void hideRFCWarningMessage() {
-        RFCLabel.setVisible(false);
-    }
-
-    public void manageEmailLabelWarning(String warningMessage, String warningStatus) {
-        if (warningStatus.equals("show")) {
-            emailLabel.setText(warningMessage);
-            emailLabel.setVisible(true);
-        } else {
-            emailLabel.setText(warningMessage);
-            emailLabel.setVisible(false);
-        }
-    }
-
-    public void manageGeneralLabelWarning(String fieldID, String warningMessage, String warningStatus) {
-
-        if (warningStatus.equals("show")) {
-
-            switch (fieldID) {
-                case "txtFieldFormNames":
-                    nameLabel.setText(warningMessage);
-                    nameLabel.setVisible(true);
-                    break;
-                case "txtFieldFormLastNames":
-                    lastNameLabel.setText(warningMessage);
-                    lastNameLabel.setVisible(true);
-                    break;
-                case "choiceBoxGenre":
-                    genreLabel.setText(warningMessage);
-                    genreLabel.setVisible(true);
-                    break;
-                case "choiceBoxMaritalStatus":
-                    maritalStatusLabel.setText(warningMessage);
-                    maritalStatusLabel.setVisible(true);
-                    break;
-                case "txtFieldFormAddress":
-                    addressLabel.setText(warningMessage);
-                    addressLabel.setVisible(true);
-                    break;
-                case "choiceBoxTypeUser":
-                    typeUserLabel.setText(warningMessage);
-                    typeUserLabel.setVisible(true);
-                    break;
-            }
-
-        } else {
-
-            switch (fieldID) {
-                case "txtFieldFormNames":
-                    nameLabel.setText(warningMessage);
-                    nameLabel.setVisible(false);
-                    break;
-                case "txtFieldFormLastNames":
-                    lastNameLabel.setText(warningMessage);
-                    lastNameLabel.setVisible(false);
-                    break;
-                case "choiceBoxGenre":
-                    genreLabel.setText(warningMessage);
-                    genreLabel.setVisible(false);
-                    break;
-                case "choiceBoxMaritalStatus":
-                    maritalStatusLabel.setText(warningMessage);
-                    maritalStatusLabel.setVisible(false);
-                    break;
-                case "txtFieldFormAddress":
-                    addressLabel.setText(warningMessage);
-                    addressLabel.setVisible(false);
-                    break;
-                case "choiceBoxTypeUser":
-                    typeUserLabel.setText(warningMessage);
-                    typeUserLabel.setVisible(false);
-                    break;
-            }
-        }
-    }
-
-    public boolean formIsCorrect(HashMap<String, Boolean> fieldsStatusHashMap) {
-
-        boolean formIsCorrect = false;
-
-        boolean isEmptyNameField = false;
-        boolean isEmptyLastNameField = false;
-        boolean isCorrectRFCField = false;
-        boolean isEmptyGenreField = false;
-        boolean isEmptyMaritalStatus = false;
-        boolean isEmptyAddress = false;
-        boolean isCorrectEmail = false;
-        boolean isEmptyTypeUser = false;
-        boolean fingerprintTemplateIsReady = false;
-        boolean fingerprintTemplateImageIsReady = false;
-
-        for (HashMap.Entry<String, Boolean> field : fieldsStatusHashMap.entrySet()) {
-
-            switch (field.getKey()) {
-                case "txtFieldFormNames":
-                    isEmptyNameField = field.getValue();
-                    break;
-                case "txtFieldFormLastNames":
-                    isEmptyLastNameField = field.getValue();
-                    break;
-                case "txtFieldFormRFC":
-                    isCorrectRFCField = field.getValue();
-                    break;
-                case "choiceBoxGenre":
-                    isEmptyGenreField = field.getValue();
-                    break;
-                case "choiceBoxMaritalStatus":
-                    isEmptyMaritalStatus = field.getValue();
-                    break;
-                case "txtFieldFormAddress":
-                    isEmptyAddress = field.getValue();
-                    break;
-                case "txtFieldFormEmail":
-                    isCorrectEmail = field.getValue();
-                    break;
-                case "choiceBoxTypeUser":
-                    isEmptyTypeUser = field.getValue();
-                    break;
-            }
-        }
-
-        if (fingerprintTemplate != null) {
-            fingerprintTemplateIsReady = true;
-            //fingerprintLabel.setVisible(false);
-        }
-
-        if (templateFingerprintImage != null) {
-            fingerprintTemplateImageIsReady = true;
-        }
-
-        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageIsReady) {
-            formIsCorrect = true;
-        } else {
-            formIsCorrect = false;
-        }
-
-        return formIsCorrect;
-    }
-
-    public void setSignUpParent(Parent parent) {
-        this.signUpParent = parent;
+    public void hideFingerprintLabelWarning(){
+        btnEnrollFingerprintLabel.setVisible(false);
     }
 
     @Override

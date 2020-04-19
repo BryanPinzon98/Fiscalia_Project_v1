@@ -79,47 +79,47 @@
             <ChoiceBox fx:id="choiceBoxGenre" layoutX="333.0" layoutY="270.0" prefHeight="26.0" prefWidth="343.0" styleClass="choiceBoxValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="270.0" />
             <ChoiceBox fx:id="choiceBoxTypeUser" layoutX="333.0" layoutY="438.0" prefHeight="26.0" prefWidth="343.0" styleClass="choiceBoxValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" />
             <ChoiceBox fx:id="choiceBoxMaritalStatus" layoutX="333.0" layoutY="313.0" prefHeight="26.0" prefWidth="343.0" styleClass="choiceBoxValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="313.0" />
-            <Label fx:id="nameLabel" layoutX="705.0" layoutY="152.0" text="El campo no puede estar vacío" textAlignment="CENTER" textFill="RED" underline="true" visible="false">
+            <Label fx:id="txtFieldFormNamesLabel" layoutX="705.0" layoutY="152.0" text="El campo no puede estar vacío" textAlignment="CENTER" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="lastNameLabel" layoutX="705.0" layoutY="191.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
+            <Label fx:id="txtFieldFormLastNamesLabel" layoutX="705.0" layoutY="191.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="RFCLabel" layoutX="705.0" layoutY="233.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
+            <Label fx:id="txtFieldFormRFCLabel" layoutX="705.0" layoutY="233.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="addressLabel" layoutX="705.0" layoutY="362.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
+            <Label fx:id="txtFieldFormAddressLabel" layoutX="705.0" layoutY="362.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="emailLabel" layoutX="705.0" layoutY="404.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
+            <Label fx:id="txtFieldFormEmailLabel" layoutX="705.0" layoutY="404.0" text="El campo no puede estar vacío" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="genreLabel" layoutX="705.0" layoutY="274.0" text="Label" textFill="RED" underline="true" visible="false">
+            <Label fx:id="choiceBoxGenreLabel" layoutX="705.0" layoutY="274.0" text="Label" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="maritalStatusLabel" layoutX="705.0" layoutY="318.0" text="Label" textFill="RED" underline="true" visible="false">
+            <Label fx:id="choiceBoxMaritalStatusLabel" layoutX="705.0" layoutY="318.0" text="Label" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="typeUserLabel" layoutX="706.0" layoutY="443.0" text="Label" textFill="RED" underline="true" visible="false">
+            <Label fx:id="choiceBoxTypeUserLabel" layoutX="706.0" layoutY="443.0" text="Label" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="fingerprintLabel" layoutX="605.0" layoutY="502.0" text="Label" textFill="RED" underline="true" visible="false">
+            <Label fx:id="btnEnrollFingerprintLabel" layoutX="605.0" layoutY="502.0" text="Label" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

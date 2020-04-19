@@ -87,6 +87,7 @@ public class MainClass extends JFrame {
                     System.out.println("The Fingerprint template is ready for fingerprint verification");
                     //Envío del template de la huella.
                     signUpLayoutControllerClass.setFingerprintTemplate(template);
+                    signUpLayoutControllerClass.hideFingerprintLabelWarning();
                 }
             }
         });

@@ -48,10 +48,6 @@ public abstract class LaunchFingerprintReader extends JFrame {
 
     public void process(DPFPSample sample) {
         fingerprintTemplateImage = convertSampleToBitmap(sample);
-
-        System.err.println("Referencia de la imagen actual: " + fingerprintTemplateImage);
-        System.err.println("Imprimiendo imagen...");
-
         drawImage(fingerprintTemplateImage);
     }
 

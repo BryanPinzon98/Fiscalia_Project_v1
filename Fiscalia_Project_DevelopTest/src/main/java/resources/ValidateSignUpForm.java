@@ -7,22 +7,21 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidateSignUpForm {
 
     private static ValidateSignUpForm validateSignUpFormClass = null;
-    private ArrayList<TextField> textFieldArrayList = new ArrayList<>();
-    private ArrayList<ChoiceBox> choiceBoxArrayList = new ArrayList<>();
     private final PseudoClass errorClass = PseudoClass.getPseudoClass("error");
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private SignUpLayoutController signUpLayoutController = null;
-    private HashMap<String, Boolean> fieldsStatusHashMap = new HashMap<String, Boolean>();
 
-    private Label fingerprintLabel;
+    private ArrayList<TextField> textFieldArrayList = new ArrayList<>();
+    private ArrayList<ChoiceBox> choiceBoxArrayList = new ArrayList<>();
+    private ArrayList<Label> labelsArrayList = new ArrayList<>();
 
 
     private boolean isEmptyNameField = true;
@@ -33,6 +32,8 @@ public class ValidateSignUpForm {
     private boolean isEmptyAddress = true;
     private boolean isCorrectEmail = false;
     private boolean isEmptyTypeUser = true;
+    private boolean fingerprintTemplateIsReady = false;
+    private boolean fingerprintTemplateImageIsReady = false;
 
     // ----------- Constructor
     public ValidateSignUpForm() {
@@ -83,6 +84,7 @@ public class ValidateSignUpForm {
         }
     }
 
+
     //--------Validar los Choice Box
 
     public boolean validateEmptyChoiceBox(ChoiceBox choiceBox) {
@@ -108,37 +110,34 @@ public class ValidateSignUpForm {
             case "choiceBoxGenre":
 
                 if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageGeneralLabelWarning(choiceBoxID, "El campo GENERO no puede estar vacío.", warningStatus);
+                    setUpWarningLabelEmptyFields(choiceBoxID, "El campo GENERO no puede estar vacío.", warningStatus);
                     isEmptyGenreField = true;
                 } else {
-                    signUpLayoutController.manageGeneralLabelWarning(choiceBoxID, "", warningStatus);
+                    setUpWarningLabelEmptyFields(choiceBoxID, "", warningStatus);
                     isEmptyGenreField = false;
                 }
-                fieldsStatusHashMap.put(choiceBoxID, isEmptyGenreField);
                 break;
 
             case "choiceBoxMaritalStatus":
 
                 if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageGeneralLabelWarning(choiceBoxID, "El campo ESTADO CIVIL no puede estar vacío.", warningStatus);
+                    setUpWarningLabelEmptyFields(choiceBoxID, "El campo ESTADO CIVIL no puede estar vacío.", warningStatus);
                     isEmptyMaritalStatus = true;
                 } else {
-                    signUpLayoutController.manageGeneralLabelWarning(choiceBoxID, "", warningStatus);
+                    setUpWarningLabelEmptyFields(choiceBoxID, "", warningStatus);
                     isEmptyMaritalStatus = false;
                 }
-                fieldsStatusHashMap.put(choiceBoxID, isEmptyMaritalStatus);
                 break;
 
             case "choiceBoxTypeUser":
 
                 if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageGeneralLabelWarning(choiceBoxID, "El campo TIPO USUARIO no puede estar vacío.", warningStatus);
+                    setUpWarningLabelEmptyFields(choiceBoxID, "El campo TIPO USUARIO no puede estar vacío.", warningStatus);
                     isEmptyTypeUser = true;
                 } else {
-                    signUpLayoutController.manageGeneralLabelWarning(choiceBoxID, "", warningStatus);
+                    setUpWarningLabelEmptyFields(choiceBoxID, "", warningStatus);
                     isEmptyTypeUser = false;
                 }
-                fieldsStatusHashMap.put(choiceBoxID, isEmptyTypeUser);
                 break;
         }
     }
@@ -170,33 +169,30 @@ public class ValidateSignUpForm {
         switch (txtFieldID) {
             case "txtFieldFormNames":
                 if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageGeneralLabelWarning(txtFieldID, "El campo NOMBRE no puede estar vacío.", warningStatus);
+                    setUpWarningLabelEmptyFields(txtFieldID, "El campo NOMBRE no puede estar vacío.", warningStatus);
                     isEmptyNameField = true;
                 } else {
-                    signUpLayoutController.manageGeneralLabelWarning(txtFieldID, "", "hide");
+                    setUpWarningLabelEmptyFields(txtFieldID, "", warningStatus);
                     isEmptyNameField = false;
                 }
-                fieldsStatusHashMap.put(txtFieldID, isEmptyNameField);
                 break;
             case "txtFieldFormLastNames":
                 if (warningStatus.equals("show")) {
-                    signUpLayoutController.manageGeneralLabelWarning(txtFieldID, "El campo APELLIDO no puede estar vacío.", warningStatus);
+                    setUpWarningLabelEmptyFields(txtFieldID, "El campo APELLIDO no puede estar vacío.", warningStatus);
                     isEmptyLastNameField = true;
                 } else {
-                    signUpLayoutController.manageGeneralLabelWarning(txtFieldID, "", "hide");
+                    setUpWarningLabelEmptyFields(txtFieldID, "", warningStatus);
                     isEmptyLastNameField = false;
                 }
-                fieldsStatusHashMap.put(txtFieldID, isEmptyLastNameField);
                 break;
             case "txtFieldFormAddress":
                 if (warningStatus.equals("show")) {
+                    setUpWarningLabelEmptyFields(txtFieldID, "El campo DIRECCIÓN no puede estar vacío.", warningStatus);
                     isEmptyAddress = true;
-                    signUpLayoutController.manageGeneralLabelWarning(txtFieldID, "El campo DIRECCIÓN no puede estar vacío.", warningStatus);
                 } else {
-                    signUpLayoutController.manageGeneralLabelWarning(txtFieldID, "", "hide");
+                    setUpWarningLabelEmptyFields(txtFieldID, "", warningStatus);
                     isEmptyAddress = false;
                 }
-                fieldsStatusHashMap.put(txtFieldID, isEmptyAddress);
                 break;
             default:
                 System.out.println("No se ha encontrado coincidencias de Text Field.");
@@ -234,17 +230,18 @@ public class ValidateSignUpForm {
 
         switch (warningStatus) {
             case "show":
-                signUpLayoutController.manageRFCLabelWarning(validationCase);
+                //signUpLayoutController.manageRFCLabelWarning(validationCase);
+                setUpWarningLabelRFCField(textField.getId(), validationCase, warningStatus);
                 textFieldBorderManager(textField, "show");
                 isCorrectRFCField = false;
                 break;
             case "hide":
-                signUpLayoutController.hideRFCWarningMessage();
+                //signUpLayoutController.hideRFCWarningMessage();
+                setUpWarningLabelRFCField(textField.getId(), validationCase, warningStatus);
                 textFieldBorderManager(textField, "hide");
                 isCorrectRFCField = true;
                 break;
         }
-        fieldsStatusHashMap.put(textField.getId(), isCorrectRFCField);
     }
 
 
@@ -261,32 +258,37 @@ public class ValidateSignUpForm {
         boolean validationResult = matcher.matches();
 
         if (!validationResult && !textField.getText().isEmpty()) {
-            manageEmailLabelAlert("Dirección de correo no válida", "show");
+            manageEmailLabelAlert(textField.getId(), "Dirección de correo no válida", "show");
             textFieldBorderManager(textField, "show");
             isCorrectEmail = false;
         } else {
-            manageEmailLabelAlert("", "hide");
+            manageEmailLabelAlert(textField.getId(), "", "hide");
             textFieldBorderManager(textField, "hide");
             isCorrectEmail = true;
         }
-
-        fieldsStatusHashMap.put(textField.getId(), isCorrectEmail);
     }
 
-    public void manageEmailLabelAlert(String warningMessage, String warningStatus) {
-        signUpLayoutController.manageEmailLabelWarning(warningMessage, warningStatus);
+    public void manageEmailLabelAlert(String emailFieldID, String warningMessage, String warningStatus) {
+        setUpWarningLabelEmailField(emailFieldID, warningMessage, warningStatus);
     }
 
     //-------- Fingerprint label warning
 
-    public void validateFingerprintTemplate(DPFPTemplate fingerprintTemplate) {
-        if (fingerprintTemplate == null) {
-            fingerprintLabel = signUpLayoutController.getFingerprintLabel();
-            fingerprintLabel.setText("Debe registrar una huella digital.");
-            fingerprintLabel.setVisible(true);
+    public void validateFingerprintTemplate(DPFPTemplate fingerprintTemplate, Image templateFingerprintImage) {
+
+        if (fingerprintTemplate == null || templateFingerprintImage == null) {
+
+            for (Label labelItem : labelsArrayList) {
+                if (labelItem.getId().equals("btnEnrollFingerprintLabel")) {
+                    labelItem.setText("Debe registrar una huella digital.");
+                    labelItem.setVisible(true);
+                }
+            }
+        } else {
+            fingerprintTemplateIsReady = true;
+            fingerprintTemplateImageIsReady = true;
         }
     }
-
 
     // ------- Border manager
     public void textFieldBorderManager(TextField textField, String status) {
@@ -318,12 +320,85 @@ public class ValidateSignUpForm {
         this.textFieldArrayList = txtFieldArray;
     }
 
-    //------- Utilities
-    public HashMap<String, Boolean> getFieldsStatus() {
-        return this.fieldsStatusHashMap;
-    }
-
     public void setChoiceBoxArrayList(ArrayList<ChoiceBox> choiceBoxArrayList) {
         this.choiceBoxArrayList = choiceBoxArrayList;
+    }
+
+    public void setLabelsArrayList(ArrayList<Label> labelsArrayList) {
+        this.labelsArrayList = labelsArrayList;
+    }
+
+    //------- Utilities
+
+    public boolean formIsCorrect() {
+
+        boolean formIsCorrect = false;
+
+        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageIsReady) {
+            formIsCorrect = true;
+        } else {
+            formIsCorrect = false;
+        }
+
+        return formIsCorrect;
+    }
+
+    public void setUpWarningLabelEmptyFields(String componentID, String labelWarningMessage, String warningStatus) {
+
+        String labelIDJoined = componentID + "Label";
+
+        for (Label labelItem : labelsArrayList) {
+            if (labelItem.getId().equals(labelIDJoined)) {
+                if (warningStatus.equals("show")) {
+                    labelItem.setText(labelWarningMessage);
+                    labelItem.setVisible(true);
+                } else {
+                    labelItem.setText(labelWarningMessage);
+                    labelItem.setVisible(true);
+                }
+            }
+        }
+    }
+
+    public void setUpWarningLabelRFCField(String RFCFieldID, String validationCase, String warningStatus) {
+
+        String RFCLabelIDJoined = RFCFieldID + "Label";
+
+        for (Label labelItem : labelsArrayList) {
+            if (labelItem.getId().equals(RFCLabelIDJoined)) {
+
+                if (warningStatus.equals("show")) {
+                    switch (validationCase) {
+                        case "emptyTextField":
+                            labelItem.setText("El campo RFC no puede estar vacío.");
+                            break;
+                        case "RFCLength":
+                            labelItem.setText("El campo no cumple con 12 caracteres.");
+                            break;
+                    }
+                    labelItem.setVisible(true);
+
+                } else {
+                    labelItem.setVisible(false);
+                }
+            }
+        }
+    }
+
+    public void setUpWarningLabelEmailField(String emailFieldID, String warningMessage, String warningStatus) {
+
+        String emailLabelIDJoined = emailFieldID + "Label";
+
+        for (Label labelItem : labelsArrayList) {
+            if (labelItem.getId().equals(emailLabelIDJoined)) {
+                if (warningStatus.equals("show")) {
+                    labelItem.setText(warningMessage);
+                    labelItem.setVisible(true);
+                } else {
+                    labelItem.setText(warningMessage);
+                    labelItem.setVisible(false);
+                }
+            }
+        }
     }
 }
