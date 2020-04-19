@@ -25,19 +25,19 @@
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormNames" layoutX="332.0" layoutY="148.0" prefHeight="26.0" prefWidth="310.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="295.20000000000005" AnchorPane.topAnchor="148.0" />
+                <TextField fx:id="txtFieldFormNames" layoutX="332.0" layoutY="148.0" prefHeight="26.0" prefWidth="310.0" styleClass="textFieldValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="295.20000000000005" AnchorPane.topAnchor="148.0" />
                 <Text fill="#5f5f5f" layoutX="231.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="670.6265625000001" AnchorPane.topAnchor="189.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormLastNames" layoutX="333.0" layoutY="187.0" prefHeight="26.0" prefWidth="310.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="187.0" />
+                <TextField fx:id="txtFieldFormLastNames" layoutX="333.0" layoutY="187.0" prefHeight="26.0" prefWidth="310.0" styleClass="textFieldValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="187.0" />
                 <Text fill="#5f5f5f" layoutX="231.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RFC:" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="708.6421875000001" AnchorPane.topAnchor="231.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormRFC" layoutX="333.0" layoutY="229.0" prefHeight="26.0" prefWidth="335.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.19999999999993" AnchorPane.topAnchor="229.0" />
+                <TextField fx:id="txtFieldFormRFC" layoutX="333.0" layoutY="229.0" prefHeight="26.0" prefWidth="335.0" styleClass="textFieldValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.19999999999993" AnchorPane.topAnchor="229.0" />
                 <Text fill="#5f5f5f" layoutX="231.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Género:" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="684.2281250000001" AnchorPane.topAnchor="272.734375">
                     <font>
                         <Font size="16.0" />
@@ -53,13 +53,13 @@
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormAddress" layoutX="333.0" layoutY="360.0" prefHeight="26.0" prefWidth="335.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.19999999999993" AnchorPane.topAnchor="360.0" />
+                <TextField fx:id="txtFieldFormAddress" layoutX="333.0" layoutY="360.0" prefHeight="26.0" prefWidth="335.0" styleClass="textFieldValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.19999999999993" AnchorPane.topAnchor="360.0" />
                 <Text fill="#5f5f5f" layoutX="231.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="687.7828125000001" AnchorPane.topAnchor="402.734375">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormEmail" layoutX="333.0" layoutY="402.0" prefHeight="26.0" prefWidth="335.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.19999999999993" AnchorPane.topAnchor="402.0" />
+                <TextField fx:id="txtFieldFormEmail" layoutX="333.0" layoutY="402.0" prefHeight="26.0" prefWidth="335.0" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.19999999999993" AnchorPane.topAnchor="402.0" />
                 <Text fill="#5f5f5f" layoutX="231.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Usuario:" AnchorPane.topAnchor="440.734375">
                     <font>
                         <Font size="16.0" />
@@ -76,9 +76,9 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <ChoiceBox fx:id="choiceBoxGenre" layoutX="333.0" layoutY="270.0" prefHeight="26.0" prefWidth="343.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="270.0" />
-            <ChoiceBox fx:id="choiceBoxTypeUser" layoutX="333.0" layoutY="438.0" prefHeight="26.0" prefWidth="343.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" />
-            <ChoiceBox fx:id="choiceBoxMaritalStatus" layoutX="333.0" layoutY="313.0" prefHeight="26.0" prefWidth="343.0" styleClass="validation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="313.0" />
+            <ChoiceBox fx:id="choiceBoxGenre" layoutX="333.0" layoutY="270.0" prefHeight="26.0" prefWidth="343.0" styleClass="choiceBoxValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="270.0" />
+            <ChoiceBox fx:id="choiceBoxTypeUser" layoutX="333.0" layoutY="438.0" prefHeight="26.0" prefWidth="343.0" styleClass="choiceBoxValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" />
+            <ChoiceBox fx:id="choiceBoxMaritalStatus" layoutX="333.0" layoutY="313.0" prefHeight="26.0" prefWidth="343.0" styleClass="choiceBoxValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="294.20000000000005" AnchorPane.topAnchor="313.0" />
             <Label fx:id="nameLabel" layoutX="705.0" layoutY="152.0" text="El campo no puede estar vacío" textAlignment="CENTER" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -115,6 +115,11 @@
                </font>
             </Label>
             <Label fx:id="typeUserLabel" layoutX="706.0" layoutY="443.0" text="Label" textFill="RED" underline="true" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="fingerprintLabel" layoutX="605.0" layoutY="502.0" text="Label" textFill="RED" underline="true" visible="false">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

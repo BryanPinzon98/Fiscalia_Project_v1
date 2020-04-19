@@ -1,6 +1,7 @@
 package UIController.SignUpLayout;
 
 
+import com.digitalpersona.onetouch.DPFPTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataManager.Connection;
 import enrollment.Enrollment;
@@ -8,6 +9,9 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -16,6 +20,7 @@ import objects.User;
 import resources.ManageLayout;
 import resources.ValidateSignUpForm;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -25,12 +30,16 @@ import java.util.ResourceBundle;
 
 public class SignUpLayoutController implements Initializable {
 
+    private SignUpLayoutController signUpReferenceClass = null;
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private Connection DDBBConnectionClass = Connection.getInstance();
     private ValidateSignUpForm validateSignUpFormClass = ValidateSignUpForm.getInstance();
-    private Parent signUpParent = null;
+
     private ArrayList<TextField> textFieldArray = new ArrayList<>();
     private ArrayList<ChoiceBox> choiceBoxArray = new ArrayList<>();
+    private Parent signUpParent = null;
+    private DPFPTemplate fingerprintTemplate = null;
+    private Image templateFingerprintImage = null;
 
 
     @FXML
@@ -93,6 +102,9 @@ public class SignUpLayoutController implements Initializable {
     @FXML
     private Label typeUserLabel;
 
+    @FXML
+    private Label fingerprintLabel;
+
 
     //Administra los clics de cada uno de los botones.
     @FXML
@@ -108,17 +120,26 @@ public class SignUpLayoutController implements Initializable {
 
                 case "txtFieldFormSubmit":
 
+                    if (fingerprintTemplate != null) {
+                        System.out.println("El archivo .fpt no está vacío y está listo para enviar.");
+                    }
+
+                    if (templateFingerprintImage != null) {
+                        System.out.println("La referencia a la imágen no está vacía y está lista para enviar.");
+                        System.out.println("Referencia final de la imagen template: " + templateFingerprintImage);
+                    }
+
                     System.out.println("Submit button pressed");
 
                     lastValidation();
                     boolean formIsCorrect = formIsCorrect(validateSignUpFormClass.getFieldsStatus());
 
                     if (!formIsCorrect) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("¡Alerta!");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Realice las acciones pertinentes con los campos en rojo.");
-                        alert.showAndWait();
+                        Alert incorrectFormAlert = new Alert(Alert.AlertType.ERROR);
+                        incorrectFormAlert.setTitle("¡Alerta!");
+                        incorrectFormAlert.setHeaderText(null);
+                        incorrectFormAlert.setContentText("Realice las acciones pertinentes con los campos en rojo.");
+                        incorrectFormAlert.showAndWait();
 
                     } else {
 
@@ -147,11 +168,12 @@ public class SignUpLayoutController implements Initializable {
 
                 case "btnEnrollFingerprint":
                     Enrollment enrollmentProcess = new Enrollment();
+                    enrollmentProcess.setSignUpLayoutControllerClass(this.signUpReferenceClass);
                     enrollmentProcess.setVisible(true);
+
                     break;
             }
         }
-
     }
 
     public void lastValidation() {
@@ -165,6 +187,8 @@ public class SignUpLayoutController implements Initializable {
         }
 
         validateSignUpFormClass.validateRFC(txtFieldFormRFC);
+
+        validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplate);
 
     }
 
@@ -256,6 +280,29 @@ public class SignUpLayoutController implements Initializable {
 
     public void setVisibleEnrollFingerprint(Boolean choiceVisible) {
         btnEnrollFingerprint.setVisible(choiceVisible);
+    }
+
+    public void setTemplateFingerprintImage(Image templateFingerprintImage) {
+        this.templateFingerprintImage = templateFingerprintImage;
+    }
+
+    public Label getFingerprintLabel() {
+        return fingerprintLabel;
+    }
+
+    public void setSignUpReferenceClass(SignUpLayoutController signUpReferenceClass) {
+
+        if (signUpReferenceClass != null) {
+            //System.out.println("Referencia guardada correctamente");
+            this.signUpReferenceClass = signUpReferenceClass;
+        } else {
+            //System.out.println("La referencia a Sign Up está nula");
+        }
+
+    }
+
+    public void setFingerprintTemplate(DPFPTemplate fingerprintTemplate) {
+        this.fingerprintTemplate = fingerprintTemplate;
     }
 
     //Validaciones
@@ -361,6 +408,8 @@ public class SignUpLayoutController implements Initializable {
         boolean isEmptyAddress = false;
         boolean isCorrectEmail = false;
         boolean isEmptyTypeUser = false;
+        boolean fingerprintTemplateIsReady = false;
+        boolean fingerprintTemplateImageIsReady = false;
 
         for (HashMap.Entry<String, Boolean> field : fieldsStatusHashMap.entrySet()) {
 
@@ -392,7 +441,16 @@ public class SignUpLayoutController implements Initializable {
             }
         }
 
-        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser) {
+        if (fingerprintTemplate != null) {
+            fingerprintTemplateIsReady = true;
+            //fingerprintLabel.setVisible(false);
+        }
+
+        if (templateFingerprintImage != null) {
+            fingerprintTemplateImageIsReady = true;
+        }
+
+        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageIsReady) {
             formIsCorrect = true;
         } else {
             formIsCorrect = false;

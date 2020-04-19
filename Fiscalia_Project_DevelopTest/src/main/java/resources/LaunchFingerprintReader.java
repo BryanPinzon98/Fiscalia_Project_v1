@@ -15,6 +15,7 @@ public abstract class LaunchFingerprintReader extends JFrame {
 
     private DPFPCapture capturer = DPFPGlobal.getCaptureFactory().createCapture();
     private JLabel fingerprintImage = new JLabel();
+    private Image fingerprintTemplateImage = null;
 
     public LaunchFingerprintReader() {
 
@@ -44,8 +45,14 @@ public abstract class LaunchFingerprintReader extends JFrame {
         });
     }
 
-    public void process(DPFPSample sample){
-        drawImage(convertSampleToBitmap(sample));
+
+    public void process(DPFPSample sample) {
+        fingerprintTemplateImage = convertSampleToBitmap(sample);
+
+        System.err.println("Referencia de la imagen actual: " + fingerprintTemplateImage);
+        System.err.println("Imprimiendo imagen...");
+
+        drawImage(fingerprintTemplateImage);
     }
 
     protected void init() {
@@ -148,4 +155,7 @@ public abstract class LaunchFingerprintReader extends JFrame {
         fingerprintImage.setIcon(new ImageIcon(image.getScaledInstance(fingerprintImage.getWidth(), fingerprintImage.getHeight(), Image.SCALE_DEFAULT)));
     }
 
+    public Image getFingerprintTemplateImage() {
+        return fingerprintTemplateImage;
+    }
 }

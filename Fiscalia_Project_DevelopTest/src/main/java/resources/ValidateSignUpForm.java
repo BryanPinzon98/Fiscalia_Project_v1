@@ -1,8 +1,10 @@
 package resources;
 
 import UIController.SignUpLayout.SignUpLayoutController;
+import com.digitalpersona.onetouch.DPFPTemplate;
 import javafx.css.PseudoClass;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class ValidateSignUpForm {
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private SignUpLayoutController signUpLayoutController = null;
     private HashMap<String, Boolean> fieldsStatusHashMap = new HashMap<String, Boolean>();
+
+    private Label fingerprintLabel;
 
 
     private boolean isEmptyNameField = true;
@@ -271,6 +275,16 @@ public class ValidateSignUpForm {
 
     public void manageEmailLabelAlert(String warningMessage, String warningStatus) {
         signUpLayoutController.manageEmailLabelWarning(warningMessage, warningStatus);
+    }
+
+    //-------- Fingerprint label warning
+
+    public void validateFingerprintTemplate(DPFPTemplate fingerprintTemplate) {
+        if (fingerprintTemplate == null) {
+            fingerprintLabel = signUpLayoutController.getFingerprintLabel();
+            fingerprintLabel.setText("Debe registrar una huella digital.");
+            fingerprintLabel.setVisible(true);
+        }
     }
 
 

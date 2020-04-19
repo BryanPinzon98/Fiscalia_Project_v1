@@ -1,6 +1,10 @@
-.validation:error {
+.textFieldValidation:error {
     -fx-text-box-border: red;
     -fx-focus-color: red;
+}
+
+.choiceBoxValidation:error {
+    -fx-border-color: red;
 }
 
 .button

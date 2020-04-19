@@ -33,7 +33,9 @@ public class HomeLayoutController implements Initializable {
                 System.out.println("New User Button Pressed");
                 FXMLLoader signUpController = loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro", true);
                 SignUpLayoutController signUpControllerClass = signUpController.getController();
+
                 signUpControllerClass.setSignUpParent(loadLayoutClass.getParent());
+                signUpControllerClass.setSignUpReferenceClass(signUpControllerClass);
                 break;
 
             case "btnSearchUser":

@@ -1,6 +1,7 @@
 package main;
 
-import com.digitalpersona.onetouch.*;
+import UIController.SignUpLayout.SignUpLayoutController;
+import com.digitalpersona.onetouch.DPFPTemplate;
 import enrollment.Enrollment;
 import javafx.fxml.FXMLLoader;
 import read.Read;
@@ -8,7 +9,8 @@ import verify.Verify;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -18,6 +20,7 @@ public class MainClass extends JFrame {
     private DPFPTemplate template;
     public static String TEMPLATE_PROPERTY = "template";
     private static MainClass mainClass = null;
+    private SignUpLayoutController signUpLayoutControllerClass = null;
 
     public static MainClass getInstance() {
         if (mainClass == null) {
@@ -82,6 +85,8 @@ public class MainClass extends JFrame {
                 }
                 if (template != null) {
                     System.out.println("The Fingerprint template is ready for fingerprint verification");
+                    //Envío del template de la huella.
+                    signUpLayoutControllerClass.setFingerprintTemplate(template);
                 }
             }
         });
@@ -123,5 +128,14 @@ public class MainClass extends JFrame {
         return template;
     }
 
+    public void setSignUpLayoutControllerClass(SignUpLayoutController signUpLayoutControllerClass) {
 
+        if (signUpLayoutControllerClass != null) {
+            this.signUpLayoutControllerClass = signUpLayoutControllerClass;
+            System.out.println("La referencia de Sign Up, llego correctamente al main del Main Fingerprint class");
+        } else {
+            System.out.println("La referencia de Sign Up en el Main de Fingerprint llegó nula");
+        }
+
+    }
 }
