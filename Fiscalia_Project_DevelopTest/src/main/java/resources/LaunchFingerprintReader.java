@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
 
 public abstract class LaunchFingerprintReader extends JFrame {
 
@@ -151,7 +152,15 @@ public abstract class LaunchFingerprintReader extends JFrame {
         fingerprintImage.setIcon(new ImageIcon(image.getScaledInstance(fingerprintImage.getWidth(), fingerprintImage.getHeight(), Image.SCALE_DEFAULT)));
     }
 
-    public Image getFingerprintTemplateImage() {
-        return fingerprintTemplateImage;
+    public BufferedImage getFingerprintTemplateBufferedImage() {
+
+        BufferedImage fingerprintTemplateBufferedImage = new BufferedImage(fingerprintTemplateImage.getWidth(null), fingerprintTemplateImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = fingerprintTemplateBufferedImage.createGraphics();
+        bGr.drawImage(fingerprintTemplateImage, 0, 0, null);
+        bGr.dispose();
+
+        return fingerprintTemplateBufferedImage;
     }
 }

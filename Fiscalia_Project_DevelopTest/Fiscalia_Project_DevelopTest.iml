@@ -31,5 +31,8 @@
     <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:8.40.16" level="project" />
     <orderEntry type="library" name="Maven: com.github.mifmif:generex:1.0.2" level="project" />
     <orderEntry type="library" name="Maven: dk.brics.automaton:automaton:1.11-8" level="project" />
+    <orderEntry type="library" name="Maven: com.github.sarxos:webcam-capture:0.3.12" level="project" />
+    <orderEntry type="library" name="Maven: com.nativelibs4java:bridj:0.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.2" level="project" />
   </component>
 </module>

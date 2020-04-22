@@ -44,6 +44,12 @@
             <artifactId>generex</artifactId>
             <version>1.0.2</version>
         </dependency>
+        <!-- https://search.maven.org/artifact/com.github.sarxos/webcam-capture/0.3.12/bundle -->
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture</artifactId>
+            <version>0.3.12</version>
+        </dependency>
     </dependencies>
 
     

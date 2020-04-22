@@ -7,7 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +33,8 @@ public class ValidateSignUpForm {
     private boolean isCorrectEmail = false;
     private boolean isEmptyTypeUser = true;
     private boolean fingerprintTemplateIsReady = false;
-    private boolean fingerprintTemplateImageIsReady = false;
+    private boolean fingerprintTemplateImageFileIsReady = false;
+    private boolean userPhotoFileIsReady = false;
 
     // ----------- Constructor
     public ValidateSignUpForm() {
@@ -272,9 +273,25 @@ public class ValidateSignUpForm {
         setUpWarningLabelEmailField(emailFieldID, warningMessage, warningStatus);
     }
 
+    //--------- Validar la fotografía del usuario:
+
+    public void validateUserPhoto(File userPhoto) {
+        if (userPhoto == null) {
+            for (Label labelItem : labelsArrayList) {
+                if (labelItem.getId().equals("btnTakePhotoLabel")) {
+                    labelItem.setText("Debe registrar una fotrografía.");
+                    labelItem.setVisible(true);
+                    userPhotoFileIsReady = false;
+                }
+            }
+        } else {
+            userPhotoFileIsReady = true;
+        }
+    }
+
     //-------- Fingerprint label warning
 
-    public void validateFingerprintTemplate(DPFPTemplate fingerprintTemplate, Image templateFingerprintImage) {
+    public void validateFingerprintTemplate(DPFPTemplate fingerprintTemplate, File templateFingerprintImage) {
 
         if (fingerprintTemplate == null || templateFingerprintImage == null) {
 
@@ -286,7 +303,7 @@ public class ValidateSignUpForm {
             }
         } else {
             fingerprintTemplateIsReady = true;
-            fingerprintTemplateImageIsReady = true;
+            fingerprintTemplateImageFileIsReady = true;
         }
     }
 
@@ -334,7 +351,7 @@ public class ValidateSignUpForm {
 
         boolean formIsCorrect = false;
 
-        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageIsReady) {
+        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageFileIsReady && userPhotoFileIsReady) {
             formIsCorrect = true;
         } else {
             formIsCorrect = false;

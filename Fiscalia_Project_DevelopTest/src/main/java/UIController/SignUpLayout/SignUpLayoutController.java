@@ -7,20 +7,20 @@ import dataManager.Connection;
 import enrollment.Enrollment;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import objects.User;
+import resources.CameraManager;
 import resources.ManageLayout;
 import resources.ValidateSignUpForm;
 
-import java.awt.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +40,9 @@ public class SignUpLayoutController implements Initializable {
 
     private Parent signUpParent = null;
     private DPFPTemplate fingerprintTemplate = null;
-    private Image templateFingerprintImage = null;
+
+    private File fingerprintImageFile = null;
+    private File userPhotoFile = null;
 
 
     @FXML
@@ -72,6 +74,9 @@ public class SignUpLayoutController implements Initializable {
 
     @FXML
     private Button btnEnrollFingerprint;
+
+    @FXML
+    private Button btnTakePhoto;
 
     @FXML
     private Button txtFieldFormSubmit;
@@ -106,6 +111,9 @@ public class SignUpLayoutController implements Initializable {
     @FXML
     private Label btnEnrollFingerprintLabel;
 
+    @FXML
+    private Label btnTakePhotoLabel;
+
 
     //Administra los clics de cada uno de los botones.
     @FXML
@@ -123,11 +131,6 @@ public class SignUpLayoutController implements Initializable {
 
                     if (fingerprintTemplate != null) {
                         System.out.println("El archivo .fpt no está vacío y está listo para enviar.");
-                    }
-
-                    if (templateFingerprintImage != null) {
-                        System.out.println("La referencia a la imágen no está vacía y está lista para enviar.");
-                        System.out.println("Referencia final de la imagen template: " + templateFingerprintImage);
                     }
 
                     System.out.println("Submit button pressed");
@@ -171,8 +174,21 @@ public class SignUpLayoutController implements Initializable {
                     enrollmentProcess.setSignUpLayoutControllerClass(this.signUpReferenceClass);
                     enrollmentProcess.setVisible(true);
                     break;
+
+                case "btnTakePhoto":
+                    cameraManagerInvoker();
+                    break;
             }
         }
+    }
+
+    private void cameraManagerInvoker() {
+        FXMLLoader FXMLCameraLayoutController = manageLayoutClass.loadLayout("layout/CameraLayout.fxml", "Camera", true);
+
+        CameraManager cameraManagerController = FXMLCameraLayoutController.getController();
+        cameraManagerController.setCameraManagerStage(manageLayoutClass.getStage());
+        cameraManagerController.setSignUpLayoutController(signUpReferenceClass);
+        cameraManagerController.exitStageHandler();
     }
 
     public void lastValidation() {
@@ -186,7 +202,8 @@ public class SignUpLayoutController implements Initializable {
         }
 
         validateSignUpFormClass.validateRFC(txtFieldFormRFC);
-        validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplate, templateFingerprintImage);
+        validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplate, fingerprintImageFile);
+        validateSignUpFormClass.validateUserPhoto(userPhotoFile);
     }
 
     //Serializa el objeto java en un JSON
@@ -235,6 +252,7 @@ public class SignUpLayoutController implements Initializable {
         labelsArray.add(txtFieldFormEmailLabel);
         labelsArray.add(choiceBoxTypeUserLabel);
         labelsArray.add(btnEnrollFingerprintLabel);
+        labelsArray.add(btnTakePhotoLabel);
 
         validateSignUpFormClass.setLabelsArrayList(labelsArray);
 
@@ -291,9 +309,6 @@ public class SignUpLayoutController implements Initializable {
         btnEnrollFingerprint.setVisible(choiceVisible);
     }
 
-    public void setTemplateFingerprintImage(Image templateFingerprintImage) {
-        this.templateFingerprintImage = templateFingerprintImage;
-    }
 
     //Getters y Setters
 
@@ -315,8 +330,33 @@ public class SignUpLayoutController implements Initializable {
         }
     }
 
-    public void hideFingerprintLabelWarning(){
+    public void hideFingerprintLabelWarning() {
         btnEnrollFingerprintLabel.setVisible(false);
+    }
+
+    public void hideUserPhotoLabelWarning() {
+        btnTakePhotoLabel.setVisible(false);
+    }
+
+    public void convertImageToFile(String imageType, BufferedImage imagen) {
+        switch (imageType) {
+            case "fingerprintImage":
+                fingerprintImageFile = new File("fingerprint_template.png");
+                try {
+                    ImageIO.write(imagen, "png", fingerprintImageFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "userPhoto":
+                userPhotoFile = new File("userphoto.png");
+                try {
+                    ImageIO.write(imagen, "png", userPhotoFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
     @Override

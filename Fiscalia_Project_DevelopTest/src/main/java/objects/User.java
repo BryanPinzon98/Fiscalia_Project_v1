@@ -1,5 +1,9 @@
 package objects;
 
+import com.digitalpersona.onetouch.DPFPTemplate;
+
+import java.awt.*;
+
 public class User {
 
     private int id_usuario;
@@ -12,6 +16,11 @@ public class User {
     private String nombre_genero;
     private String nombre_estado_civil;
     private String nombre_tipos_usuario;
+
+    private DPFPTemplate archivo_huella;
+    private Image imagen_huella;
+    private Image archivo_foto;
+
 
     public User() {
     }

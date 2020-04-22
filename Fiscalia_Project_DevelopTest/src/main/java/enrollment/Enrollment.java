@@ -46,7 +46,7 @@ public class Enrollment extends LaunchFingerprintReader {
                         this.setVisible(false);
 
                         //Envío de la imagen final del template de la huella.
-                        signUpLayoutControllerClass.setTemplateFingerprintImage(super.getFingerprintTemplateImage());
+                        signUpLayoutControllerClass.convertImageToFile("fingerprintImage", super.getFingerprintTemplateBufferedImage());
 
                         //Storage storage = new Storage();
                         break;

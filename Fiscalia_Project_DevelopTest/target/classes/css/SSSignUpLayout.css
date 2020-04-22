@@ -37,17 +37,17 @@
 -fx-background-color : #C2C2C2;
 }
 
-.enrollFingerprint
+.saveFileButton
 {
 -fx-background-color : #FFFFFF00;
 }
 
-.enrollFingerprint:hover
+.saveFileButton:hover
 {
 -fx-background-color : #E1E2E1;
 }
 
-.enrollFingerprint:pressed
+.saveFileButton:pressed
 {
 -fx-background-color : #C2C2C2;
 }
