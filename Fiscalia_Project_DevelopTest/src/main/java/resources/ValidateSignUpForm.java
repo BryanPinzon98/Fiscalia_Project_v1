@@ -205,7 +205,30 @@ public class ValidateSignUpForm {
     // ------------ Validación del campo dirección.
 
     public void validateAddressField(TextField textField) {
-        isCorrectAddressField = true;
+
+        String labelMessage = "";
+
+        String regex = "^[a-zA-ZÀ-ÿ0-9 '-.]*$";
+        Pattern addressFieldPattern = Pattern.compile(regex);
+        Matcher addressFieldMatcher = addressFieldPattern.matcher(textField.getText());
+        boolean addressFieldIsCorrect = addressFieldMatcher.matches();
+
+        if (textField.getText().isEmpty() || (!textField.getText().isEmpty() && !addressFieldIsCorrect)) {
+
+            if (textField.getText().isEmpty()) {
+                labelMessage = "El campo DIRECCIÓN no puede estar vacío.";
+            } else if (!addressFieldIsCorrect) {
+                labelMessage = "Caracteres no válidos detectados.";
+            }
+
+            setUpWarningLabelFields(textField.getId(), labelMessage, "show");
+            textFieldBorderManager(textField, "show");
+            isCorrectAddressField = false;
+        } else {
+            setUpWarningLabelFields(textField.getId(), "", "hide");
+            textFieldBorderManager(textField, "hide");
+            isCorrectAddressField = true;
+        }
     }
 
     // -------- Validación de RFC
@@ -313,19 +336,6 @@ public class ValidateSignUpForm {
     //------- Utilities
 
     public boolean formIsCorrect() {
-
-
-        System.out.println("Name is:" + isCorrectNameField);
-        System.out.println("last Name is:" + isCorrectLastNameField);
-        System.out.println("RFC is:" + isCorrectRFCField);
-        System.out.println("Genre is:" + isEmptyGenreField);
-        System.out.println("Marital status is:" + isEmptyMaritalStatus);
-        System.out.println("Address is:" + isCorrectAddressField);
-        System.out.println("Email is:" + isCorrectEmailField);
-        System.out.println("Type User is:" + isEmptyTypeUser);
-        System.out.println("Fingerprint Template is:" + fingerprintTemplateIsReady);
-        System.out.println("Fingerprint Image is:" + fingerprintTemplateImageFileIsReady);
-        System.out.println("Photo is:" + userPhotoFileIsReady);
 
         boolean formIsCorrect = false;
 
