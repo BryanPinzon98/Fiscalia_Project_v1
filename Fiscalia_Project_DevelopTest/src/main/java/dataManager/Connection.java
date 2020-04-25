@@ -67,6 +67,8 @@ public class Connection {
         String USERS_URI = DDBB_URI + "/usuarios/invitados";
         String jsonStringUsersResponse = APIRequest(null, USERS_URI);
 
+        System.out.println(jsonStringUsersResponse);
+
         ArrayList<User> foundUsers = null;
 
         try {

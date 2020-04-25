@@ -59,7 +59,7 @@
                         <Font size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="txtFieldFormEmail" layoutX="334.0" layoutY="380.0" prefHeight="26.0" prefWidth="335.0" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="293.19999999999993" AnchorPane.topAnchor="380.0" />
+                <TextField fx:id="txtFieldFormEmail" layoutX="334.0" layoutY="380.0" prefHeight="26.0" prefWidth="335.0" styleClass="textFieldValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="293.19999999999993" AnchorPane.topAnchor="380.0" />
                 <Text fill="#5f5f5f" layoutX="232.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Usuario:" AnchorPane.topAnchor="418.734375">
                     <font>
                         <Font size="16.0" />

@@ -141,7 +141,7 @@ public class SignUpLayoutController implements Initializable {
                         Alert incorrectFormAlert = new Alert(Alert.AlertType.ERROR);
                         incorrectFormAlert.setTitle("¡Alerta!");
                         incorrectFormAlert.setHeaderText(null);
-                        incorrectFormAlert.setContentText("Realice las acciones pertinentes con los campos en rojo.");
+                        incorrectFormAlert.setContentText("Realice las acciones pertinentes con los campos en color rojo.");
                         incorrectFormAlert.showAndWait();
 
                     } else {
@@ -194,7 +194,9 @@ public class SignUpLayoutController implements Initializable {
     public void lastValidation() {
 
         for (TextField textField : textFieldArray) {
-            validateSignUpFormClass.validateEmptyForm(textField);
+            if (textField.getId().equals("txtFieldFormNames") || textField.getId().equals("txtFieldFormLastNames")) {
+                validateSignUpFormClass.validateBasicFields(textField);
+            }
         }
 
         for (ChoiceBox choiceBox : choiceBoxArray) {
@@ -202,6 +204,8 @@ public class SignUpLayoutController implements Initializable {
         }
 
         validateSignUpFormClass.validateRFC(txtFieldFormRFC);
+        validateSignUpFormClass.validateEmail(txtFieldFormEmail);
+        validateSignUpFormClass.validateAddressField(txtFieldFormAddress);
         validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplate, fingerprintImageFile);
         validateSignUpFormClass.validateUserPhoto(userPhotoFile);
     }

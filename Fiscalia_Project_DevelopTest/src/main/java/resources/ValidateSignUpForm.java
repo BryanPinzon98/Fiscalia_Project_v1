@@ -16,6 +16,7 @@ public class ValidateSignUpForm {
 
     private static ValidateSignUpForm validateSignUpFormClass = null;
     private final PseudoClass errorClass = PseudoClass.getPseudoClass("error");
+    private final PseudoClass checkClass = PseudoClass.getPseudoClass("check");
     private ManageLayout manageLayoutClass = ManageLayout.getInstance();
     private SignUpLayoutController signUpLayoutController = null;
 
@@ -24,13 +25,13 @@ public class ValidateSignUpForm {
     private ArrayList<Label> labelsArrayList = new ArrayList<>();
 
 
-    private boolean isEmptyNameField = true;
-    private boolean isEmptyLastNameField = true;
+    private boolean isCorrectNameField = false;
+    private boolean isCorrectLastNameField = false;
     private boolean isCorrectRFCField = false;
     private boolean isEmptyGenreField = true;
     private boolean isEmptyMaritalStatus = true;
-    private boolean isEmptyAddress = true;
-    private boolean isCorrectEmail = false;
+    private boolean isCorrectAddressField = false;
+    private boolean isCorrectEmailField = false;
     private boolean isEmptyTypeUser = true;
     private boolean fingerprintTemplateIsReady = false;
     private boolean fingerprintTemplateImageFileIsReady = false;
@@ -55,29 +56,29 @@ public class ValidateSignUpForm {
         signUpLayoutController = manageLayoutClass.getFxmlLoader().getController();
 
         for (TextField txtField : textFieldArrayList) {
-
             txtField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
-
                 if (!newValue) {
 
-                    if (!txtField.getId().equals("txtFieldFormEmail")) {
-                        validateEmptyForm(txtField);
-                    } else {
-                        validateEmail(txtField);
-                    }
-
-
-                    if (txtField.getId().equals("txtFieldFormRFC")) {
-                        validateRFC(txtField);
+                    switch (txtField.getId()) {
+                        case "txtFieldFormRFC":
+                            validateRFC(txtField);
+                            break;
+                        case "txtFieldFormAddress":
+                            validateAddressField(txtField);
+                            break;
+                        case "txtFieldFormEmail":
+                            validateEmail(txtField);
+                            break;
+                        default:
+                            validateBasicFields(txtField);
+                            break;
                     }
                 }
             });
         }
 
         for (ChoiceBox choiceBox : choiceBoxArrayList) {
-
             choiceBox.focusedProperty().addListener((arg0, oldValue, newValue) -> {
-
                 if (!newValue) {
                     validateEmptyChoiceBox(choiceBox);
                 }
@@ -143,70 +144,75 @@ public class ValidateSignUpForm {
         }
     }
 
-    //------ Código para la validación de campo vacío.
+    //------ Código para la validación de campo vacío y caractéres especiales en campos básicos.
 
-    public void validateEmptyForm(TextField textField) {
-        if (!textField.getId().equals("txtFieldFormEmail")) {
+    public void validateBasicFields(TextField textField) {
+
+        String labelMessage = "";
+
+        String regex = "^[a-zA-ZÀ-ÿ ÇçÜü'-.]*$";
+        Pattern basicFieldsPattern = Pattern.compile(regex);
+        Matcher basicFieldsMatcher = basicFieldsPattern.matcher(textField.getText());
+        boolean basicFieldIsCorrect = basicFieldsMatcher.matches();
+
+
+        if (textField.getText().isEmpty() || (!textField.getText().isEmpty() && !basicFieldIsCorrect)) {
+
             if (textField.getText().isEmpty()) {
-                showEmptyAlert(textField);
-            } else {
-                hideEmptyAlert(textField);
+
+                switch (textField.getId()) {
+                    case "txtFieldFormNames":
+                        labelMessage = "El campo NOMBRE no puede estar vacío";
+                        break;
+                    case "txtFieldFormLastNames":
+                        labelMessage = "El campo APELLIDO no puede estar vacío";
+                        break;
+                }
+
+            } else if (!basicFieldIsCorrect) {
+                labelMessage = "Caracteres no válidos detectados.";
+            }
+
+            switch (textField.getText()) {
+                case "txtFieldFormNames":
+                    isCorrectNameField = false;
+                    break;
+                case "txtFieldFormLastNames":
+                    isCorrectLastNameField = false;
+                    break;
+            }
+
+            setUpWarningLabelFields(textField.getId(), labelMessage, "show");
+            textFieldBorderManager(textField, "show");
+
+        } else {
+
+            setUpWarningLabelFields(textField.getId(), "", "hide");
+            textFieldBorderManager(textField, "hide");
+
+            switch (textField.getId()) {
+                case "txtFieldFormNames":
+                    isCorrectNameField = true;
+                    break;
+                case "txtFieldFormLastNames":
+                    isCorrectLastNameField = true;
+                    break;
             }
         }
     }
 
-    public void showEmptyAlert(TextField textField) {
-        manageEmptyLabelAlert(textField.getId(), "show");
-        textFieldBorderManager(textField, "show");
+
+    // ------------ Validación del campo dirección.
+
+    public void validateAddressField(TextField textField) {
+        isCorrectAddressField = true;
     }
-
-    public void hideEmptyAlert(TextField textField) {
-        manageEmptyLabelAlert(textField.getId(), "hide");
-        textFieldBorderManager(textField, "hide");
-    }
-
-    public void manageEmptyLabelAlert(String txtFieldID, String warningStatus) {
-
-        switch (txtFieldID) {
-            case "txtFieldFormNames":
-                if (warningStatus.equals("show")) {
-                    setUpWarningLabelEmptyFields(txtFieldID, "El campo NOMBRE no puede estar vacío.", warningStatus);
-                    isEmptyNameField = true;
-                } else {
-                    setUpWarningLabelEmptyFields(txtFieldID, "", warningStatus);
-                    isEmptyNameField = false;
-                }
-                break;
-            case "txtFieldFormLastNames":
-                if (warningStatus.equals("show")) {
-                    setUpWarningLabelEmptyFields(txtFieldID, "El campo APELLIDO no puede estar vacío.", warningStatus);
-                    isEmptyLastNameField = true;
-                } else {
-                    setUpWarningLabelEmptyFields(txtFieldID, "", warningStatus);
-                    isEmptyLastNameField = false;
-                }
-                break;
-            case "txtFieldFormAddress":
-                if (warningStatus.equals("show")) {
-                    setUpWarningLabelEmptyFields(txtFieldID, "El campo DIRECCIÓN no puede estar vacío.", warningStatus);
-                    isEmptyAddress = true;
-                } else {
-                    setUpWarningLabelEmptyFields(txtFieldID, "", warningStatus);
-                    isEmptyAddress = false;
-                }
-                break;
-            default:
-                System.out.println("No se ha encontrado coincidencias de Text Field.");
-                break;
-        }
-    }
-
 
     // -------- Validación de RFC
 
     public void validateRFC(TextField textField) {
 
-        String validationCase = "";
+        String labelMessage = "";
         String regex = "[a-zA-Z0-9]{12}";
 
         Pattern RFCPattern = Pattern.compile(regex);
@@ -216,35 +222,21 @@ public class ValidateSignUpForm {
         if ((!isCompleteRFC && !textField.getText().isEmpty()) || textField.getText().isEmpty()) {
 
             if (textField.getText().isEmpty()) {
-                validationCase = "emptyTextField";
+                labelMessage = "El campo RFC no puede estar vacío.";
             } else if (!isCompleteRFC) {
-                validationCase = "RFCLength";
+                labelMessage = "El campo no cumple con 12 caracteres.";
             }
 
-            manageRFCLabelAlert("show", validationCase, textField);
+            setUpWarningLabelFields(textField.getId(), labelMessage, "show");
+            textFieldBorderManager(textField, "show");
+            isCorrectRFCField = false;
+
         } else {
-            manageRFCLabelAlert("hide", "NONE", textField);
+            setUpWarningLabelFields(textField.getId(), "", "hide");
+            textFieldBorderManager(textField, "hide");
+            isCorrectRFCField = true;
         }
     }
-
-    public void manageRFCLabelAlert(String warningStatus, String validationCase, TextField textField) {
-
-        switch (warningStatus) {
-            case "show":
-                //signUpLayoutController.manageRFCLabelWarning(validationCase);
-                setUpWarningLabelRFCField(textField.getId(), validationCase, warningStatus);
-                textFieldBorderManager(textField, "show");
-                isCorrectRFCField = false;
-                break;
-            case "hide":
-                //signUpLayoutController.hideRFCWarningMessage();
-                setUpWarningLabelRFCField(textField.getId(), validationCase, warningStatus);
-                textFieldBorderManager(textField, "hide");
-                isCorrectRFCField = true;
-                break;
-        }
-    }
-
 
     //------- Validación de Email
 
@@ -253,25 +245,22 @@ public class ValidateSignUpForm {
         String regex = "^[A-Za-z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@(?!-)(?:[A-Za-z-]+\\.)+[a-zA-Z-]{2,3}$";
 
         Pattern pattern = Pattern.compile(regex);
-
         Matcher matcher = pattern.matcher(textField.getText());
-
         boolean validationResult = matcher.matches();
 
         if (!validationResult && !textField.getText().isEmpty()) {
-            manageEmailLabelAlert(textField.getId(), "Dirección de correo no válida", "show");
+
+            setUpWarningLabelFields(textField.getId(), "Dirección de correo no válida", "show");
             textFieldBorderManager(textField, "show");
-            isCorrectEmail = false;
+            isCorrectEmailField = false;
         } else {
-            manageEmailLabelAlert(textField.getId(), "", "hide");
+
+            setUpWarningLabelFields(textField.getId(), "", "hide");
             textFieldBorderManager(textField, "hide");
-            isCorrectEmail = true;
+            isCorrectEmailField = true;
         }
     }
 
-    public void manageEmailLabelAlert(String emailFieldID, String warningMessage, String warningStatus) {
-        setUpWarningLabelEmailField(emailFieldID, warningMessage, warningStatus);
-    }
 
     //--------- Validar la fotografía del usuario:
 
@@ -307,30 +296,6 @@ public class ValidateSignUpForm {
         }
     }
 
-    // ------- Border manager
-    public void textFieldBorderManager(TextField textField, String status) {
-
-        switch (status) {
-            case "show":
-                textField.pseudoClassStateChanged(errorClass, true);
-                break;
-            case "hide":
-                textField.pseudoClassStateChanged(errorClass, false);
-                break;
-        }
-    }
-
-    public void choiceBoxBorderManager(ChoiceBox choiceBox, String status) {
-
-        switch (status) {
-            case "show":
-                choiceBox.pseudoClassStateChanged(errorClass, true);
-                break;
-            case "hide":
-                choiceBox.pseudoClassStateChanged(errorClass, false);
-                break;
-        }
-    }
 
     // ------- Getters and Setters.
     public void setTxtFieldArray(ArrayList<TextField> txtFieldArray) {
@@ -349,15 +314,49 @@ public class ValidateSignUpForm {
 
     public boolean formIsCorrect() {
 
+
+        System.out.println("Name is:" + isCorrectNameField);
+        System.out.println("last Name is:" + isCorrectLastNameField);
+        System.out.println("RFC is:" + isCorrectRFCField);
+        System.out.println("Genre is:" + isEmptyGenreField);
+        System.out.println("Marital status is:" + isEmptyMaritalStatus);
+        System.out.println("Address is:" + isCorrectAddressField);
+        System.out.println("Email is:" + isCorrectEmailField);
+        System.out.println("Type User is:" + isEmptyTypeUser);
+        System.out.println("Fingerprint Template is:" + fingerprintTemplateIsReady);
+        System.out.println("Fingerprint Image is:" + fingerprintTemplateImageFileIsReady);
+        System.out.println("Photo is:" + userPhotoFileIsReady);
+
         boolean formIsCorrect = false;
 
-        if (!isEmptyNameField && !isEmptyLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && !isEmptyAddress && isCorrectEmail && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageFileIsReady && userPhotoFileIsReady) {
+        if (isCorrectNameField && isCorrectLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && isCorrectAddressField && isCorrectEmailField && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageFileIsReady && userPhotoFileIsReady) {
             formIsCorrect = true;
         } else {
             formIsCorrect = false;
         }
 
         return formIsCorrect;
+    }
+
+    private void setUpWarningLabelFields(String fieldID, String labelWarningMessage, String warningStatus) {
+
+        String labelIDJoined = fieldID + "Label";
+
+        for (Label labelItem : labelsArrayList) {
+            if (labelItem.getId().equals(labelIDJoined)) {
+
+                labelItem.setText(labelWarningMessage);
+
+                switch (warningStatus) {
+                    case "show":
+                        labelItem.setVisible(true);
+                        break;
+                    case "hide":
+                        labelItem.setVisible(false);
+                        break;
+                }
+            }
+        }
     }
 
     public void setUpWarningLabelEmptyFields(String componentID, String labelWarningMessage, String warningStatus) {
@@ -377,45 +376,33 @@ public class ValidateSignUpForm {
         }
     }
 
-    public void setUpWarningLabelRFCField(String RFCFieldID, String validationCase, String warningStatus) {
+    //Border manager
+    public void textFieldBorderManager(TextField textField, String status) {
 
-        String RFCLabelIDJoined = RFCFieldID + "Label";
-
-        for (Label labelItem : labelsArrayList) {
-            if (labelItem.getId().equals(RFCLabelIDJoined)) {
-
-                if (warningStatus.equals("show")) {
-                    switch (validationCase) {
-                        case "emptyTextField":
-                            labelItem.setText("El campo RFC no puede estar vacío.");
-                            break;
-                        case "RFCLength":
-                            labelItem.setText("El campo no cumple con 12 caracteres.");
-                            break;
-                    }
-                    labelItem.setVisible(true);
-
-                } else {
-                    labelItem.setVisible(false);
+        switch (status) {
+            case "show":
+                textField.pseudoClassStateChanged(checkClass, false);
+                textField.pseudoClassStateChanged(errorClass, true);
+                break;
+            case "hide":
+                textField.pseudoClassStateChanged(errorClass, false);
+                if (!textField.getId().equals("txtFieldFormEmail")) {
+                    textField.pseudoClassStateChanged(checkClass, true);
                 }
-            }
+                break;
         }
     }
 
-    public void setUpWarningLabelEmailField(String emailFieldID, String warningMessage, String warningStatus) {
+    public void choiceBoxBorderManager(ChoiceBox choiceBox, String status) {
 
-        String emailLabelIDJoined = emailFieldID + "Label";
-
-        for (Label labelItem : labelsArrayList) {
-            if (labelItem.getId().equals(emailLabelIDJoined)) {
-                if (warningStatus.equals("show")) {
-                    labelItem.setText(warningMessage);
-                    labelItem.setVisible(true);
-                } else {
-                    labelItem.setText(warningMessage);
-                    labelItem.setVisible(false);
-                }
-            }
+        switch (status) {
+            case "show":
+                choiceBox.pseudoClassStateChanged(errorClass, true);
+                break;
+            case "hide":
+                choiceBox.pseudoClassStateChanged(errorClass, false);
+                choiceBox.pseudoClassStateChanged(checkClass, true);
+                break;
         }
     }
 }

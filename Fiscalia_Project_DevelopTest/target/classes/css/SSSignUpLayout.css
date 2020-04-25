@@ -7,6 +7,15 @@
     -fx-border-color: red;
 }
 
+.textFieldValidation:check {
+    -fx-text-box-border: green;
+    -fx-focus-color: green;
+}
+
+.choiceBoxValidation:check {
+    -fx-border-color: green;
+}
+
 .button
 {
 -fx-background-color : #3eb4e5;
