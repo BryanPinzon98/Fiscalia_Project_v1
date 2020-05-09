@@ -9,15 +9,17 @@ class UsuariosRoutes {
         this.config();
     }
 
-    config(): void {
-        this.router.get('/porfecha', usuariosController.getCountNewPeople);
+    config(): void {       
+        this.router.get('/crud/', usuariosController.getAll);
+        this.router.post('/crud/', usuariosController.create);
+        this.router.get('/crud/:id', usuariosController.getOne);
+        this.router.put('/crud/:id', usuariosController.update);
+        this.router.delete('/crud/:id', usuariosController.delete);
+        this.router.post('/createall', usuariosController.createAll);
         this.router.get('/invitados', usuariosController.listarInvitados);
+        this.router.get('/cantidadnuevos', usuariosController.getCountNewPeople);
         this.router.get('/proveedores', usuariosController.listarProveedores);
-        this.router.get('/:id', usuariosController.getOne);
-        this.router.put('/:id', usuariosController.update);
-        this.router.post('/', usuariosController.create);
-        this.router.post('/full', usuariosController.createFull);
-        this.router.delete('/:id', usuariosController.delete);
+ 
     }
 }
 

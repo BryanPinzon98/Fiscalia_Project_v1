@@ -14,28 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class UsuariosController {
-    listarInvitados(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_tipo_usuario=5 ORDER BY usuarios.id_usuario');
-            res.json(usuarios);
-        });
-    }
-    listarProveedores(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_tipo_usuario=6 ORDER BY usuarios.id_usuario');
-            res.json(usuarios);
-        });
-    }
-    getOne(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_usuario= ? AND usuarios.id_genero=generos.id_genero AND usuarios.id_estado_civil=estados_civiles.id_estado_civil AND usuarios.id_tipo_usuario=tipos_usuario.id_tipos_usuario', [id]);
-            if (usuarios.length > 0) {
-                return res.json(usuarios[0]);
-            }
-            res.status(404).json({ text: "El usuario no existe!" });
-        });
-    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -47,11 +25,11 @@ class UsuariosController {
             }
         });
     }
-    createFull(req, res) {
+    createAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id_usuario_bd = yield database_1.default.query('SELECT MAX(id_usuario) AS id FROM usuarios');
-                const id_usuario_maximo = JSON.stringify(id_usuario_bd[0].id + 1);
+                const id_usuario_bd = yield database_1.default.query('SELECT `AUTO_INCREMENT` AS id FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = "usuarios"');
+                const id_usuario_maximo = JSON.stringify(id_usuario_bd[0].id);
                 var huella = {};
                 huella.id_usuario = id_usuario_maximo;
                 huella.archivo_huella = req.body.archivo_huella;
@@ -71,8 +49,6 @@ class UsuariosController {
                 usuario.id_estado_civil = req.body.id_estado_civil;
                 usuario.id_tipo_usuario = req.body.id_tipo_usuario;
                 console.log(usuario);
-                console.log(foto);
-                console.log(huella);
                 yield database_1.default.query('INSERT INTO usuarios set ?', [usuario]);
                 yield database_1.default.query('INSERT INTO usuarios_foto set ?', [foto]);
                 yield database_1.default.query('INSERT INTO usuario_huella set ?', [huella]);
@@ -81,6 +57,22 @@ class UsuariosController {
             catch (err) {
                 res.status(404).json(err.message);
             }
+        });
+    }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_usuario= ?', [id]);
+            if (usuarios.length > 0) {
+                return res.json(usuarios[0]);
+            }
+            res.status(404).json({ text: "El usuario no existe!" });
+        });
+    }
+    getAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield database_1.default.query('SELECT * FROM usuarios ORDER BY usuarios.id_usuario');
+            res.json(usuarios);
         });
     }
     update(req, res) {
@@ -96,6 +88,18 @@ class UsuariosController {
             const { id } = req.params;
             const usuarios = yield database_1.default.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
             res.json({ message: 'El usuario ' + [id] + ' ha sido eliminado' });
+        });
+    }
+    listarInvitados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_tipo_usuario=5 ORDER BY usuarios.id_usuario');
+            res.json(usuarios);
+        });
+    }
+    listarProveedores(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_tipo_usuario=6 ORDER BY usuarios.id_usuario');
+            res.json(usuarios);
         });
     }
     getCountNewPeople(req, res) {
