@@ -34,9 +34,11 @@ class UsuariosController {
                 huella.id_usuario = id_usuario_maximo;
                 huella.archivo_huella = req.body.archivo_huella;
                 //huella.imagen_huella = req.params.imagen_huella;
+                console.log(huella);
                 var foto = {};
                 foto.id_usuario = id_usuario_maximo;
                 foto.archivo_foto = req.body.archivo_foto;
+                console.log(foto);
                 var usuario = {};
                 usuario.id_usuario = id_usuario_maximo;
                 usuario.rfc_usuario = req.body.rfc_usuario;
@@ -106,6 +108,15 @@ class UsuariosController {
         return __awaiter(this, void 0, void 0, function* () {
             const cuenta = yield database_1.default.query('SELECT COUNT(*) AS cantidad FROM usuarios WHERE fecha_registro BETWEEN ? AND ?', [req.query.desde, req.query.hasta]);
             res.json(cuenta);
+        });
+    }
+    prueba(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield database_1.default.query('SELECT * FROM usuarios_foto');
+            var buffer = new Buffer(usuarios[0].archivo_foto);
+            var bufferBase64 = buffer.toString('ascii');
+            console.log(bufferBase64);
+            res.json(usuarios);
         });
     }
 }

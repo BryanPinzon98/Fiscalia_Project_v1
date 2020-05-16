@@ -9,6 +9,7 @@ class UsuariosRoutes {
     }
     config() {
         this.router.get('/crud/', usuariosController_1.usuariosController.getAll);
+        this.router.get('/prueba/', usuariosController_1.usuariosController.prueba);
         this.router.post('/crud/', usuariosController_1.usuariosController.create);
         this.router.get('/crud/:id', usuariosController_1.usuariosController.getOne);
         this.router.put('/crud/:id', usuariosController_1.usuariosController.update);

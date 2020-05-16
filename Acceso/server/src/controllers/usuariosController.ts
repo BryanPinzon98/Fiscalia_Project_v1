@@ -23,12 +23,11 @@ class UsuariosController{
             huella.id_usuario = id_usuario_maximo;
             huella.archivo_huella = req.body.archivo_huella;
             //huella.imagen_huella = req.params.imagen_huella;
-
-
+            console.log(huella);
             var foto: any = {};
             foto.id_usuario = id_usuario_maximo;
             foto.archivo_foto = req.body.archivo_foto;
-
+            console.log(foto);
             var usuario: any = {};
             usuario.id_usuario = id_usuario_maximo;
             usuario.rfc_usuario = req.body.rfc_usuario;
@@ -89,19 +88,19 @@ class UsuariosController{
         const usuarios = await pool.query('SELECT * FROM usuarios WHERE usuarios.id_tipo_usuario=6 ORDER BY usuarios.id_usuario');
         res.json(usuarios);
     }
-
-
-
-
-
-
-
-
-    
     
     public async getCountNewPeople (req: Request, res: Response): Promise<any>{
         const cuenta = await pool.query('SELECT COUNT(*) AS cantidad FROM usuarios WHERE fecha_registro BETWEEN ? AND ?', [req.query.desde,req.query.hasta]);
         res.json(cuenta); 
-    }    
+    }  
+    
+    public async prueba (req: Request, res: Response): Promise<void>{
+        const usuarios = await pool.query('SELECT * FROM usuarios_foto');
+        var buffer = new Buffer(usuarios[0].archivo_foto);
+        var bufferBase64 = buffer.toString('ascii');
+
+        console.log(bufferBase64);
+        res.json(usuarios);
+    }
 }
 export const usuariosController = new UsuariosController();
