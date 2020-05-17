@@ -23,11 +23,11 @@ class UsuariosController{
             huella.id_usuario = id_usuario_maximo;
             huella.archivo_huella = req.body.archivo_huella;
             //huella.imagen_huella = req.params.imagen_huella;
-            console.log(huella);
+
             var foto: any = {};
             foto.id_usuario = id_usuario_maximo;
             foto.archivo_foto = req.body.archivo_foto;
-            console.log(foto);
+
             var usuario: any = {};
             usuario.id_usuario = id_usuario_maximo;
             usuario.rfc_usuario = req.body.rfc_usuario;
@@ -39,8 +39,6 @@ class UsuariosController{
             usuario.id_genero = req.body.id_genero;
             usuario.id_estado_civil = req.body.id_estado_civil;
             usuario.id_tipo_usuario = req.body.id_tipo_usuario;
-
-            console.log(usuario);
 
             await pool.query('INSERT INTO usuarios set ?', [usuario]);
             await pool.query('INSERT INTO usuarios_foto set ?', [foto]);
