@@ -11,7 +11,6 @@ class UsuariosRoutes {
 
     config(): void {       
         this.router.get('/crud/', usuariosController.getAll);
-        this.router.get('/prueba/', usuariosController.prueba);
         this.router.post('/crud/', usuariosController.create);
         this.router.get('/crud/:id', usuariosController.getOne);
         this.router.put('/crud/:id', usuariosController.update);
@@ -20,6 +19,11 @@ class UsuariosRoutes {
         this.router.get('/invitados', usuariosController.listarInvitados);
         this.router.get('/cantidadnuevos', usuariosController.getCountNewPeople);
         this.router.get('/proveedores', usuariosController.listarProveedores);
+
+        this.router.get('/buscarpornombre', usuariosController.getSearchByName);
+
+
+        this.router.get('/prueba/', usuariosController.prueba);
  
     }
 }

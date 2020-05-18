@@ -92,6 +92,13 @@ class UsuariosController{
         res.json(cuenta); 
     }  
     
+    public async getSearchByName (req: Request, res: Response): Promise<any>{
+        var nombre = ("%" + req.query.nombre + "%")
+        var apellido = ("%" + req.query.apellido + "%")
+        const coincidencias = await pool.query('SELECT usuarios.id_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, usuarios.id_tipo_usuario, usuarios.rfc_usuario, usuarios.direccion_usuario, usuarios_foto.archivo_foto FROM usuarios, usuarios_foto, tipos_usuario WHERE usuarios.nombres_usuario LIKE ? AND usuarios.apellidos_usuario LIKE ? AND usuarios.id_tipo_usuario = tipos_usuario.id_tipos_usuario AND usuarios.id_usuario = usuarios_foto.id_usuario', [nombre, apellido]);
+        res.json(coincidencias); 
+    }  
+
     public async prueba (req: Request, res: Response): Promise<void>{
         const usuarios = await pool.query('SELECT * FROM usuarios_foto');
         var buffer = new Buffer(usuarios[0].archivo_foto);

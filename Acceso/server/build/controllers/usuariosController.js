@@ -107,6 +107,14 @@ class UsuariosController {
             res.json(cuenta);
         });
     }
+    getSearchByName(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var nombre = ("%" + req.query.nombre + "%");
+            var apellido = ("%" + req.query.apellido + "%");
+            const coincidencias = yield database_1.default.query('SELECT usuarios.id_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, usuarios.id_tipo_usuario, usuarios.rfc_usuario, usuarios.direccion_usuario, usuarios_foto.archivo_foto FROM usuarios, usuarios_foto, tipos_usuario WHERE usuarios.nombres_usuario LIKE ? AND usuarios.apellidos_usuario LIKE ? AND usuarios.id_tipo_usuario = tipos_usuario.id_tipos_usuario AND usuarios.id_usuario = usuarios_foto.id_usuario', [nombre, apellido]);
+            res.json(coincidencias);
+        });
+    }
     prueba(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const usuarios = yield database_1.default.query('SELECT * FROM usuarios_foto');
