@@ -14,6 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class UsuariosController {
+    decodificarFoto(usuarios) {
+        for (let usuario of usuarios) {
+            var buffer = new Buffer(usuario.archivo_foto);
+            var bufferBase64 = buffer.toString('ascii');
+            usuario.archivo_foto = bufferBase64;
+        }
+        return usuarios;
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -91,13 +99,13 @@ class UsuariosController {
     }
     listarInvitados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_tipo_usuario=5 ORDER BY usuarios.id_usuario');
+            const usuarios = yield database_1.default.query('SELECT usuarios.id_usuario, usuarios.rfc_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, generos.nombre_genero, tipos_usuario.nombre_tipos_usuario FROM usuarios,generos,tipos_usuario WHERE usuarios.id_tipo_usuario=5 AND usuarios.id_genero=generos.id_genero AND usuarios.id_tipo_usuario=tipos_usuario.id_tipos_usuario ORDER BY usuarios.id_usuario');
             res.json(usuarios);
         });
     }
     listarProveedores(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuarios WHERE usuarios.id_tipo_usuario=6 ORDER BY usuarios.id_usuario');
+            const usuarios = yield database_1.default.query('SELECT usuarios.id_usuario, usuarios.rfc_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, generos.nombre_genero, tipos_usuario.nombre_tipos_usuario FROM usuarios,generos,tipos_usuario WHERE usuarios.id_tipo_usuario=6 AND usuarios.id_genero=generos.id_genero AND usuarios.id_tipo_usuario=tipos_usuario.id_tipos_usuario ORDER BY usuarios.id_usuario');
             res.json(usuarios);
         });
     }
@@ -109,19 +117,17 @@ class UsuariosController {
     }
     getSearchByName(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            var nombre = ("%" + req.query.nombre + "%");
-            var apellido = ("%" + req.query.apellido + "%");
+            var nombreCodificado = decodeURIComponent(req.query.nombre);
+            var nombre = ("%" + nombreCodificado + "%");
+            var apellidoCodificado = decodeURIComponent(req.query.apellido);
+            var apellido = ("%" + apellidoCodificado + "%");
             const coincidencias = yield database_1.default.query('SELECT usuarios.id_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, usuarios.id_tipo_usuario, usuarios.rfc_usuario, usuarios.direccion_usuario, usuarios_foto.archivo_foto FROM usuarios, usuarios_foto, tipos_usuario WHERE usuarios.nombres_usuario LIKE ? AND usuarios.apellidos_usuario LIKE ? AND usuarios.id_tipo_usuario = tipos_usuario.id_tipos_usuario AND usuarios.id_usuario = usuarios_foto.id_usuario', [nombre, apellido]);
+            for (let usuario of coincidencias) {
+                var buffer = new Buffer(usuario.archivo_foto);
+                var bufferBase64 = buffer.toString('ascii');
+                usuario.archivo_foto = bufferBase64;
+            }
             res.json(coincidencias);
-        });
-    }
-    prueba(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuarios_foto');
-            var buffer = new Buffer(usuarios[0].archivo_foto);
-            var bufferBase64 = buffer.toString('ascii');
-            console.log(bufferBase64);
-            res.json(usuarios);
         });
     }
 }

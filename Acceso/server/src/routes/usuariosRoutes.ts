@@ -22,8 +22,6 @@ class UsuariosRoutes {
 
         this.router.get('/buscarpornombre', usuariosController.getSearchByName);
 
-
-        this.router.get('/prueba/', usuariosController.prueba);
  
     }
 }

@@ -21,23 +21,23 @@ getUsersProveedores(){
 }
 
 getUser(id: string){
-  return this.http.get(`${this.API_URI}/usuarios/${id}`);
+  return this.http.get(`${this.API_URI}/usuarios/crud/${id}`);
 }
 
 saveUser(user: User){
-  return this.http.post(`${this.API_URI}/usuarios`, user);
+  return this.http.post(`${this.API_URI}/usuarios/crud`, user);
 }
 
 deleteUser(id: string){
-  return this.http.delete(`${this.API_URI}/usuarios/${id}`);
+  return this.http.delete(`${this.API_URI}/usuarios/crud/${id}`);
 }
 
 updateUser(id: string, user: User): Observable<any> {
-  return this.http.put(`${this.API_URI}/usuarios/${id}`, user);
+  return this.http.put(`${this.API_URI}/usuarios/crud/${id}`, user);
 }
 
 getCountNewPeople(ini: string, fin: string){
-  return this.http.get(`${this.API_URI}/usuarios/porfecha?desde=`+ini+`&hasta=`+fin);
+  return this.http.get(`${this.API_URI}/usuarios/cantidadnuevos?desde=`+ini+`&hasta=`+fin);
 }
 
 }

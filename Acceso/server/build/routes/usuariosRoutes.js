@@ -18,7 +18,6 @@ class UsuariosRoutes {
         this.router.get('/cantidadnuevos', usuariosController_1.usuariosController.getCountNewPeople);
         this.router.get('/proveedores', usuariosController_1.usuariosController.listarProveedores);
         this.router.get('/buscarpornombre', usuariosController_1.usuariosController.getSearchByName);
-        this.router.get('/prueba/', usuariosController_1.usuariosController.prueba);
     }
 }
 const usuariosRoutes = new UsuariosRoutes();
