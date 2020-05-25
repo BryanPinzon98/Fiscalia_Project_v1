@@ -28,4 +28,5 @@ public class MaritalStatus {
     public void setNombre_estado_civil(String nombre_estado_civil) {
         this.nombre_estado_civil = nombre_estado_civil;
     }
+
 }

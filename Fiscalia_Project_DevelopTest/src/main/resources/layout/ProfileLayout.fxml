@@ -57,6 +57,18 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="btnCompareFingerprint" graphicTextGap="7.0" mnemonicParsing="false" onMouseClicked="#compareFingerprint" stylesheets="@../css/SSProfileLayout.css" text="Comparar Huella">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/icons8_edit_32px_1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="20.0" top="110.0" />
+               </HBox.margin>
+            </Button>
          </children>
         </HBox>
           <Pane layoutX="112.0" layoutY="83.0" prefHeight="190.0" prefWidth="190.0" style="-fx-background-color: #FFF;">

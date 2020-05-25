@@ -1,13 +1,11 @@
 package resources;
 
 import UIController.SignUpLayout.SignUpLayoutController;
-import com.digitalpersona.onetouch.DPFPTemplate;
 import javafx.css.PseudoClass;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -287,7 +285,7 @@ public class ValidateSignUpForm {
 
     //--------- Validar la fotografía del usuario:
 
-    public void validateUserPhoto(File userPhoto) {
+    public void validateUserPhotoBase64(String userPhoto) {
         if (userPhoto == null) {
             for (Label labelItem : labelsArrayList) {
                 if (labelItem.getId().equals("btnTakePhotoLabel")) {
@@ -303,7 +301,7 @@ public class ValidateSignUpForm {
 
     //-------- Fingerprint label warning
 
-    public void validateFingerprintTemplate(DPFPTemplate fingerprintTemplate, File templateFingerprintImage) {
+    public void validateFingerprintTemplate(String fingerprintTemplate, String templateFingerprintImage) {
 
         if (fingerprintTemplate == null || templateFingerprintImage == null) {
 

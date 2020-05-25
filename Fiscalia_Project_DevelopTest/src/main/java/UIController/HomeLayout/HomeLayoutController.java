@@ -1,6 +1,8 @@
 package UIController.HomeLayout;
 
+import UIController.ProfileLayout.UserSearchInputController;
 import UIController.SignUpLayout.SignUpLayoutController;
+import dataManager.Connection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +16,7 @@ import java.util.ResourceBundle;
 public class HomeLayoutController implements Initializable {
 
     private ManageLayout loadLayoutClass = ManageLayout.getInstance();
+    private Connection DDBBConectionClass = Connection.getInstance();
 
     @FXML
     private Button btnNewUser;
@@ -40,12 +43,22 @@ public class HomeLayoutController implements Initializable {
 
             case "btnSearchUser":
                 System.out.println("Search User Button Pressed");
-                loadLayoutClass.loadLayout("layout/UserSearchInputLayout.fxml", "Buscar", true);
+                FXMLLoader searchUserLoader = loadLayoutClass.loadLayout("layout/UserSearchInputLayout.fxml", "Buscar", true);
+                UserSearchInputController searchInputController = searchUserLoader.getController();
+
+                searchInputController.setActualStage(loadLayoutClass.getStage());
                 break;
         }
     }
 
+    private void getData() {
+        DDBBConectionClass.loadGenreChoiceBoxOptions();
+        DDBBConectionClass.loadMaritalStatusChoiceBoxOptions();
+        DDBBConectionClass.loadTypeUserChoiceBoxOptions();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        getData();
     }
 }

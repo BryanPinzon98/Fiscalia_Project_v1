@@ -1,9 +1,5 @@
 package objects;
 
-import com.digitalpersona.onetouch.DPFPTemplate;
-
-import java.awt.*;
-
 public class User {
 
     private int id_usuario;
@@ -13,19 +9,18 @@ public class User {
     private String direccion_usuario;
     private String correo_usuario;
     private String clave_usuario;
-    private String nombre_genero;
-    private String nombre_estado_civil;
-    private String nombre_tipos_usuario;
-
-    private DPFPTemplate archivo_huella;
-    private Image imagen_huella;
-    private Image archivo_foto;
+    private int id_genero;
+    private int id_estado_civil;
+    private int id_tipo_usuario;
+    private String archivo_huella;
+    private String imagen_huella;
+    private String archivo_foto;
 
 
     public User() {
     }
 
-    public User(int id_usuario, String rfc_usuario, String nombres_usuario, String apellidos_usuario, String direccion_usuario, String correo_usuario, String clave_usuario, String nombre_genero, String nombre_estado_civil, String nombre_tipos_usuario) {
+    public User(int id_usuario, String rfc_usuario, String nombres_usuario, String apellidos_usuario, String direccion_usuario, String correo_usuario, String clave_usuario, int id_genero, int id_estado_civil, int id_tipo_usuario, String archivo_huella, String archivo_foto) {
         this.id_usuario = id_usuario;
         this.rfc_usuario = rfc_usuario;
         this.nombres_usuario = nombres_usuario;
@@ -33,9 +28,12 @@ public class User {
         this.direccion_usuario = direccion_usuario;
         this.correo_usuario = correo_usuario;
         this.clave_usuario = clave_usuario;
-        this.nombre_genero = nombre_genero;
-        this.nombre_estado_civil = nombre_estado_civil;
-        this.nombre_tipos_usuario = nombre_tipos_usuario;
+        this.id_genero = id_genero;
+        this.id_estado_civil = id_estado_civil;
+        this.id_tipo_usuario = id_tipo_usuario;
+        this.archivo_huella = archivo_huella;
+        //this.imagen_huella = imagen_huella;
+        this.archivo_foto = archivo_foto;
     }
 
     public int getId_usuario() {
@@ -94,28 +92,52 @@ public class User {
         this.clave_usuario = clave_usuario;
     }
 
-    public String getNombre_genero() {
-        return nombre_genero;
+    public int getId_genero() {
+        return id_genero;
     }
 
-    public void setNombre_genero(String nombre_genero) {
-        this.nombre_genero = nombre_genero;
+    public void setId_genero(int id_genero) {
+        this.id_genero = id_genero;
     }
 
-    public String getNombre_estado_civil() {
-        return nombre_estado_civil;
+    public int getId_estado_civil() {
+        return id_estado_civil;
     }
 
-    public void setNombre_estado_civil(String nombre_estado_civil) {
-        this.nombre_estado_civil = nombre_estado_civil;
+    public void setId_estado_civil(int id_estado_civil) {
+        this.id_estado_civil = id_estado_civil;
     }
 
-    public String getNombre_tipos_usuario() {
-        return nombre_tipos_usuario;
+    public int getId_tipo_usuario() {
+        return id_tipo_usuario;
     }
 
-    public void setNombre_tipos_usuario(String nombre_tipos_usuario) {
-        this.nombre_tipos_usuario = nombre_tipos_usuario;
+    public void setId_tipo_usuario(int id_tipo_usuario) {
+        this.id_tipo_usuario = id_tipo_usuario;
+    }
+
+    public String getArchivo_huella() {
+        return archivo_huella;
+    }
+
+    public void setArchivo_huella(String archivo_huella) {
+        this.archivo_huella = archivo_huella;
+    }
+
+    public String getImagen_huella() {
+        return imagen_huella;
+    }
+
+    public void setImagen_huella(String imagen_huella) {
+        this.imagen_huella = imagen_huella;
+    }
+
+    public String getArchivo_foto() {
+        return archivo_foto;
+    }
+
+    public void setArchivo_foto(String archivo_foto) {
+        this.archivo_foto = archivo_foto;
     }
 
     @Override
@@ -128,9 +150,11 @@ public class User {
                 ", direccion_usuario='" + direccion_usuario + '\'' +
                 ", correo_usuario='" + correo_usuario + '\'' +
                 ", clave_usuario='" + clave_usuario + '\'' +
-                ", nombre_genero='" + nombre_genero + '\'' +
-                ", nombre_estado_civil='" + nombre_estado_civil + '\'' +
-                ", nombre_tipos_usuario='" + nombre_tipos_usuario + '\'' +
+                ", id_genero=" + id_genero +
+                ", id_estado_civil=" + id_estado_civil +
+                ", id_tipo_usuario=" + id_tipo_usuario +
+                ", archivo_huella='" + archivo_huella + '\'' +
+                ", archivo_foto='" + archivo_foto + '\'' +
                 '}';
     }
 }

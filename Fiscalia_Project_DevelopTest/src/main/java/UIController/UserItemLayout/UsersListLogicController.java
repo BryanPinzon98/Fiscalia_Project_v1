@@ -32,20 +32,17 @@ public class UsersListLogicController {
 
         for (User usuario : foundUsers) {
 
+
             FXMLLoader fxmlLoaderItem = manageLayoutClass.loadLayout("layout/UserItemLayout.fxml", "Item", false);
             UserItemLayoutController userItemClass = fxmlLoaderItem.getController();
 
-            //profilePhotoUserItem.setImage(usuario.);
-            userItemClass.setUserItemID(usuario.getId_usuario());
-            userItemClass.setNamesUserItem(usuario.getNombres_usuario());
-            userItemClass.setLastNamesUserItem(usuario.getApellidos_usuario());
-            userItemClass.setTypeUserItem(usuario.getNombre_tipos_usuario());
-            userItemClass.setRFCUserItem(usuario.getRfc_usuario());
-            userItemClass.setAddressUserItem(usuario.getDireccion_usuario());
-            userItemClass.setEmailUserItem(usuario.getCorreo_usuario());
+            userItemClass.setUserListRootContainer(containerStage);
+            userItemClass.setActualUser(usuario);
+            userItemClass.setUpLayout();
 
             userRootContainerClass.setItemParent(manageLayoutClass.getParent());
             userRootContainerClass.paintUserItem();
+
         }
 
         containerStage.setTitle("RootLayout");
@@ -53,6 +50,8 @@ public class UsersListLogicController {
         containerStage.setResizable(true);
         containerStage.show();
     }
+
+
 
     public void setFoundUsers(ArrayList<User> foundUsers) {
         this.foundUsers = foundUsers;

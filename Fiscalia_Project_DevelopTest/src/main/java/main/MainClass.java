@@ -5,7 +5,6 @@ import com.digitalpersona.onetouch.DPFPTemplate;
 import enrollment.Enrollment;
 import javafx.fxml.FXMLLoader;
 import read.Read;
-import verify.Verify;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,6 +86,7 @@ public class MainClass extends JFrame {
                     System.out.println("The Fingerprint template is ready for fingerprint verification");
                     //Envío del template de la huella.
                     signUpLayoutControllerClass.setFingerprintTemplate(template);
+                    signUpLayoutControllerClass.convertDPFPTemplateToBase64(template);
                     signUpLayoutControllerClass.hideFingerprintLabelWarning();
                 }
             }
@@ -106,8 +106,8 @@ public class MainClass extends JFrame {
     }
 
     private void onVerify() {
-        Verify verify = new Verify();
-        verify.setVisible(true);
+        //Verify verify = new Verify();
+        //verify.setVisible(true);
     }
 
     private void onRead() {
