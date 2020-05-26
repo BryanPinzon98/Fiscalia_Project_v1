@@ -121,7 +121,7 @@ class UsuariosController {
             var nombre = ("%" + nombreCodificado + "%");
             var apellidoCodificado = decodeURIComponent(req.query.apellido);
             var apellido = ("%" + apellidoCodificado + "%");
-            const coincidencias = yield database_1.default.query('SELECT usuarios.id_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, usuarios.id_tipo_usuario, usuarios.rfc_usuario, usuarios.direccion_usuario, usuarios_foto.archivo_foto FROM usuarios, usuarios_foto, tipos_usuario WHERE usuarios.nombres_usuario LIKE ? AND usuarios.apellidos_usuario LIKE ? AND usuarios.id_tipo_usuario = tipos_usuario.id_tipos_usuario AND usuarios.id_usuario = usuarios_foto.id_usuario', [nombre, apellido]);
+            const coincidencias = yield database_1.default.query('SELECT usuarios.id_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, usuarios.id_tipo_usuario, usuarios.rfc_usuario, usuarios.direccion_usuario, usuarios.correo_usuario, usuarios.id_genero, usuarios.id_estado_civil, usuarios_foto.archivo_foto FROM usuarios, usuarios_foto, tipos_usuario WHERE usuarios.nombres_usuario LIKE ? AND usuarios.apellidos_usuario LIKE ? AND usuarios.id_tipo_usuario = tipos_usuario.id_tipos_usuario AND usuarios.id_usuario = usuarios_foto.id_usuario', [nombre, apellido]);
             for (let usuario of coincidencias) {
                 var buffer = new Buffer(usuario.archivo_foto);
                 var bufferBase64 = buffer.toString('ascii');

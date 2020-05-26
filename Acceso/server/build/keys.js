@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     database: {
-        host: '192.168.64.2',
+        host: '127.0.0.1',
         user: 'juan',
         password: 'juan',
         database: 'acceso_fiscalia'
