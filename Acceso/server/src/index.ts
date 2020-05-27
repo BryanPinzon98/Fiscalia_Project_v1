@@ -7,6 +7,8 @@ import usuariosRoutes from './routes/usuariosRoutes';
 import registrosRoutes from './routes/registrosRoutes';
 import estadosCivilesRoutes from './routes/estadosCivilesRoutes';
 import tiposUsuariosRoutes from './routes/tiposUsuariosRoutes';
+import usuariosFotoRoutes from './routes/usuariosFotoRoutes';
+import usuarioHuellaRoutes from './routes/usuarioHuellaRoutes';
 import generosRoutes from './routes/generosRoutes';
 
 class Server {
@@ -34,6 +36,8 @@ class Server {
         this.app.use('/api/registros',registrosRoutes);
         this.app.use('/api/estadosciviles',estadosCivilesRoutes);
         this.app.use('/api/tiposusuarios',tiposUsuariosRoutes);
+        this.app.use('/api/fotosusuarios',usuariosFotoRoutes);
+        this.app.use('/api/huellasusuarios',usuarioHuellaRoutes);
         this.app.use('/api/generos',generosRoutes);
     }
 

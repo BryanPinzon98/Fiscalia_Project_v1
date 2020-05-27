@@ -11,6 +11,8 @@ const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 const registrosRoutes_1 = __importDefault(require("./routes/registrosRoutes"));
 const estadosCivilesRoutes_1 = __importDefault(require("./routes/estadosCivilesRoutes"));
 const tiposUsuariosRoutes_1 = __importDefault(require("./routes/tiposUsuariosRoutes"));
+const usuariosFotoRoutes_1 = __importDefault(require("./routes/usuariosFotoRoutes"));
+const usuarioHuellaRoutes_1 = __importDefault(require("./routes/usuarioHuellaRoutes"));
 const generosRoutes_1 = __importDefault(require("./routes/generosRoutes"));
 class Server {
     constructor() {
@@ -31,6 +33,8 @@ class Server {
         this.app.use('/api/registros', registrosRoutes_1.default);
         this.app.use('/api/estadosciviles', estadosCivilesRoutes_1.default);
         this.app.use('/api/tiposusuarios', tiposUsuariosRoutes_1.default);
+        this.app.use('/api/fotosusuarios', usuariosFotoRoutes_1.default);
+        this.app.use('/api/huellasusuarios', usuarioHuellaRoutes_1.default);
         this.app.use('/api/generos', generosRoutes_1.default);
     }
     start() {

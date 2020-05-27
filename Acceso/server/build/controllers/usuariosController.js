@@ -14,14 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class UsuariosController {
-    decodificarFoto(usuarios) {
-        for (let usuario of usuarios) {
-            var buffer = new Buffer(usuario.archivo_foto);
-            var bufferBase64 = buffer.toString('ascii');
-            usuario.archivo_foto = bufferBase64;
-        }
-        return usuarios;
-    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -85,7 +77,6 @@ class UsuariosController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const usuarioViejo = req.body;
             yield database_1.default.query('UPDATE usuarios set ? WHERE id_usuario = ?', [req.body, id]);
             res.json({ message: 'Usuario ' + req.body.id + ' se ha actualizado a ' + [id] + ' con exito!' });
         });
@@ -126,6 +117,9 @@ class UsuariosController {
                 var buffer = new Buffer(usuario.archivo_foto);
                 var bufferBase64 = buffer.toString('ascii');
                 usuario.archivo_foto = bufferBase64;
+                var buffer = new Buffer(usuario.archivo_huella);
+                var bufferBase64 = buffer.toString('ascii');
+                usuario.archivo_huella = bufferBase64;
             }
             res.json(coincidencias);
         });

@@ -5,15 +5,6 @@ import fs from 'fs';
 
 class UsuariosController{
 
-    private decodificarFoto(usuarios:any): any {
-            for(let usuario of usuarios){
-                var buffer = new Buffer(usuario.archivo_foto);
-                var bufferBase64 = buffer.toString('ascii');
-                usuario.archivo_foto = bufferBase64;
-             }
-            return usuarios;
-    }
-
     public async create (req: Request, res: Response): Promise<void>{
         try{
             await pool.query('INSERT INTO usuarios set ?', [req.body]);
@@ -75,7 +66,6 @@ class UsuariosController{
 
     public  async update (req: Request, res: Response): Promise<void>{
         const {id} = req.params;
-        const usuarioViejo = req.body;
         await pool.query('UPDATE usuarios set ? WHERE id_usuario = ?', [req.body, id]);
         res.json({message: 'Usuario ' +req.body.id+ ' se ha actualizado a '+[id]+' con exito!'});
     }
@@ -111,6 +101,9 @@ class UsuariosController{
             var buffer = new Buffer(usuario.archivo_foto);
             var bufferBase64 = buffer.toString('ascii');
             usuario.archivo_foto = bufferBase64;
+            var buffer = new Buffer(usuario.archivo_huella);
+            var bufferBase64 = buffer.toString('ascii');
+            usuario.archivo_huella = bufferBase64;
         }
         res.json(coincidencias);         
     }  
