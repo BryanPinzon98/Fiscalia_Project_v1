@@ -32,7 +32,7 @@
                     </font>
                 </Text>
                 <TextField fx:id="txtFieldFormLastNames" layoutX="334.0" layoutY="165.0" prefHeight="26.0" prefWidth="310.0" styleClass="textFieldValidation" stylesheets="@../css/SSSignUpLayout.css" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="293.20000000000005" AnchorPane.topAnchor="165.0" />
-                <Text fill="#5f5f5f" layoutX="232.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RFC:" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="707.6421875000001" AnchorPane.topAnchor="209.734375">
+                <Text fill="#5f5f5f" layoutX="232.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CURP:" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="707.6421875000001" AnchorPane.topAnchor="209.734375">
                     <font>
                         <Font size="16.0" />
                     </font>

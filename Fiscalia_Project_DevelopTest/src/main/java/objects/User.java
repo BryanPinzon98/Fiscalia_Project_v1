@@ -1,5 +1,8 @@
 package objects;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+@JsonFilter("updateUserJSONFilter")
 public class User {
 
     private int id_usuario;
@@ -21,6 +24,22 @@ public class User {
     }
 
     public User(int id_usuario, String rfc_usuario, String nombres_usuario, String apellidos_usuario, String direccion_usuario, String correo_usuario, String clave_usuario, int id_genero, int id_estado_civil, int id_tipo_usuario, String archivo_huella, String archivo_foto) {
+        this.id_usuario = id_usuario;
+        this.rfc_usuario = rfc_usuario;
+        this.nombres_usuario = nombres_usuario;
+        this.apellidos_usuario = apellidos_usuario;
+        this.direccion_usuario = direccion_usuario;
+        this.correo_usuario = correo_usuario;
+        this.clave_usuario = clave_usuario;
+        this.id_genero = id_genero;
+        this.id_estado_civil = id_estado_civil;
+        this.id_tipo_usuario = id_tipo_usuario;
+        this.archivo_huella = archivo_huella;
+        //this.imagen_huella = imagen_huella;
+        this.archivo_foto = archivo_foto;
+    }
+
+    public User(int id_usuario, String rfc_usuario, String nombres_usuario, String apellidos_usuario, String direccion_usuario, String correo_usuario, String clave_usuario, int id_genero, int id_estado_civil, int id_tipo_usuario) {
         this.id_usuario = id_usuario;
         this.rfc_usuario = rfc_usuario;
         this.nombres_usuario = nombres_usuario;

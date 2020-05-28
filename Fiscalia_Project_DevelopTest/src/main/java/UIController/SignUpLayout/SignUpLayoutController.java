@@ -3,6 +3,9 @@ package UIController.SignUpLayout;
 
 import com.digitalpersona.onetouch.DPFPTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import dataManager.Connection;
 import enrollment.Enrollment;
 import javafx.collections.FXCollections;
@@ -133,7 +136,14 @@ public class SignUpLayoutController implements Initializable {
 
         if (buttonPressed.getText().equals("Aceptar")) {
             System.out.println("Se cambió al modo de edición");
-            setUpLayoutEditMode();
+            lastValidation("update");
+
+            if (!validateSignUpFormClass.formIsCorrect("update")) {
+                showIncorrectFormFilled();
+            } else {
+                updateUser();
+            }
+
         } else {
 
             switch (buttonPressed.getId()) {
@@ -146,36 +156,13 @@ public class SignUpLayoutController implements Initializable {
 
                     System.out.println("Submit button pressed");
 
-                    lastValidation();
+                    lastValidation("Register");
 
-                    if (!validateSignUpFormClass.formIsCorrect()) {
-
-                        Alert incorrectFormAlert = new Alert(Alert.AlertType.ERROR);
-                        incorrectFormAlert.setTitle("¡Alerta!");
-                        incorrectFormAlert.setHeaderText(null);
-                        incorrectFormAlert.setContentText("Realice las acciones pertinentes con los campos en color rojo.");
-                        incorrectFormAlert.showAndWait();
-
+                    if (!validateSignUpFormClass.formIsCorrect("register")) {
+                        showIncorrectFormFilled();
                     } else {
-
-                        User newUser = new User(
-                                0,
-                                txtFieldFormRFC.getText(),
-                                txtFieldFormNames.getText(),
-                                txtFieldFormLastNames.getText(),
-                                txtFieldFormAddress.getText(),
-                                txtFieldFormEmail.getText(),
-                                null,
-                                choiceBoxGenre.getValue().getId(),
-                                choiceBoxMaritalStatus.getValue().getId(),
-                                choiceBoxTypeUser.getValue().getId(),
-                                fingerprintTemplateBase64String,
-                                userPhotoBase64String);
-
-
-                        serializeUserObject(newUser);
+                        createNewUser();
                         //manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
-
                     }
                     break;
 
@@ -185,7 +172,7 @@ public class SignUpLayoutController implements Initializable {
                     break;
 
                 case "btnEnrollFingerprint":
-                    Enrollment enrollmentProcess = new Enrollment();
+                    Enrollment enrollmentProcess = new Enrollment("SIGN_UP_CLASS");
                     enrollmentProcess.setSignUpLayoutControllerClass(this.signUpReferenceClass);
                     enrollmentProcess.setVisible(true);
                     break;
@@ -195,6 +182,64 @@ public class SignUpLayoutController implements Initializable {
                     break;
             }
         }
+    }
+
+    private void createNewUser() {
+        User newUser = new User(
+                0,
+                txtFieldFormRFC.getText(),
+                txtFieldFormNames.getText(),
+                txtFieldFormLastNames.getText(),
+                txtFieldFormAddress.getText(),
+                txtFieldFormEmail.getText(),
+                null,
+                choiceBoxGenre.getValue().getId(),
+                choiceBoxMaritalStatus.getValue().getId(),
+                choiceBoxTypeUser.getValue().getId(),
+                fingerprintTemplateBase64String,
+                userPhotoBase64String);
+
+        String JSONUserCreated = serializeUserObject(newUser, "CREATE");
+        DDBBConnectionClass.POST_REQUEST(JSONUserCreated);
+    }
+
+    private void showIncorrectFormFilled() {
+        Alert incorrectFormAlert = new Alert(Alert.AlertType.ERROR);
+        incorrectFormAlert.setTitle("¡Alerta!");
+        incorrectFormAlert.setHeaderText(null);
+        incorrectFormAlert.setContentText("Realice las acciones pertinentes con los campos en color rojo.");
+        incorrectFormAlert.showAndWait();
+    }
+
+    private void updateUser() {
+
+        //Get new Data
+        User userUpdated = new User(
+                actualUserEditMode.getId_usuario(),
+                actualUserEditMode.getRfc_usuario(),
+                txtFieldFormNames.getText(),
+                txtFieldFormLastNames.getText(),
+                txtFieldFormAddress.getText(),
+                txtFieldFormEmail.getText(),
+                null,
+                choiceBoxGenre.getValue().getId(),
+                choiceBoxMaritalStatus.getValue().getId(),
+                choiceBoxTypeUser.getValue().getId());
+
+        String JSONUserUpdated = serializeUserObject(userUpdated, "UPDATE");
+        //System.out.println(JSONUserUpdated);
+        DDBBConnectionClass.UPDATE_REQUEST(JSONUserUpdated, actualUserEditMode.getId_usuario());
+
+        if (userPhotoBase64String != null) {
+            DDBBConnectionClass.POST_PHOTO_USER(serializePhotoUser(userPhotoBase64String, actualUserEditMode.getId_usuario()));
+        }
+
+        ButtonType ACCEPT_BUTTON = new ButtonType("Aceptar", ButtonBar.ButtonData.YES);
+
+        Alert verifiedResponseAlert = new Alert(Alert.AlertType.CONFIRMATION, "Usuario actualizado con éxito", ACCEPT_BUTTON);
+        verifiedResponseAlert.setTitle("Mensaje");
+        verifiedResponseAlert.setHeaderText(null);
+        verifiedResponseAlert.showAndWait();
     }
 
     public void setUpLayoutEditMode() {
@@ -222,7 +267,7 @@ public class SignUpLayoutController implements Initializable {
         cameraManagerController.exitStageHandler();
     }
 
-    public void lastValidation() {
+    public void lastValidation(String buttonInvoke) {
 
         for (TextField textField : textFieldArray) {
             if (textField.getId().equals("txtFieldFormNames") || textField.getId().equals("txtFieldFormLastNames")) {
@@ -234,43 +279,42 @@ public class SignUpLayoutController implements Initializable {
             validateSignUpFormClass.validateEmptyChoiceBox(choiceBox);
         }
 
-        validateSignUpFormClass.validateRFC(txtFieldFormRFC);
         validateSignUpFormClass.validateEmail(txtFieldFormEmail);
         validateSignUpFormClass.validateAddressField(txtFieldFormAddress);
-        validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplateBase64String, fingerprintImageBase64String);
-        validateSignUpFormClass.validateUserPhotoBase64(userPhotoBase64String);
+
+        if (buttonInvoke.equals("register")) {
+            validateSignUpFormClass.validateRFC(txtFieldFormRFC);
+            validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplateBase64String, fingerprintImageBase64String);
+            validateSignUpFormClass.validateUserPhotoBase64(userPhotoBase64String);
+
+        }
+    }
+
+    private String serializePhotoUser(String base64Photo, int userID) {
+        return "{\"archivo_foto\": \"" + base64Photo + "\", \"id_usuario\"" + ":" + userID + "}";
     }
 
     //Serializa el objeto java en un JSON
-    private void serializeUserObject(User userCreated) {
+    private String serializeUserObject(User userCreated, String httpInvoker) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String userParseJSON = null;
+        FilterProvider filters = null;
+
+        if (httpInvoker.equals("UPDATE")) {
+            String[] ignoreFields = {"archivo_huella", "imagen_huella", "archivo_foto"};
+            SimpleBeanPropertyFilter theFilter = SimpleBeanPropertyFilter.serializeAllExcept(ignoreFields);
+            filters = new SimpleFilterProvider().addFilter("updateUserJSONFilter", theFilter);
+        }
 
         try {
-            objectMapper.writeValue(new File("target/user.json"), userCreated);
-            userParseJSON = objectMapper.writeValueAsString(userCreated);
+            //objectMapper.writeValue(new File("target/user.json"), userCreated);
+            userParseJSON = objectMapper.writer(filters).writeValueAsString(userCreated);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //System.out.println(userParseJSON);
-
-/*
-        PrintWriter stringTxtFile = null;
-        try {
-            stringTxtFile = new PrintWriter("UserJSON.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        stringTxtFile.println(userParseJSON);
- */
-
-        DDBBConnectionClass.POST_REQUEST(userParseJSON);
-
-
-        //Conectarse a la BBDD y enviar el JSON
+        return userParseJSON;
     }
 
     //Validate Form
@@ -388,46 +432,45 @@ public class SignUpLayoutController implements Initializable {
 
     private void populateMaritalStatusChoiceBox(int defaultOptionSelected) {
         ObservableList<Choice> maritalStatusChoiceOptions = FXCollections.observableArrayList();
+        Choice defaultOption = null;
 
-        int i = 0;
         for (MaritalStatus maritalStatusObjectOption : DDBBConnectionClass.getMaritalStatusArrayOptions()) {
 
             if (defaultOptionSelected == maritalStatusObjectOption.getId_estado_civil()) {
-                choiceBoxGenre.getSelectionModel().select(i);
+                defaultOption = new Choice(maritalStatusObjectOption.getId_estado_civil(), maritalStatusObjectOption.getNombre_estado_civil());
             }
             maritalStatusChoiceOptions.add(new Choice(maritalStatusObjectOption.getId_estado_civil(), maritalStatusObjectOption.getNombre_estado_civil()));
-            i++;
         }
         choiceBoxMaritalStatus.setItems(maritalStatusChoiceOptions);
+        choiceBoxMaritalStatus.getSelectionModel().select(defaultOption);
     }
 
     private void populateGenreChoiceBox(int defaultOptionSelected) {
         ObservableList<Choice> genreChoiceBoxOptions = FXCollections.observableArrayList();
+        Choice defaultOption = null;
 
-        int i = 0;
         for (Genre genreObjectOption : DDBBConnectionClass.getGenreArrayOptions()) {
             if (defaultOptionSelected == genreObjectOption.getId_genero()) {
-                choiceBoxGenre.getSelectionModel().select(i);
+                defaultOption = new Choice(genreObjectOption.getId_genero(), genreObjectOption.getNombre_genero());
             }
             genreChoiceBoxOptions.add(new Choice(genreObjectOption.getId_genero(), genreObjectOption.getNombre_genero()));
-            i++;
-            System.out.println(i);
         }
         choiceBoxGenre.setItems(genreChoiceBoxOptions);
+        choiceBoxGenre.getSelectionModel().select(defaultOption);
     }
 
     private void populateTypeUserChoiceBoxOptions(int defaultOptionSelected) {
         ObservableList<Choice> typeUserChoiceBoxOptions = FXCollections.observableArrayList();
+        Choice defaultOption = null;
 
-        int i = 0;
         for (TypeUser typeUserObjectOption : DDBBConnectionClass.getTypeUserArrayOptions()) {
             if (defaultOptionSelected == typeUserObjectOption.getId_tipos_usuario()) {
-                choiceBoxGenre.getSelectionModel().select(i);
+                defaultOption = new Choice(typeUserObjectOption.getId_tipos_usuario(), typeUserObjectOption.getNombre_tipos_usuario());
             }
             typeUserChoiceBoxOptions.add(new Choice(typeUserObjectOption.getId_tipos_usuario(), typeUserObjectOption.getNombre_tipos_usuario()));
-            i++;
         }
         choiceBoxTypeUser.setItems(typeUserChoiceBoxOptions);
+        choiceBoxTypeUser.getSelectionModel().select(defaultOption);
     }
 
     @Override

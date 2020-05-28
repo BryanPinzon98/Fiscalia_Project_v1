@@ -16,3 +16,18 @@
 {
 -fx-background-color : #73A3EF;
 }
+
+.newFingerprint
+{
+-fx-background-color : #E1E2E1;
+}
+
+.newFingerprint:hover
+{
+-fx-background-color : #C2C2C2;
+}
+
+.newFingerprint:pressed
+{
+-fx-background-color : #B2B2B2;
+}

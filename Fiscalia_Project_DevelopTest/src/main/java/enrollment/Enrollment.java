@@ -1,5 +1,6 @@
 package enrollment;
 
+import UIController.ProfileLayout.ProfileLayoutController;
 import UIController.SignUpLayout.SignUpLayoutController;
 import com.digitalpersona.onetouch.DPFPDataPurpose;
 import com.digitalpersona.onetouch.DPFPFeatureSet;
@@ -15,8 +16,10 @@ public class Enrollment extends LaunchFingerprintReader {
 
     private DPFPEnrollment enroller = DPFPGlobal.getEnrollmentFactory().createEnrollment();
     private SignUpLayoutController signUpLayoutControllerClass = null;
+    private ProfileLayoutController profileLayoutController = null;
+    private String classInvoker = null;
 
-    public Enrollment() {
+    public Enrollment(String classInvoker) {
         super();
     }
 
@@ -37,8 +40,16 @@ public class Enrollment extends LaunchFingerprintReader {
                     case TEMPLATE_STATUS_READY:
                         stop();
                         MainClass mainClass = MainClass.getInstance();
+                        mainClass.setEnrollmentClassInvoker(classInvoker);
                         //---- Envío del template (.fpt) de la huella
-                        mainClass.setSignUpLayoutControllerClass(this.signUpLayoutControllerClass);
+                        switch (classInvoker){
+                            case "SIGN_UP_CLASS":
+                                mainClass.setSignUpLayoutControllerClass(this.signUpLayoutControllerClass);
+                                break;
+                            case "USER_PROFILE_CLASS":
+                                mainClass.setProfileLayoutController(this.profileLayoutController);
+                                break;
+                        }
                         //-----
                         mainClass.setTemplate(enroller.getTemplate());
 
@@ -46,7 +57,9 @@ public class Enrollment extends LaunchFingerprintReader {
                         this.setVisible(false);
 
                         //Envío de la imagen final del template de la huella.
-                        signUpLayoutControllerClass.convertImageToFile("fingerprintImage", super.getFingerprintTemplateBufferedImage());
+                        if(classInvoker.equals("SIGN_UP_CLASS")){
+                            signUpLayoutControllerClass.convertImageToFile("fingerprintImage", super.getFingerprintTemplateBufferedImage());
+                        }
 
                         //Storage storage = new Storage();
                         break;
@@ -64,5 +77,9 @@ public class Enrollment extends LaunchFingerprintReader {
         } else {
             System.out.println("La referencia Sign Up en enrollment está nula");
         }
+    }
+
+    public void setProfileLayoutController(ProfileLayoutController profileLayoutController) {
+        this.profileLayoutController = profileLayoutController;
     }
 }

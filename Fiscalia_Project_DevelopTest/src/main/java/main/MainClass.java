@@ -1,8 +1,8 @@
 package main;
 
+import UIController.ProfileLayout.ProfileLayoutController;
 import UIController.SignUpLayout.SignUpLayoutController;
 import com.digitalpersona.onetouch.DPFPTemplate;
-import enrollment.Enrollment;
 import javafx.fxml.FXMLLoader;
 import read.Read;
 
@@ -20,6 +20,8 @@ public class MainClass extends JFrame {
     public static String TEMPLATE_PROPERTY = "template";
     private static MainClass mainClass = null;
     private SignUpLayoutController signUpLayoutControllerClass = null;
+    private ProfileLayoutController profileLayoutController = null;
+    private String enrollmentClassInvoker = null;
 
     public static MainClass getInstance() {
         if (mainClass == null) {
@@ -85,9 +87,20 @@ public class MainClass extends JFrame {
                 if (template != null) {
                     System.out.println("The Fingerprint template is ready for fingerprint verification");
                     //Envío del template de la huella.
-                    signUpLayoutControllerClass.setFingerprintTemplate(template);
-                    signUpLayoutControllerClass.convertDPFPTemplateToBase64(template);
-                    signUpLayoutControllerClass.hideFingerprintLabelWarning();
+
+                    switch (enrollmentClassInvoker) {
+                        case "SIGN_UP_CLASS":
+                            signUpLayoutControllerClass.setFingerprintTemplate(template);
+                            signUpLayoutControllerClass.convertDPFPTemplateToBase64(template);
+                            signUpLayoutControllerClass.hideFingerprintLabelWarning();
+                            break;
+                        case "USER_PROFILE_CLASS":
+                            profileLayoutController.setNewUserFingerprint(template);
+                            profileLayoutController.convertDPFPTemplateToBase64(template);
+                            profileLayoutController.saveNewFingerprint();
+                            break;
+                    }
+
                 }
             }
         });
@@ -115,8 +128,10 @@ public class MainClass extends JFrame {
     }
 
     private void onEnroll() {
+        /*
         Enrollment enrollmentProcess = new Enrollment();
         enrollmentProcess.setVisible(true);
+         */
     }
 
     public void setTemplate(DPFPTemplate template) {
@@ -138,5 +153,13 @@ public class MainClass extends JFrame {
             System.out.println("La referencia de Sign Up en el Main de Fingerprint llegó nula");
         }
 
+    }
+
+    public void setProfileLayoutController(ProfileLayoutController profileLayoutController) {
+        this.profileLayoutController = profileLayoutController;
+    }
+
+    public void setEnrollmentClassInvoker(String enrollmentClassInvoker) {
+        this.enrollmentClassInvoker = enrollmentClassInvoker;
     }
 }

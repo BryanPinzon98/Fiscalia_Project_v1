@@ -95,7 +95,7 @@ public class UserItemLayoutController implements Initializable {
 
         //Aquí tengo que enviar el ID del usuario que el guardia seleccionó para que Juan Diego me regrese todos los datos del men.
 
-        System.out.println(namesUserItem.getText());
+        //System.out.println(namesUserItem.getText());
         FXMLLoader fxmlLoaderProfileLayout = manageLayoutClass.loadLayout("layout/ProfileLayout.fxml", "Perfil", true);
         ProfileLayoutController profileLayoutController = fxmlLoaderProfileLayout.getController();
 

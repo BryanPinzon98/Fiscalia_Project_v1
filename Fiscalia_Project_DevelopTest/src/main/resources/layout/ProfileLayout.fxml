@@ -85,13 +85,13 @@
           </Pane>
       <AnchorPane layoutX="379.0" layoutY="241.0" prefHeight="464.0" prefWidth="926.0" style="-fx-background-color: #FFF;">
          <children>
-            <ImageView fitHeight="109.0" fitWidth="106.0" layoutX="59.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="84.0" fitWidth="90.0" layoutX="71.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/icons8_fingerprint_96px.png" />
                </image>
             </ImageView>
             <Separator layoutX="59.0" layoutY="141.0" prefHeight="3.0" prefWidth="766.0" />
-            <Text fill="#a7a7a7" layoutX="190.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GÉNERO:">
+            <Text fill="#a7a7a7" layoutX="212.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GÉNERO:">
                <font>
                   <Font size="17.0" />
                </font>
@@ -106,7 +106,7 @@
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#a7a7a7" layoutX="190.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RFC:">
+            <Text fill="#a7a7a7" layoutX="212.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CURP:">
                <font>
                   <Font size="17.0" />
                </font>
@@ -116,7 +116,7 @@
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fx:id="profileUserGenre" fill="#5f5f5f" layoutX="257.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASCULINO">
+            <Text fx:id="profileUserGenre" fill="#5f5f5f" layoutX="279.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASCULINO">
                <font>
                   <Font size="20.0" />
                </font>
@@ -131,7 +131,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="profileUserRFC" fill="#5f5f5f" layoutX="245.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="45DF2SD2ASD2A">
+            <Text fx:id="profileUserRFC" fill="#5f5f5f" layoutX="267.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="45DF2SD2ASD2A">
                <font>
                   <Font size="20.0" />
                </font>
@@ -142,6 +142,11 @@
                </font>
             </Text>
             <AnchorPane layoutY="401.0" prefHeight="62.0" prefWidth="926.0" style="-fx-background-color: #E5E1E5;" />
+            <Button layoutX="31.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#newFingerprintTemplate" styleClass="newFingerprint" stylesheets="@../css/SSProfileLayout.css" text="AGREGAR NUEVA HUELLA" underline="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
          <effect>
             <DropShadow height="5.0" radius="2.0" width="5.0" />

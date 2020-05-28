@@ -2,29 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="938aaac7-afb9-4669-a387-37325a7b2290" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/resources/Choice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Convenio Fiscalía General del Estado de Durango/Convenio Fiscalía General del Estado de Durango.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Convenio Fiscalía General del Estado de Durango/Imágenes Convenio/Scan01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Convenio Fiscalía General del Estado de Durango/Imágenes Convenio/Scan02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Convenio Fiscalía General del Estado de Durango/Imágenes Convenio/Scan03.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fingerprint_template.png" beforeDir="false" afterPath="$PROJECT_DIR$/fingerprint_template.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UIController/ProfileLayout/ProfileLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/ProfileLayout/ProfileLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/ProfileLayout/UserSearchInputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/ProfileLayout/UserSearchInputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UIController/SignUpLayout/SignUpLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/SignUpLayout/SignUpLayoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UIController/UserItemLayout/UserItemLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/UserItemLayout/UserItemLayoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UIController/UserItemLayout/UsersListLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/UserItemLayout/UsersListLogicController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataManager/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataManager/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enrollment/Enrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enrollment/Enrollment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/objects/MaritalStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objects/MaritalStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/objects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objects/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/resources/ValidateSignUpForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/ValidateSignUpForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/verify/Verify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/verify/Verify.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/SSProfileLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/SSProfileLayout.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/layout/ProfileLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/ProfileLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/layout/SignUpLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/SignUpLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/css/SSProfileLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/css/SSProfileLayout.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/layout/ProfileLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/layout/ProfileLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/layout/SignUpLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/layout/SignUpLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userphoto.png" beforeDir="false" afterPath="$PROJECT_DIR$/userphoto.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,11 +183,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="495" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1582833392776" />
-    <state x="621" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1590380410718">
+    <state x="621" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1590471777398">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="553" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1368.872@0.0.1368.872" timestamp="1582055464630" />
-    <state x="621" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590380410718" />
+    <state x="621" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590471777398" />
     <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1583250119768">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -225,10 +220,6 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824" timestamp="1588629552731" />
-    <state x="432" y="292" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1581976616684">
-      <screen x="0" y="0" width="1368" height="872" />
-    </state>
-    <state x="432" y="292" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1368.872@0.0.1368.872" timestamp="1581976616684" />
     <state x="349" y="128" key="DBNavigator.DatasetFilterDialog" timestamp="1582669562232">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -242,46 +233,46 @@
     </state>
     <state x="464" y="143" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1582147007579" />
     <state x="72" y="182" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589876657785" />
-    <state width="1493" height="162" key="GridCell.Tab.0.bottom" timestamp="1590380126202">
+    <state width="1493" height="119" key="GridCell.Tab.0.bottom" timestamp="1590690232012">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
     <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1582152475807" />
-    <state width="1493" height="162" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590380126202" />
-    <state width="1493" height="162" key="GridCell.Tab.0.center" timestamp="1590380126202">
+    <state width="1493" height="119" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590690232012" />
+    <state width="1493" height="119" key="GridCell.Tab.0.center" timestamp="1590690232011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
     <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1582152475806" />
-    <state width="1493" height="162" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590380126202" />
-    <state width="1493" height="162" key="GridCell.Tab.0.left" timestamp="1590380126202">
+    <state width="1493" height="119" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590690232011" />
+    <state width="1493" height="119" key="GridCell.Tab.0.left" timestamp="1590690232011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
     <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1582152475805" />
-    <state width="1493" height="162" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590380126202" />
-    <state width="1493" height="162" key="GridCell.Tab.0.right" timestamp="1590380126202">
+    <state width="1493" height="119" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590690232011" />
+    <state width="1493" height="119" key="GridCell.Tab.0.right" timestamp="1590690232012">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
     <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1582152475807" />
-    <state width="1493" height="162" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590380126202" />
-    <state width="1493" height="187" key="GridCell.Tab.1.bottom" timestamp="1587534462504">
+    <state width="1493" height="119" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590690232012" />
+    <state width="1493" height="187" key="GridCell.Tab.1.bottom" timestamp="1590646893239">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="187" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587534462504" />
-    <state width="1493" height="187" key="GridCell.Tab.1.center" timestamp="1587534462504">
+    <state width="1493" height="187" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590646893239" />
+    <state width="1493" height="187" key="GridCell.Tab.1.center" timestamp="1590646893239">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="187" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587534462504" />
-    <state width="1493" height="187" key="GridCell.Tab.1.left" timestamp="1587534462503">
+    <state width="1493" height="187" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590646893239" />
+    <state width="1493" height="187" key="GridCell.Tab.1.left" timestamp="1590646893239">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="187" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587534462503" />
-    <state width="1493" height="187" key="GridCell.Tab.1.right" timestamp="1587534462504">
+    <state width="1493" height="187" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590646893239" />
+    <state width="1493" height="187" key="GridCell.Tab.1.right" timestamp="1590646893239">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="187" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587534462504" />
+    <state width="1493" height="187" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590646893239" />
     <state x="349" y="155" key="IDE.errors.dialog" timestamp="1589875098743">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -300,6 +291,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1582569432162" />
+    <state x="379" y="38" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590440748378">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="379" y="38" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1590440748378" />
     <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589873847977">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -312,10 +307,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1587350223604" />
-    <state x="390" y="174" width="755" height="641" key="search.everywhere.popup" timestamp="1589876575771">
+    <state x="390" y="174" width="755" height="641" key="search.everywhere.popup" timestamp="1590447093474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="347" y="184" width="672" height="678" key="search.everywhere.popup/0.0.1368.872@0.0.1368.872" timestamp="1581976565583" />
-    <state x="390" y="174" width="755" height="641" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1589876575771" />
+    <state x="390" y="174" width="755" height="641" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1590447093474" />
   </component>
 </project>

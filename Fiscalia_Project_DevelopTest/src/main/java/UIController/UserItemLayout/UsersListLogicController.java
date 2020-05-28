@@ -32,7 +32,6 @@ public class UsersListLogicController {
 
         for (User usuario : foundUsers) {
 
-
             FXMLLoader fxmlLoaderItem = manageLayoutClass.loadLayout("layout/UserItemLayout.fxml", "Item", false);
             UserItemLayoutController userItemClass = fxmlLoaderItem.getController();
 
@@ -42,7 +41,6 @@ public class UsersListLogicController {
 
             userRootContainerClass.setItemParent(manageLayoutClass.getParent());
             userRootContainerClass.paintUserItem();
-
         }
 
         containerStage.setTitle("RootLayout");

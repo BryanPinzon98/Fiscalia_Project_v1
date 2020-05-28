@@ -234,7 +234,7 @@ public class ValidateSignUpForm {
     public void validateRFC(TextField textField) {
 
         String labelMessage = "";
-        String regex = "[a-zA-Z0-9]{12}";
+        String regex = "[a-zA-Z0-9]{18}";
 
         Pattern RFCPattern = Pattern.compile(regex);
         Matcher RFCMatcher = RFCPattern.matcher(textField.getText());
@@ -245,7 +245,7 @@ public class ValidateSignUpForm {
             if (textField.getText().isEmpty()) {
                 labelMessage = "El campo RFC no puede estar vacío.";
             } else if (!isCompleteRFC) {
-                labelMessage = "El campo no cumple con 12 caracteres.";
+                labelMessage = "El campo no cumple con 18 caracteres.";
             }
 
             setUpWarningLabelFields(textField.getId(), labelMessage, "show");
@@ -333,14 +333,25 @@ public class ValidateSignUpForm {
 
     //------- Utilities
 
-    public boolean formIsCorrect() {
+    public boolean formIsCorrect(String buttonInvoke) {
 
         boolean formIsCorrect = false;
 
-        if (isCorrectNameField && isCorrectLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && isCorrectAddressField && isCorrectEmailField && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageFileIsReady && userPhotoFileIsReady) {
-            formIsCorrect = true;
-        } else {
-            formIsCorrect = false;
+        switch (buttonInvoke) {
+            case "register":
+                if (isCorrectNameField && isCorrectLastNameField && isCorrectRFCField && !isEmptyGenreField && !isEmptyMaritalStatus && isCorrectAddressField && isCorrectEmailField && !isEmptyTypeUser && fingerprintTemplateIsReady && fingerprintTemplateImageFileIsReady && userPhotoFileIsReady) {
+                    formIsCorrect = true;
+                } else {
+                    formIsCorrect = false;
+                }
+                break;
+            case "update":
+                if (isCorrectNameField && isCorrectLastNameField && !isEmptyGenreField && !isEmptyMaritalStatus && isCorrectAddressField && isCorrectEmailField && !isEmptyTypeUser) {
+                    formIsCorrect = true;
+                } else {
+                    formIsCorrect = false;
+                }
+                break;
         }
 
         return formIsCorrect;
