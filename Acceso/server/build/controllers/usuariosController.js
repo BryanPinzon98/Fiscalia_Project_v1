@@ -112,7 +112,7 @@ class UsuariosController {
             var nombre = ("%" + nombreCodificado + "%");
             var apellidoCodificado = decodeURIComponent(req.query.apellido);
             var apellido = ("%" + apellidoCodificado + "%");
-            const coincidencias = yield database_1.default.query('SELECT usuarios.id_usuario, usuarios.nombres_usuario, usuarios.apellidos_usuario, usuarios.id_tipo_usuario, usuarios.rfc_usuario, usuarios.direccion_usuario, usuarios.correo_usuario, usuarios.id_genero, usuarios.id_estado_civil, usuarios_foto.archivo_foto, usuario_huella.archivo_huella FROM usuarios, usuarios_foto, tipos_usuario, usuario_huella WHERE usuarios.nombres_usuario LIKE ? AND usuarios.apellidos_usuario LIKE ? AND usuarios.id_tipo_usuario = tipos_usuario.id_tipos_usuario AND usuarios.id_usuario = usuarios_foto.id_usuario AND usuarios.id_usuario = usuario_huella.id_usuario', [nombre, apellido]);
+            const coincidencias = yield database_1.default.query('select u.id_usuario, u.rfc_usuario, u.nombres_usuario, u.apellidos_usuario, u.direccion_usuario, u.correo_usuario, u.clave_usuario, u.id_genero, u.id_estado_civil, u.id_tipo_usuario,tt.archivo_foto as archivo_foto, uh.archivo_huella as archivo_huella from usuarios u left join (select uf.* from usuarios_foto uf inner join (select max(id_foto) maximo from usuarios_foto group by id_usuario) muf on uf.id_foto=muf.maximo) tt on u.id_usuario=tt.id_usuario left join usuario_huella uh on uh.id_usuario=u.id_usuario WHERE u.nombres_usuario LIKE ? AND u.apellidos_usuario LIKE ? GROUP by u.id_usuario', [nombre, apellido]);
             for (let usuario of coincidencias) {
                 var buffer = new Buffer(usuario.archivo_foto);
                 var bufferBase64 = buffer.toString('ascii');
