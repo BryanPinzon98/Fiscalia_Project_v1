@@ -34,6 +34,7 @@ public class ProfileLayoutController implements Initializable {
     private String newFingerprintTemplateBase64String = null;
     private DPFPTemplate fingerprintTemplateToCompare = null;
     private DPFPTemplate newUserFingerprint = null;
+    private Stage actualStage = null;
 
     @FXML
     private ImageView profileUserPicture;
@@ -109,7 +110,7 @@ public class ProfileLayoutController implements Initializable {
 
     @FXML
     public void editUserProfile() {
-        FXMLLoader signUpFXMLLoader = manageLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Editar Profile", false);
+        FXMLLoader signUpFXMLLoader = manageLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Editar Perfil", false);
         SignUpLayoutController signUpLayoutController = signUpFXMLLoader.getController();
         Stage signUpStage = manageLayoutClass.getStage();
 
@@ -126,6 +127,8 @@ public class ProfileLayoutController implements Initializable {
         signUpStage.setResizable(false);
         signUpStage.show();
 
+        signUpLayoutController.setActualStage(signUpStage);
+        actualStage.close();
     }
 
     public void convertDPFPTemplateToBase64(DPFPTemplate fingerprintTemplate) {
@@ -134,6 +137,9 @@ public class ProfileLayoutController implements Initializable {
         }
     }
 
+    public void setActualStage(Stage actualStage) {
+        this.actualStage = actualStage;
+    }
 
     public void setActualUser(User actualUser) {
         this.actualUser = actualUser;

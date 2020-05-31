@@ -42,36 +42,6 @@ public class Connection {
     private Connection() {
     }
 
-    private String GET_REQUEST(String URI) {
-
-        String jsonStringResponse = null;
-
-        try {
-
-            Client client = Client.create();
-            WebResource webResource = client.resource(URI);
-            ClientResponse response = null;
-
-            try {
-                response = webResource.accept("application/json").get(ClientResponse.class);
-            } catch (ClientHandlerException e) {
-                throw new ClientHandlerException("No se pudo comunicar con la API");
-            }
-
-
-            if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed: HTTP error code: " + response.getStatus());
-            }
-
-            jsonStringResponse = response.getEntity(String.class);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return jsonStringResponse;
-    }
-
     public void POST_REQUEST(String user) {
 
         String POST_USER_URI = DDBB_URI + "/usuarios/createall/";
@@ -183,12 +153,40 @@ public class Connection {
         return foundUsers;
     }
 
+    //Get initial data to new user form.
+    private String GET_REQUEST(String URI) {
+
+        String jsonStringResponse = null;
+
+        try {
+
+            Client client = Client.create();
+            WebResource webResource = client.resource(URI);
+            ClientResponse response = null;
+
+            try {
+                response = webResource.accept("application/json").get(ClientResponse.class);
+            } catch (ClientHandlerException e) {
+                throw new ClientHandlerException("No se pudo comunicar con la API.");
+            }
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed: HTTP error code: " + response.getStatus());
+            }
+
+            jsonStringResponse = response.getEntity(String.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return jsonStringResponse;
+    }
+
     public void loadMaritalStatusChoiceBoxOptions() {
 
         String MARITALSTATUS_URI = DDBB_URI + "/estadosciviles";
         String jsonStringMaritalResponse = GET_REQUEST(MARITALSTATUS_URI);
-
-        //System.out.println(jsonStringMaritalResponse);
 
         if (jsonStringMaritalResponse != null) {
             try {
@@ -200,16 +198,12 @@ public class Connection {
         } else {
             System.out.println("No se han podido obtener los datos de Estados Civiles desde la API.");
         }
-
-
     }
 
     public void loadGenreChoiceBoxOptions() {
 
         String GENRES_URI = DDBB_URI + "/generos";
         String jsonStringGenresResponse = GET_REQUEST(GENRES_URI);
-
-        //System.out.println(jsonStringGenresResponse);
 
         if (jsonStringGenresResponse != null) {
             try {
@@ -221,7 +215,6 @@ public class Connection {
         } else {
             System.out.println("No se han podido obtener los datos de Generos desde la API.");
         }
-
     }
 
     public void loadTypeUserChoiceBoxOptions() {
@@ -243,6 +236,21 @@ public class Connection {
         }
     }
 
+    public User getOneUser(int userID) {
+
+        String GET_ONE_USER = DDBB_URI + "/usuarios/crud/" + userID;
+        String jsonUserResponse = GET_REQUEST(GET_ONE_USER);
+
+        User foundUser = null;
+
+        try {
+            foundUser = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(jsonUserResponse, User.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return foundUser;
+    }
 
     public String getTypeUserString(int idTipoUsuario) {
 

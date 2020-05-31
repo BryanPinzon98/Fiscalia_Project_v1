@@ -100,6 +100,7 @@ public class UserItemLayoutController implements Initializable {
         ProfileLayoutController profileLayoutController = fxmlLoaderProfileLayout.getController();
 
         profileLayoutController.setActualUser(actualUser);
+        profileLayoutController.setActualStage(manageLayoutClass.getStage());
         profileLayoutController.setActualInstance(profileLayoutController);
 
 

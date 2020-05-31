@@ -12,7 +12,7 @@ import java.util.Objects;
 public class HomeLayout extends Application {
 
 
-    //Muestra la ventana principal del programa.
+    //Show the application main layout.
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("layout/HomeLayout.fxml")));

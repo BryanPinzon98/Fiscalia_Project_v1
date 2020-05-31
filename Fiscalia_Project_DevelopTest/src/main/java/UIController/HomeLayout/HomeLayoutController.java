@@ -24,7 +24,12 @@ public class HomeLayoutController implements Initializable {
     @FXML
     private Button btnSearchUser;
 
-    //Administra los clics de los dos botones de la ventana principal del programa.
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getUserFormData();
+    }
+
+    //Manage clicks from main layout.
     @FXML
     private void handleButtonClicks(MouseEvent mouseEvent) {
 
@@ -32,33 +37,29 @@ public class HomeLayoutController implements Initializable {
 
         switch (buttonPressed.getId()) {
 
+            //New User button implementation.
             case "btnNewUser":
-                System.out.println("New User Button Pressed");
-                FXMLLoader signUpController = loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro", true);
-                SignUpLayoutController signUpControllerClass = signUpController.getController();
+                FXMLLoader signUpLoader = loadLayoutClass.loadLayout("layout/SignUpLayout.fxml", "Registro Nuevo Usuario", true);
 
-                signUpControllerClass.setSignUpParent(loadLayoutClass.getParent());
-                signUpControllerClass.setSignUpReferenceClass(signUpControllerClass);
+                SignUpLayoutController signUpController = signUpLoader.getController();
+                signUpController.setSignUpParent(loadLayoutClass.getParent());
+                signUpController.setSignUpReferenceClass(signUpController);
+                signUpController.setActualStage(loadLayoutClass.getStage());
                 break;
 
+            //Search User button implementation.
             case "btnSearchUser":
-                System.out.println("Search User Button Pressed");
-                FXMLLoader searchUserLoader = loadLayoutClass.loadLayout("layout/UserSearchInputLayout.fxml", "Buscar", true);
-                UserSearchInputController searchInputController = searchUserLoader.getController();
+                FXMLLoader searchUserLoader = loadLayoutClass.loadLayout("layout/UserSearchInputLayout.fxml", "Buscar Usuario", true);
 
+                UserSearchInputController searchInputController = searchUserLoader.getController();
                 searchInputController.setActualStage(loadLayoutClass.getStage());
                 break;
         }
     }
 
-    private void getData() {
+    private void getUserFormData() {
         DDBBConectionClass.loadGenreChoiceBoxOptions();
         DDBBConectionClass.loadMaritalStatusChoiceBoxOptions();
         DDBBConectionClass.loadTypeUserChoiceBoxOptions();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        getData();
     }
 }

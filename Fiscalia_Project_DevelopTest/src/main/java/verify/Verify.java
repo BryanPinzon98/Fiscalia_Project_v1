@@ -25,6 +25,16 @@ public class Verify extends LaunchFingerprintReader {
     public Verify(ProfileLayoutController profileLayoutController) {
         super();
         this.profileLayoutController = profileLayoutController;
+        showInstructionsAlertMessage();
+    }
+
+    private void showInstructionsAlertMessage() {
+        ButtonType ACCEPT_BUTTON = new ButtonType("Aceptar", ButtonBar.ButtonData.YES);
+
+        Alert userCreatedAlert = new Alert(Alert.AlertType.CONFIRMATION, "Toque el sensor con la huella previamente registrada.", ACCEPT_BUTTON);
+        userCreatedAlert.setTitle("Atención");
+        userCreatedAlert.setHeaderText(null);
+        userCreatedAlert.showAndWait();
     }
 
     @Override
@@ -54,10 +64,10 @@ public class Verify extends LaunchFingerprintReader {
 
         switch (verificationResponseMessage){
             case "VERIFIED":
-                message = "El usuario ha sido VERIFICADO con éxito.";
+                message = "El usuario CORRESPONDE con la huella registrada previamente.";
                 break;
             case "NOT VERIFIED":
-                message = "El usuario NO CORRESPONDE.";
+                message = "El usuario NO CORRESPONDE con la huella registrada previamente.";
                 break;
         }
 

@@ -161,7 +161,6 @@ public class CameraManager implements Initializable {
     }
 
     //Getters and Setters
-
     public void setCameraManagerStage(Stage cameraManagerStage) {
         this.cameraManagerStage = cameraManagerStage;
     }

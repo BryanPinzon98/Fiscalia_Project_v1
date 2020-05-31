@@ -1,6 +1,7 @@
 package UIController.SignUpLayout;
 
 
+import UIController.ProfileLayout.ProfileLayoutController;
 import com.digitalpersona.onetouch.DPFPTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
@@ -29,7 +30,8 @@ import resources.ValidateSignUpForm;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -49,14 +51,12 @@ public class SignUpLayoutController implements Initializable {
     private Parent signUpParent = null;
     private DPFPTemplate fingerprintTemplate = null;
 
-    //private File fingerprintImageFile = null;
-    //private File userPhotoFile = null;
     private String fingerprintTemplateBase64String = null;
     private String fingerprintImageBase64String = null;
     private String userPhotoBase64String = null;
 
     private User actualUserEditMode = null;
-
+    private Stage actualStage = null;
 
     @FXML
     private Text signUpTitle;
@@ -134,54 +134,86 @@ public class SignUpLayoutController implements Initializable {
 
         Button buttonPressed = (Button) mouseEvent.getSource();
 
-        if (buttonPressed.getText().equals("Aceptar")) {
-            System.out.println("Se cambió al modo de edición");
-            lastValidation("update");
+        switch (actualStage.getTitle()) {
+            case "Registro Nuevo Usuario":
+                System.out.println("Modo de registro");
 
-            if (!validateSignUpFormClass.formIsCorrect("update")) {
-                showIncorrectFormFilled();
-            } else {
-                updateUser();
-            }
+                switch (buttonPressed.getId()) {
 
-        } else {
+                    case "txtFieldFormSubmit":
 
-            switch (buttonPressed.getId()) {
+                        lastValidation("Register");
 
-                case "txtFieldFormSubmit":
+                        if (!validateSignUpFormClass.formIsCorrect("register")) {
+                            showIncorrectFormFilled();
+                        } else {
+                            createNewUser();
+                        }
+                        break;
 
-                    if (fingerprintTemplate != null) {
-                        System.out.println("El archivo .fpt no está vacío y está listo para enviar.");
-                    }
+                    case "txtFieldFormCancel":
+                        actualStage.close();
+                        break;
 
-                    System.out.println("Submit button pressed");
+                    case "btnEnrollFingerprint":
+                        Enrollment enrollmentProcess = new Enrollment("SIGN_UP_CLASS");
+                        enrollmentProcess.setSignUpLayoutControllerClass(this.signUpReferenceClass);
+                        enrollmentProcess.setVisible(true);
+                        break;
 
-                    lastValidation("Register");
+                    case "btnTakePhoto":
+                        cameraManagerInvoker();
+                        break;
+                }
 
-                    if (!validateSignUpFormClass.formIsCorrect("register")) {
-                        showIncorrectFormFilled();
-                    } else {
-                        createNewUser();
-                        //manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
-                    }
-                    break;
+                break;
 
-                case "txtFieldFormCancel":
-                    System.out.println("Cancel button pressed");
-                    manageLayoutClass.closeLayout((Stage) buttonPressed.getScene().getWindow());
-                    break;
+            case "Editar Perfil":
+                System.out.println("Modo de edición");
 
-                case "btnEnrollFingerprint":
-                    Enrollment enrollmentProcess = new Enrollment("SIGN_UP_CLASS");
-                    enrollmentProcess.setSignUpLayoutControllerClass(this.signUpReferenceClass);
-                    enrollmentProcess.setVisible(true);
-                    break;
+                switch (buttonPressed.getId()) {
+                    case "txtFieldFormSubmit":
+                        lastValidation("update");
 
-                case "btnTakePhoto":
-                    cameraManagerInvoker();
-                    break;
-            }
+                        if (!validateSignUpFormClass.formIsCorrect("update")) {
+                            showIncorrectFormFilled();
+                        } else {
+                            updateUser();
+                        }
+                        break;
+
+                    case "btnTakePhoto":
+                        cameraManagerInvoker();
+                        break;
+
+                    case "txtFieldFormCancel":
+                        actualStage.close();
+                        loadProfileLayoutAgain();
+                        break;
+                }
+                break;
         }
+    }
+
+    //Camera functionality.
+    private void cameraManagerInvoker() {
+        FXMLLoader FXMLCameraLayoutController = manageLayoutClass.loadLayout("layout/CameraLayout.fxml", "Camera", true);
+
+        CameraManager cameraManagerController = FXMLCameraLayoutController.getController();
+        cameraManagerController.setCameraManagerStage(manageLayoutClass.getStage());
+        cameraManagerController.setSignUpLayoutController(signUpReferenceClass);
+        cameraManagerController.exitStageHandler();
+
+        selectCameraAlertMessage();
+    }
+
+    private void selectCameraAlertMessage() {
+        ButtonType ACCEPT_BUTTON = new ButtonType("Aceptar", ButtonBar.ButtonData.YES);
+
+        Alert userCreatedAlert = new Alert(Alert.AlertType.CONFIRMATION, "Seleccione una cámara de la lista.", ACCEPT_BUTTON);
+        userCreatedAlert.setTitle("¡Atención!");
+        userCreatedAlert.setHeaderText(null);
+        userCreatedAlert.showAndWait();
     }
 
     private void createNewUser() {
@@ -201,6 +233,23 @@ public class SignUpLayoutController implements Initializable {
 
         String JSONUserCreated = serializeUserObject(newUser, "CREATE");
         DDBBConnectionClass.POST_REQUEST(JSONUserCreated);
+
+        userCreatedSuccessfully();
+    }
+
+    private void userCreatedSuccessfully() {
+        ButtonType ACCEPT_BUTTON = new ButtonType("Aceptar", ButtonBar.ButtonData.YES);
+
+        Alert userCreatedAlert = new Alert(Alert.AlertType.CONFIRMATION, "¡Usuario creado con éxito!", ACCEPT_BUTTON);
+        userCreatedAlert.setTitle("Atención");
+        userCreatedAlert.setHeaderText(null);
+        userCreatedAlert.showAndWait();
+
+        switch (userCreatedAlert.getResult().getText()) {
+            case "Aceptar":
+                actualStage.close();
+                break;
+        }
     }
 
     private void showIncorrectFormFilled() {
@@ -240,6 +289,29 @@ public class SignUpLayoutController implements Initializable {
         verifiedResponseAlert.setTitle("Mensaje");
         verifiedResponseAlert.setHeaderText(null);
         verifiedResponseAlert.showAndWait();
+
+        switch (verifiedResponseAlert.getResult().getText()){
+            case "Aceptar":
+
+                actualStage.close();
+                loadProfileLayoutAgain();
+
+                break;
+        }
+    }
+
+    private void loadProfileLayoutAgain() {
+        FXMLLoader fxmlLoaderProfileLayout = manageLayoutClass.loadLayout("layout/ProfileLayout.fxml", "Perfil", true);
+        ProfileLayoutController profileLayoutController = fxmlLoaderProfileLayout.getController();
+
+
+        profileLayoutController.setActualUser(DDBBConnectionClass.getOneUser(actualUserEditMode.getId_usuario()));
+        profileLayoutController.setActualStage(manageLayoutClass.getStage());
+        profileLayoutController.setActualInstance(profileLayoutController);
+
+
+        //Envia los datos a la ventana de perfil
+        profileLayoutController.setUpLayout();
     }
 
     public void setUpLayoutEditMode() {
@@ -258,15 +330,6 @@ public class SignUpLayoutController implements Initializable {
         this.txtFieldFormEmail.setText(actualUserEditMode.getCorreo_usuario());
     }
 
-    private void cameraManagerInvoker() {
-        FXMLLoader FXMLCameraLayoutController = manageLayoutClass.loadLayout("layout/CameraLayout.fxml", "Camera", true);
-
-        CameraManager cameraManagerController = FXMLCameraLayoutController.getController();
-        cameraManagerController.setCameraManagerStage(manageLayoutClass.getStage());
-        cameraManagerController.setSignUpLayoutController(signUpReferenceClass);
-        cameraManagerController.exitStageHandler();
-    }
-
     public void lastValidation(String buttonInvoke) {
 
         for (TextField textField : textFieldArray) {
@@ -282,7 +345,7 @@ public class SignUpLayoutController implements Initializable {
         validateSignUpFormClass.validateEmail(txtFieldFormEmail);
         validateSignUpFormClass.validateAddressField(txtFieldFormAddress);
 
-        if (buttonInvoke.equals("register")) {
+        if (buttonInvoke.equals("Register")) {
             validateSignUpFormClass.validateRFC(txtFieldFormRFC);
             validateSignUpFormClass.validateFingerprintTemplate(fingerprintTemplateBase64String, fingerprintImageBase64String);
             validateSignUpFormClass.validateUserPhotoBase64(userPhotoBase64String);
@@ -486,5 +549,9 @@ public class SignUpLayoutController implements Initializable {
         populateTypeUserChoiceBoxOptions(0);
 
         validateForm();
+    }
+
+    public void setActualStage(Stage actualStage) {
+        this.actualStage = actualStage;
     }
 }
