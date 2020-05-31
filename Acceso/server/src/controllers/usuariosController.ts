@@ -52,9 +52,17 @@ class UsuariosController{
 
     public async getOne (req: Request, res: Response): Promise<any>{
         const {id} = req.params;
-        const usuarios = await pool.query('SELECT * FROM usuarios WHERE usuarios.id_usuario= ?', [id]);
-        if(usuarios.length > 0){
-            return  res.json(usuarios[0]);
+        const coincidencia = await pool.query('select u.id_usuario, u.rfc_usuario, u.nombres_usuario, u.apellidos_usuario, u.direccion_usuario, u.correo_usuario, u.clave_usuario, u.id_genero, u.id_estado_civil, u.id_tipo_usuario,tt.archivo_foto as archivo_foto, uh.archivo_huella as archivo_huella from usuarios u left join (select uf.* from usuarios_foto uf inner join (select max(id_foto) maximo from usuarios_foto group by id_usuario) muf on uf.id_foto=muf.maximo) tt on u.id_usuario=tt.id_usuario left join usuario_huella uh on uh.id_usuario=u.id_usuario WHERE u.id_usuario = ? GROUP by u.id_usuario', [id]);
+        for(let usuario of coincidencia){
+            var buffer = new Buffer(usuario.archivo_foto);
+            var bufferBase64 = buffer.toString('ascii');
+            usuario.archivo_foto = bufferBase64;
+            var buffer = new Buffer(usuario.archivo_huella);
+            var bufferBase64 = buffer.toString('ascii');
+            usuario.archivo_huella = bufferBase64;
+        }
+        if(coincidencia.length > 0){
+            return  res.json(coincidencia[0]);
         }
         res.status(404).json({text: "El usuario no existe!"});
     }
