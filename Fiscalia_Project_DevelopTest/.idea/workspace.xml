@@ -3,19 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="938aaac7-afb9-4669-a387-37325a7b2290" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/HomeLayout/HomeLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/ProfileLayout/ProfileLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/ProfileLayout/ProfileLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/SignUpLayout/SignUpLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/SignUpLayout/SignUpLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIController/UserItemLayout/UserItemLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIController/UserItemLayout/UserItemLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataManager/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataManager/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enrollment/Enrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enrollment/Enrollment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/CameraManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/CameraManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/verify/Verify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/verify/Verify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layout/ProfileLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/ProfileLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layout/SignUpLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/SignUpLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/layout/SignUpLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/layout/SignUpLayout.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,26 +218,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="72" y="182" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589876657785" />
-    <state width="1493" height="55" key="GridCell.Tab.0.bottom" timestamp="1590891993100">
+    <state width="1493" height="139" key="GridCell.Tab.0.bottom" timestamp="1591155945671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
-    <state width="1493" height="55" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590891993100" />
-    <state width="1493" height="55" key="GridCell.Tab.0.center" timestamp="1590891993100">
+    <state width="1493" height="139" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591155945671" />
+    <state width="1493" height="139" key="GridCell.Tab.0.center" timestamp="1591155945670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
-    <state width="1493" height="55" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590891993100" />
-    <state width="1493" height="55" key="GridCell.Tab.0.left" timestamp="1590891993099">
+    <state width="1493" height="139" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591155945670" />
+    <state width="1493" height="139" key="GridCell.Tab.0.left" timestamp="1591155945670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
-    <state width="1493" height="55" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590891993099" />
-    <state width="1493" height="55" key="GridCell.Tab.0.right" timestamp="1590891993100">
+    <state width="1493" height="139" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591155945670" />
+    <state width="1493" height="139" key="GridCell.Tab.0.right" timestamp="1591155945670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582584359777" />
-    <state width="1493" height="55" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590891993100" />
+    <state width="1493" height="139" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591155945670" />
     <state width="1493" height="187" key="GridCell.Tab.1.bottom" timestamp="1590646893239">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

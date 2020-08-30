@@ -1,0 +1,25 @@
+- Expresiones regulares:
+https://www.youtube.com/watch?time_continue=62&v=8OJMLeXyC4M&feature=emb_title
+https://www.javatpoint.com/java-regex
+https://howtodoinjava.com/regex/java-regex-validate-email-address/
+
+-Repositorio librería de la cámara:
+https://github.com/sarxos/webcam-capture
+https://github.com/sarxos/webcam-capture/tree/master/webcam-capture-examples/webcam-capture-javafx
+
+- Camara:
+https://www.youtube.com/watch?v=2BHyL_XK8YQ
+https://stackoverflow.com/questions/29271239/how-to-embed-jpanel-into-javafx-pane
+https://stackoverflow.com/questions/44548460/javafx-stage-close-event-handler
+https://stackoverflow.com/questions/9132149/how-to-convert-buffered-image-to-image-and-vice-versa
+https://stackoverflow.com/questions/30970005/bufferedimage-to-javafx-image
+https://stackoverflow.com/questions/20676858/javafx-convert-writableimage-to-image
+
+- Image to BufferedImage:
+https://stackoverflow.com/questions/13605248/java-converting-image-to-bufferedimage
+
+- Configurar los botones de un Alert:
+https://stackoverflow.com/questions/36309385/how-to-change-the-text-of-yes-no-buttons-in-javafx-8-alert-dialogs
+
+- BufferedImage to File:
+https://stackoverflow.com/questions/12674064/how-to-save-a-bufferedimage-as-a-file
